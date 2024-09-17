@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ds.Simple.Application.Contexts;
 
-public class SimpleDatabaseContext : DatabaseContext, ISimpleDatabaseContext
+public class DsSimpleDatabaseContext : DatabaseContext, IDsSimpleDatabaseContext
 {
 
-    public SimpleDatabaseContext() : base(new DbContextOptionsBuilder<DatabaseContext>()
-        .UseInMemoryDatabase(databaseName: "SimpleDatabase").Options)
+    public DsSimpleDatabaseContext() : base(new DbContextOptionsBuilder<DatabaseContext>()
+        .UseInMemoryDatabase(databaseName: "DsSimple").Options)
     {
         SaveChanges();
     }

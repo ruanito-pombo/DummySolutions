@@ -13,10 +13,10 @@ using SimpleInjector.Lifestyles;
 
 namespace Ds.Simple.Application.Containers;
 
-public class SimpleContainer : Container
+public class DsSimpleContainer : Container
 {
 
-    public SimpleContainer()
+    public DsSimpleContainer()
     {
         Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
         AsyncScopedLifestyle.BeginScope(this);
@@ -24,7 +24,7 @@ public class SimpleContainer : Container
 
     public void Register()
     {
-        Register<ISimpleDatabaseContext, SimpleDatabaseContext>(Lifestyle.Singleton);
+        Register<IDsSimpleDatabaseContext, DsSimpleDatabaseContext>(Lifestyle.Singleton);
         Register<IInventoryBusiness, InventoryBusiness>(Lifestyle.Singleton);
         Register<IInventoryRepository, InventoryRepository>(Lifestyle.Singleton);
         Register<IInventoryService, InventoryService>(Lifestyle.Singleton);

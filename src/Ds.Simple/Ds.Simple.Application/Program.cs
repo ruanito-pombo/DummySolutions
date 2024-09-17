@@ -3,11 +3,11 @@ using Ds.Simple.Application.Contexts;
 using Ds.Simple.Application.Contexts.Abstractions;
 using Ds.Simple.Application.Tuis.Abstractions;
 
-var container = new SimpleContainer();
+var container = new DsSimpleContainer();
 container.Register();
 
-var databaseContext = container.GetInstance<ISimpleDatabaseContext>();
-((SimpleDatabaseContext)databaseContext).Database.EnsureCreated();
+var databaseContext = container.GetInstance<IDsSimpleDatabaseContext>();
+((DsSimpleDatabaseContext)databaseContext).Database.EnsureCreated();
 
 container.GetInstance<IMainTui>()
     ?.Execute([]);

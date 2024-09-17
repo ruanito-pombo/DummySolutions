@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ds.Simple.Application.Repositories;
 
-public class InventoryRepository(ISimpleDatabaseContext databaseContext)
+public class InventoryRepository(IDsSimpleDatabaseContext databaseContext)
     : IdentifiableRepository<IdentifiableEntityLong, long>(databaseContext), IInventoryRepository
 {
 

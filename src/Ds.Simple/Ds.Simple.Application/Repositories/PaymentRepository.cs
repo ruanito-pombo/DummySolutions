@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ds.Simple.Application.Repositories;
 
-public class PaymentRepository(ISimpleDatabaseContext databaseContext)
+public class PaymentRepository(IDsSimpleDatabaseContext databaseContext)
     : IdentifiableRepository<IdentifiableEntityLong, long>(databaseContext), IPaymentRepository
 {
 

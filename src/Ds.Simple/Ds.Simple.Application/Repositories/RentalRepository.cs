@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ds.Simple.Application.Repositories;
 
-public class RentalRepository(ISimpleDatabaseContext databaseContext)
+public class RentalRepository(IDsSimpleDatabaseContext databaseContext)
     : IdentifiableRepository<IdentifiableEntityLong, long>(databaseContext), IRentalRepository
 {
 

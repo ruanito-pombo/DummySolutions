@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ds.Simple.Application.Repositories;
 
-public class PersonRepository(ISimpleDatabaseContext databaseContext)
+public class PersonRepository(IDsSimpleDatabaseContext databaseContext)
     : IdentifiableRepository<IdentifiableEntityLong, long>(databaseContext), IPersonRepository
 {
 

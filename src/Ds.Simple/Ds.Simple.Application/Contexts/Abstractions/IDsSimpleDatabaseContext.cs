@@ -2,7 +2,7 @@
 
 namespace Ds.Simple.Application.Contexts.Abstractions;
 
-public interface ISimpleDatabaseContext : IDatabaseContext
+public interface IDsSimpleDatabaseContext : IDatabaseContext
 {
 
 

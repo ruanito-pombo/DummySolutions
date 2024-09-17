@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ds.Simple.Application.Repositories;
 
-public class UserRepository(ISimpleDatabaseContext databaseContext)
+public class UserRepository(IDsSimpleDatabaseContext databaseContext)
     : IdentifiableRepository<IdentifiableEntityInt, int>(databaseContext), IUserRepository
 {
 
