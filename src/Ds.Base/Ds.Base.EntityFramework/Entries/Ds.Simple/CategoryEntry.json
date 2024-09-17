@@ -1,0 +1,13 @@
+[
+  { "id": 1, "description": "Indie", "rating": 1 , "titleList": null },
+  { "id": 2, "description": "Comedy", "rating": 2 , "titleList": null },
+  { "id": 3, "description": "Drama", "rating": 3 , "titleList": null },
+  { "id": 4, "description": "Action", "rating": 4 , "titleList": null },
+  { "id": 5, "description": "Terror", "rating": 5 , "titleList": null },
+  { "id": 6, "description": "Spicy", "rating": 6 , "titleList": null },
+  { "id": 7, "description": "First Person Shooter", "rating": 1 , "titleList": null },
+  { "id": 8, "description": "Role Playing Game", "rating": 1 , "titleList": null },
+  { "id": 9, "description": "Folk", "rating": 1 , "titleList": null },
+  { "id": 10, "description": "Heavy Metal", "rating": 1, "titleList": null },
+  { "id": 11, "description": "Pop", "rating": 1, "titleList": null }
+]

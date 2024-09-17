@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option csharp_namespace = "Ds.Base.Grpc.Protos";
+
+import "default.proto";
+
+package IdentifiablePackage;
+
+message IdentifiableMessageInt
+{
+	DefaultPackage.HeaderMessage Header = 1;
+	DefaultPackage.ReturnMessage Return = 2;
+	int32                        Id     = 3;
+}
+
+message IdentifiableMessageLong
+{
+	DefaultPackage.HeaderMessage Header = 1;
+	DefaultPackage.ReturnMessage Return = 2;
+	int64                        Id     = 3;
+}
+
+message IdentifiableMessageShort
+{
+	DefaultPackage.HeaderMessage Header = 1;
+	DefaultPackage.ReturnMessage Return = 2;
+	int32                        Id     = 3;
+}

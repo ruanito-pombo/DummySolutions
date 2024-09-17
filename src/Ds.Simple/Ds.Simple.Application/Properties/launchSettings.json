@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Ds.Single.Application": {
+      "commandName": "Project",
+      "commandLineArgs": "",
+      "dotnetRunMessages": true
+    }
+  }
+}

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ds.Simple.Application", "Ds.Simple.Application\Ds.Simple.Application.csproj", "{073AE727-5885-4A01-9D61-7D33A2702D8C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Assets", "_Assets", "{87864E9B-A84E-4EE1-801D-C61E62A44077}"
+	ProjectSection(SolutionItems) = preProject
+		Database\Ds.Simple.Database.graphml = Database\Ds.Simple.Database.graphml
+		readme.md = readme.md
+		SharpScaffolder.settings.json = SharpScaffolder.settings.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{073AE727-5885-4A01-9D61-7D33A2702D8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{073AE727-5885-4A01-9D61-7D33A2702D8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{073AE727-5885-4A01-9D61-7D33A2702D8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{073AE727-5885-4A01-9D61-7D33A2702D8C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {430C9E37-6C34-4735-AD23-708F6F57FE00}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,5 @@
+[
+  { "id": 1, "code": "Admin", "description": "System Administrator Profile", "userList": null },
+  { "id": 2, "code": "BookKeeper", "description": "System Book Keeper Profile", "userList": null },
+  { "id": 3, "code": "RentalOperator", "description": "System Rental Operator Profile", "userList": null }  
+]

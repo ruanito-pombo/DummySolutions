@@ -1,0 +1,41 @@
+﻿{
+  "Id": "430c9e37-6c34-4735-ad23-708f6f57fe00",
+  "ParentGuid": "00000000-0000-0000-0000-000000000000",
+  "ParentName": "",
+  "SolutionName": "Ds.Simple",
+  "ErdSource": "D:\\Work\\DummySolutions\\Ds.Simple\\Database\\Ds.Full.Database.graphml",
+  "SolutionFolderList": [
+    {
+      "Id": "3d8db090-1d03-4950-b5c2-a188e579febf",
+      "ParentGuid": "430c9e37-6c34-4735-ad23-708f6f57fe00",
+      "ParentName": ".\\",
+      "Name": "Application",
+      "Tag": "$APPLICATION_SOLUTIONFOLDER$",
+      "Scaffold": false
+    },
+    {
+      "Id": "87864e9b-a84e-4ee1-801d-c61e62a44077",
+      "ParentGuid": "430c9e37-6c34-4735-ad23-708f6f57fe00",
+      "ParentName": ".\\",
+      "Name": "Assets",
+      "Tag": "$ASSETS_SOLUTIONFOLDER$",
+      "Scaffold": false
+    }
+  ],
+  "ProjectList": [
+    {
+      "Id": "073ae727-5885-4a01-9d61-7d33a2702d8c",
+      "ParentGuid": "3d8db090-1d03-4950-b5c2-a188e579febf",
+      "ParentName": "Application",
+      "Path": "D:\\Work\\DummySolutions\\Ds.Simple\\Ds.Simple.Application\\Ds.Simple.Application.csproj",
+      "Name": "Ds.Simple.Application",
+      "Type": 5,
+      "Tag": "$DS.SIMPLE.APPLICATION_PROJECT$",
+      "TargetFramework": 7,
+      "Scaffold": false
+    }
+  ],
+  "DataFileList": [],
+  "InterfaceFileList": [],
+  "LogicFileList": []
+}
