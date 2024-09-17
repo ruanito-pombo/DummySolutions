@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
-using Ds.Base.Core.Tuis;
-using Ds.Base.Core.Tuis.Abstractions;
+using Ds.Base.Console.Tuis;
+using Ds.Base.Console.Tuis.Abstractions;
 using Ds.Simple.Application.Businesses.Abstractions;
 using Ds.Simple.Application.Models;
 using static Ds.Simple.Application.Constants.DsSimpleConstant;
@@ -109,7 +109,7 @@ public class UserTui(IUserBusiness userBusiness) : Tui, ITui
                 return "E";
             }
         }
-            
+
         Console.WriteLine("\nNo user was found, press any key to exit");
         Console.ReadLine();
 
@@ -148,7 +148,7 @@ public class UserTui(IUserBusiness userBusiness) : Tui, ITui
 
     public string ExecuteReadList(string[] args)
     {
-        
+
         Cls();
         Console.WriteLine($"\n\nMain > {args[0]} > User > List");
         var results = _userBusiness.List(new());
@@ -159,7 +159,7 @@ public class UserTui(IUserBusiness userBusiness) : Tui, ITui
             {
                 Console.WriteLine($"UserId: {user.Id}  UserName: {user.UserName}  Profile: {user.Profile!.Description}");
             }
-            
+
             Console.WriteLine("\n\nDone, press any key to exit");
             Console.ReadLine();
         }

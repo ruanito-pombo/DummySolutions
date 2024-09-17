@@ -1,4 +1,4 @@
-﻿using Ds.Base.Mockup.Utils;
+﻿using Ds.Base.EntityFramework.Utils;
 using Ds.Simple.Application.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -35,7 +35,7 @@ public class InventoryMap : IEntityTypeConfiguration<InventoryEntity>
 
         builder.Property(p => p.AcquisitionValue)
             .HasColumnType("DECIMAL(18,2)");
-        
+
         builder.Property(p => p.Status)
             .HasColumnType("TINYINT");
 

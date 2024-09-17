@@ -1,5 +1,5 @@
-﻿using Ds.Base.Core.Entities.Abstractions;
-using Ds.Base.Core.Maping.Abstractions;
+﻿using Ds.Base.Domain.Entities.Abstractions;
+using Ds.Base.Domain.Maping.Abstractions;
 using Ds.Simple.Application.Enums;
 using Ds.Simple.Application.Models;
 
@@ -56,7 +56,7 @@ public class RentalEntity : IEntity, IMap<RentalEntity, Rental>
         Payment = (include?.Any(a => a.Equals("Payment")) ?? false) && model.Payment != null
             ? PaymentEntity.MapFrom(model.Payment, include) : null,
 
-        RentalItemList = (include?.Any(a => a.Equals("RentalItemList")) ?? false) && model.RentalItemList != null 
+        RentalItemList = (include?.Any(a => a.Equals("RentalItemList")) ?? false) && model.RentalItemList != null
             ? model.RentalItemList.Select(s => RentalItemEntity.MapFrom(s, include))?.ToList() : null,
     };
 

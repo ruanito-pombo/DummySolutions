@@ -1,5 +1,4 @@
-﻿using Ds.Base.Core.Models;
-using Ds.Base.Core.Models.Abstractions;
+﻿using Ds.Base.Domain.Models.Abstractions;
 using Ds.Simple.Application.Enums;
 
 namespace Ds.Simple.Application.Models;

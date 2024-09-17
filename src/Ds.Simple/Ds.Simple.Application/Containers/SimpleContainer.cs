@@ -1,7 +1,7 @@
-﻿using Ds.Base.Core.Contexts.Abstractions;
-using Ds.Simple.Application.Businesses;
+﻿using Ds.Simple.Application.Businesses;
 using Ds.Simple.Application.Businesses.Abstractions;
 using Ds.Simple.Application.Contexts;
+using Ds.Simple.Application.Contexts.Abstractions;
 using Ds.Simple.Application.Repositories;
 using Ds.Simple.Application.Repositories.Abstractions;
 using Ds.Simple.Application.Services;
@@ -24,7 +24,7 @@ public class SimpleContainer : Container
 
     public void Register()
     {
-        Register<IDatabaseContext, SimpleDatabaseContext>(Lifestyle.Singleton);
+        Register<ISimpleDatabaseContext, SimpleDatabaseContext>(Lifestyle.Singleton);
         Register<IInventoryBusiness, InventoryBusiness>(Lifestyle.Singleton);
         Register<IInventoryRepository, InventoryRepository>(Lifestyle.Singleton);
         Register<IInventoryService, InventoryService>(Lifestyle.Singleton);

@@ -42,8 +42,13 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Ds.Base.Core" Version="0.0.15" />
-    <PackageReference Include="Ds.Base.Mockup" Version="0.0.8" />
+
+    <PackageReference Include="Ds.Base.Console" Version="0.0.2" />
+
+    <PackageReference Include="Ds.Base.Domain" Version="0.0.2" />
+
+    <PackageReference Include="Ds.Base.EntityFramework" Version="0.0.2" />
+
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.8" />

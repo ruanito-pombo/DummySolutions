@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ds.Simple.Application", "Ds.Simple.Application\Ds.Simple.Application.csproj", "{073AE727-5885-4A01-9D61-7D33A2702D8C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Assets", "_Assets", "{87864E9B-A84E-4EE1-801D-C61E62A44077}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_assets", "_assets", "{87864E9B-A84E-4EE1-801D-C61E62A44077}"
 	ProjectSection(SolutionItems) = preProject
 		Database\Ds.Simple.Database.graphml = Database\Ds.Simple.Database.graphml
 		readme.md = readme.md

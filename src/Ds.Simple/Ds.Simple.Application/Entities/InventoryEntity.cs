@@ -1,5 +1,5 @@
-﻿using Ds.Base.Core.Entities.Abstractions;
-using Ds.Base.Core.Maping.Abstractions;
+﻿using Ds.Base.Domain.Entities.Abstractions;
+using Ds.Base.Domain.Maping.Abstractions;
 using Ds.Simple.Application.Enums;
 using Ds.Simple.Application.Models;
 
@@ -83,7 +83,7 @@ public class InventoryEntity : IEntity, IMap<InventoryEntity, Inventory>
         SellingDate = SellingDate,
         SellingValue = SellingValue,
 
-        Title = !(except?.Any(a => a.Equals("Title")) ?? false) 
+        Title = !(except?.Any(a => a.Equals("Title")) ?? false)
             ? Title?.MapTo(except) : null,
         Supplier = !(except?.Any(a => a.Equals("Supplier")) ?? false)
             ? Supplier?.MapTo(except) : null,

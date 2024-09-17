@@ -1,4 +1,4 @@
-﻿using Ds.Base.Core.Models.Abstractions;
+﻿using Ds.Base.Domain.Models.Abstractions;
 
 namespace Ds.Simple.Application.Models;
 public class Profile : IModel

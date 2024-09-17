@@ -1,8 +1,8 @@
-﻿using Ds.Base.Core.Contexts.Abstractions;
-using Ds.Base.Core.Entities;
-using Ds.Base.Core.Extensions;
-using Ds.Base.Core.Paginateds;
-using Ds.Base.Core.Repositories;
+﻿using Ds.Base.Domain.Extensions;
+using Ds.Base.Domain.Paginateds;
+using Ds.Base.EntityFramework.Entities;
+using Ds.Base.EntityFramework.Repositories;
+using Ds.Simple.Application.Contexts.Abstractions;
 using Ds.Simple.Application.Entities;
 using Ds.Simple.Application.Filters;
 using Ds.Simple.Application.Models;
@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ds.Simple.Application.Repositories;
 
-public class PersonRepository(IDatabaseContext databaseContext)
+public class PersonRepository(ISimpleDatabaseContext databaseContext)
     : IdentifiableRepository<IdentifiableEntityLong, long>(databaseContext), IPersonRepository
 {
 
@@ -22,7 +22,7 @@ public class PersonRepository(IDatabaseContext databaseContext)
 
     public Person? Get(long id)
     {
-        
+
         string[] except = [TableName];
         try
         {
@@ -45,13 +45,13 @@ public class PersonRepository(IDatabaseContext databaseContext)
         {
             var totalRecords = GetQueryable<PersonEntity>().Count();
             var query = ((filter?.PageSize ?? 0) switch
-                {
-                    0 => GetQueryable<PersonEntity>(),
-                    > 0 => GetQueryable<PersonEntity>()
-                        .Skip((filter?.PageIndex ?? 1) * filter!.PageSize)
-                        .Take(filter!.PageSize),
-                    _ => default
-                })?
+            {
+                0 => GetQueryable<PersonEntity>(),
+                > 0 => GetQueryable<PersonEntity>()
+                    .Skip((filter?.PageIndex ?? 1) * filter!.PageSize)
+                    .Take(filter!.PageSize),
+                _ => default
+            })?
                 .Include(i => i.PersonAddressList)
                 .Include(i => i.PersonContactList)
                 .Include(i => i.User)

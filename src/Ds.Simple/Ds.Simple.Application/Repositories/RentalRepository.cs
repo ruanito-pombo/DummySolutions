@@ -1,8 +1,8 @@
-﻿using Ds.Base.Core.Contexts.Abstractions;
-using Ds.Base.Core.Entities;
-using Ds.Base.Core.Extensions;
-using Ds.Base.Core.Paginateds;
-using Ds.Base.Core.Repositories;
+﻿using Ds.Base.Domain.Extensions;
+using Ds.Base.Domain.Paginateds;
+using Ds.Base.EntityFramework.Entities;
+using Ds.Base.EntityFramework.Repositories;
+using Ds.Simple.Application.Contexts.Abstractions;
 using Ds.Simple.Application.Entities;
 using Ds.Simple.Application.Filters;
 using Ds.Simple.Application.Models;
@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ds.Simple.Application.Repositories;
 
-public class RentalRepository(IDatabaseContext databaseContext)
+public class RentalRepository(ISimpleDatabaseContext databaseContext)
     : IdentifiableRepository<IdentifiableEntityLong, long>(databaseContext), IRentalRepository
 {
 

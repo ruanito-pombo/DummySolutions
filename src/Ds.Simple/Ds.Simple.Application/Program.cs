@@ -1,12 +1,12 @@
-﻿using Ds.Base.Core.Contexts.Abstractions;
-using Ds.Simple.Application.Containers;
+﻿using Ds.Simple.Application.Containers;
 using Ds.Simple.Application.Contexts;
+using Ds.Simple.Application.Contexts.Abstractions;
 using Ds.Simple.Application.Tuis.Abstractions;
 
 var container = new SimpleContainer();
 container.Register();
 
-var databaseContext = container.GetInstance<IDatabaseContext>();
+var databaseContext = container.GetInstance<ISimpleDatabaseContext>();
 ((SimpleDatabaseContext)databaseContext).Database.EnsureCreated();
 
 container.GetInstance<IMainTui>()

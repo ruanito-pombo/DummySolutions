@@ -1,4 +1,4 @@
-﻿using Ds.Base.Core.Tuis.Abstractions;
+﻿using Ds.Base.Console.Tuis.Abstractions;
 
 namespace Ds.Simple.Application.Tuis.Abstractions;
 

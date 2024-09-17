@@ -1,5 +1,5 @@
-﻿using Ds.Base.Core.Filters;
-using Ds.Base.Core.Filters.Abstractions;
+﻿using Ds.Base.Domain.Filters;
+using Ds.Base.Domain.Filters.Abstractions;
 
 namespace Ds.Simple.Application.Filters;
 

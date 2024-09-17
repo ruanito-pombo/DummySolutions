@@ -1,8 +1,8 @@
-﻿using Ds.Base.Core.Contexts.Abstractions;
-using Ds.Base.Core.Entities;
-using Ds.Base.Core.Extensions;
-using Ds.Base.Core.Paginateds;
-using Ds.Base.Core.Repositories;
+﻿using Ds.Base.Domain.Extensions;
+using Ds.Base.Domain.Paginateds;
+using Ds.Base.EntityFramework.Entities;
+using Ds.Base.EntityFramework.Repositories;
+using Ds.Simple.Application.Contexts.Abstractions;
 using Ds.Simple.Application.Entities;
 using Ds.Simple.Application.Filters;
 using Ds.Simple.Application.Models;
@@ -11,12 +11,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ds.Simple.Application.Repositories;
 
-public class UserRepository(IDatabaseContext databaseContext) 
+public class UserRepository(ISimpleDatabaseContext databaseContext)
     : IdentifiableRepository<IdentifiableEntityInt, int>(databaseContext), IUserRepository
 {
 
     public override string TableName { get; } = "User";
-    
+
     public User? Get(int id)
     {
         string[] except = [TableName, "UserList"];
@@ -40,13 +40,13 @@ public class UserRepository(IDatabaseContext databaseContext)
         {
             var totalRecords = GetQueryable<UserEntity>().Count();
             var query = ((filter?.PageSize ?? 0) switch
-                {
-                    0 => GetQueryable<UserEntity>(),
-                    >0 => GetQueryable<UserEntity>()
-                        .Skip((filter?.PageIndex ?? 1) * filter!.PageSize)
-                        .Take(filter!.PageSize),
-                    _ => default
-                })?
+            {
+                0 => GetQueryable<UserEntity>(),
+                > 0 => GetQueryable<UserEntity>()
+                    .Skip((filter?.PageIndex ?? 1) * filter!.PageSize)
+                    .Take(filter!.PageSize),
+                _ => default
+            })?
                 .Include(i => i.Profile)
                 .Include(i => i.Person)
                 .ToList();
@@ -63,7 +63,7 @@ public class UserRepository(IDatabaseContext databaseContext)
         }
         catch { throw new Exception(); }
     }
-    
+
     public List<User>? Filter(UserFilter filter)
     {
         string[] except = [TableName, "UserList"];
@@ -87,11 +87,11 @@ public class UserRepository(IDatabaseContext databaseContext)
         try
         {
             var entity = UserEntity.MapFrom(model);
-            
+
             CreateOrUpdate(entity);
             SaveChanges();
             ClearChangeTracker();
-            
+
             return entity?.MapTo() ?? new();
         }
         catch { throw new Exception(); }

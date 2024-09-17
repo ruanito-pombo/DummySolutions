@@ -1,5 +1,5 @@
-﻿using Ds.Base.Core.Businesses.Abstractions;
-using Ds.Base.Core.Paginateds;
+﻿using Ds.Base.Domain.Businesses.Abstractions;
+using Ds.Base.Domain.Paginateds;
 using Ds.Simple.Application.Filters;
 using Ds.Simple.Application.Models;
 

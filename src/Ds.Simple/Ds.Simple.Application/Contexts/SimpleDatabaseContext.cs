@@ -1,11 +1,11 @@
-﻿using Ds.Base.Core.Contexts;
-using Ds.Base.Core.Contexts.Abstractions;
+﻿using Ds.Base.EntityFramework.Contexts;
+using Ds.Simple.Application.Contexts.Abstractions;
 using Ds.Simple.Application.Maps;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ds.Simple.Application.Contexts;
 
-public class SimpleDatabaseContext : DatabaseContext, IDatabaseContext
+public class SimpleDatabaseContext : DatabaseContext, ISimpleDatabaseContext
 {
 
     public SimpleDatabaseContext() : base(new DbContextOptionsBuilder<DatabaseContext>()

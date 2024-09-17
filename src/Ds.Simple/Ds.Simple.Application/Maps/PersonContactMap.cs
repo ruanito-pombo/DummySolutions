@@ -1,4 +1,4 @@
-﻿using Ds.Base.Mockup.Utils;
+﻿using Ds.Base.EntityFramework.Utils;
 using Ds.Simple.Application.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

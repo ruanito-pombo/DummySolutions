@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
-using Ds.Base.Core.Tuis;
-using Ds.Base.Core.Tuis.Abstractions;
+using Ds.Base.Console.Tuis;
+using Ds.Base.Console.Tuis.Abstractions;
 using Ds.Simple.Application.Businesses.Abstractions;
 using Ds.Simple.Application.Models;
 using static Ds.Simple.Application.Constants.DsSimpleConstant;

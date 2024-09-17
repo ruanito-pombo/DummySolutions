@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Ds.Base.EntityFramework.Utils;
 using Ds.Simple.Application.Entities;
-using Ds.Base.Mockup.Utils;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using static Ds.Simple.Application.Constants.DsSimpleConstant;
 
 namespace Ds.Simple.Application.Maps;

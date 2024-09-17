@@ -1,5 +1,5 @@
-﻿using Ds.Base.Core.Entities.Abstractions;
-using Ds.Base.Core.Maping.Abstractions;
+﻿using Ds.Base.Domain.Entities.Abstractions;
+using Ds.Base.Domain.Maping.Abstractions;
 using Ds.Simple.Application.Enums;
 using Ds.Simple.Application.Models;
 
@@ -48,7 +48,7 @@ public class CategoryEntity : IEntity, IMap<CategoryEntity, Category>
         Description = Description,
         Rating = Rating,
 
-        TitleList = !(except?.Any(a => a.Equals("TitleList")) ?? false) 
+        TitleList = !(except?.Any(a => a.Equals("TitleList")) ?? false)
             ? TitleList?.Select(s => s.MapTo(except))?.ToList() : null,
     };
 

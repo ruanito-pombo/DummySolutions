@@ -1,5 +1,5 @@
-﻿using Ds.Base.Core.Paginateds;
-using Ds.Base.Core.Repositories.Abstractions;
+﻿using Ds.Base.Domain.Paginateds;
+using Ds.Base.Domain.Repositories.Abstractions;
 using Ds.Simple.Application.Filters;
 using Ds.Simple.Application.Models;
 
