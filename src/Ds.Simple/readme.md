@@ -1,8 +1,12 @@
-# .net Core Simple Solution
+![Ds.Simple Logo](./../../assets/imgs/ds-simple-logo.png)
 
-Consists in a single project solution with a simple structure
+# Ds.Simple Solution
 
+under construction
 
 ## Versioning
 
 Really?!?
+
+---
+[Back](./../../readme.md)

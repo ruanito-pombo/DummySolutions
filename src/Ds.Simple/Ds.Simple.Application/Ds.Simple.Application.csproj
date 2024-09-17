@@ -19,22 +19,22 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <CopyToPublishDirectory>Always</CopyToPublishDirectory>
     </Content>
-	<Content Include="appsettings0.Localhost.json">
+	<Content Include="appsettings.Localhost.json">
 	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
 	  <DependentUpon>appsettings.json</DependentUpon>
 	</Content>
-    <Content Include="appsettings1.Development.json">
+    <Content Include="appsettings.Development.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <CopyToPublishDirectory>Always</CopyToPublishDirectory>
 	  <DependentUpon>appsettings.json</DependentUpon>
     </Content>
-	<Content Include="appsettings2.Staging.json">
+	<Content Include="appsettings.Staging.json">
 	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
 	  <DependentUpon>appsettings.json</DependentUpon>
 	</Content>
-	<Content Include="appsettings3.Production.json">
+	<Content Include="appsettings.Production.json">
 	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
 	  <DependentUpon>appsettings.json</DependentUpon>

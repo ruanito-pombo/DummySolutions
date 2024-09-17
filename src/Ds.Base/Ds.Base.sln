@@ -28,14 +28,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_docs", "_docs", "{9DBA1BDF
 		..\..\docs\bootstrapping-environment.md = ..\..\docs\bootstrapping-environment.md
 		..\..\docs\mysql-setup.md = ..\..\docs\mysql-setup.md
 		..\..\docs\publishing-ds-base.md = ..\..\docs\publishing-ds-base.md
-		..\..\readme.md = ..\..\readme.md
+		readme.md = readme.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ds.Base.EntityFramework", "Ds.Base.EntityFramework\Ds.Base.EntityFramework.csproj", "{D66AD708-F230-483C-BF08-62B45B15089F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imgs", "imgs", "{58D1E57F-2EFD-4C11-8695-098B98A312AC}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\assets\imgs\dummy-solutions-logo.png = ..\..\assets\imgs\dummy-solutions-logo.png
+		..\..\assets\imgs\ds-base-logo.png = ..\..\assets\imgs\ds-base-logo.png
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ds.Base.Injection", "Ds.Base.Injection\Ds.Base.Injection.csproj", "{CF399ECA-69AC-4623-A5D1-06D173839FDD}"

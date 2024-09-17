@@ -1,0 +1,6 @@
+@Ds.Full.WebApi_HostAddress = http://localhost:5199
+
+GET {{Ds.Full.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

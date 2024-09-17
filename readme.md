@@ -9,17 +9,13 @@ And other is a multi project solution that have lot's of stuff you may find in a
 # Disclaimer
 I could never stress this enough... READ THE DAMN DOCS... I take absolutely NO RESPONSABILITY at all if you mess this up, just because you didn't paid proper attention to your job
 
-# Getting Started
+## [Ds.Base (Nuget) Solution](./src/Ds.Base/readme.md)
+This is the base project it builds up into a nuget package that you can publish anywhere you want (in this version BaGet is the place of choice) and import the Nugets into both projects below to play with inheritance and other extensible properties/functions that SharpScaffolder can scaffold for you.
 
-## Ds.Base (Nuget) Solution
-If you want to be able to compile the other two dummy solutions and put scaffolding output to the test real compiler errors, start here:
-* [Bootstrapping your environment](./docs/bootstrapping-environment.md)
-* [Publishing your Ds.Base Nugets](./docs/publishing-ds-base.md)
+## [Ds.Simple (Single Project) Solution](./src/Ds.Simple/readme.md)
+If you want to test sharpscaffolder against less complex solutions, start here.
 
-## Ds.Simple (Single Project) Solution
-If you want to test sharpscaffolder against less complex solutions, read this:
-
-## Ds.Full (Multi Project) Solution
-If you want to test sharpscaffolder against **nightly built** real world enterprise solutions, read this:
+## [Ds.Full (Multi Project) Solution](./src/Ds.Full/readme.md)
+If you want to test sharpscaffolder against **nightly built** real world enterprise solutions, start here.
 
 ---

@@ -8,8 +8,17 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_assets", "_assets", "{87864E9B-A84E-4EE1-801D-C61E62A44077}"
 	ProjectSection(SolutionItems) = preProject
 		Database\Ds.Simple.Database.graphml = Database\Ds.Simple.Database.graphml
-		readme.md = readme.md
 		SharpScaffolder.settings.json = SharpScaffolder.settings.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_docs", "_docs", "{34064BAC-FE31-4E57-91FF-7A9BDA4BACC7}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imgs", "imgs", "{6C1FCB58-26CE-4141-98AD-9015A77CA57B}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\assets\imgs\ds-simple-logo.png = ..\..\assets\imgs\ds-simple-logo.png
 	EndProjectSection
 EndProject
 Global
@@ -25,6 +34,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6C1FCB58-26CE-4141-98AD-9015A77CA57B} = {87864E9B-A84E-4EE1-801D-C61E62A44077}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {430C9E37-6C34-4735-AD23-708F6F57FE00}
