@@ -398,7 +398,8 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Baget JustInTime
-assets/baget/baget-data/*
+assets/baget/baget-data/packages/*
+assets/baget/baget-data/baget.db
 assets/BagetServer.pfx
 assets/BagetServerCert.pem
 assets/BagetServerKey.pem
