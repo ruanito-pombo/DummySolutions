@@ -396,3 +396,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Baget JustInTime
+assets/baget/baget-data/*
+assets/BagetServer.pfx
+assets/BagetServerCert.pem
+assets/BagetServerKey.pem
