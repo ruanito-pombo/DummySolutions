@@ -6,4 +6,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Ds.Base.Injection" Version="0.0.2" />
+    <PackageReference Include="SimpleInjector" Version="5.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ds.Full.Domain\Ds.Full.Domain.csproj" />
+    <ProjectReference Include="..\Ds.Full.Grpc\Ds.Full.Grpc.csproj" />
+    <ProjectReference Include="..\Ds.Full.MySql\Ds.Full.MySql.csproj" />
+    <ProjectReference Include="..\Ds.Full.Test\Ds.Full.Test.csproj" />
+    <ProjectReference Include="..\Ds.Full.WebApi\Ds.Full.WebApi.csproj" />
+  </ItemGroup>
+
 </Project>

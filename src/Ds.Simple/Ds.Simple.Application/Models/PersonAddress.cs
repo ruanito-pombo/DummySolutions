@@ -2,6 +2,7 @@
 using Ds.Simple.Application.Enums;
 
 namespace Ds.Simple.Application.Models;
+
 public class PersonAddress : IModel
 {
 

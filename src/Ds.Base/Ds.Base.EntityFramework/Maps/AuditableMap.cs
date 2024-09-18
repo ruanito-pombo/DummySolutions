@@ -30,7 +30,7 @@ public abstract class AuditableMap<TAuditableEntity, TId> : IAuditableMap<TAudit
     }
 }
 
-public abstract class AuditableIntMap : AuditableMap<AuditableEntityInt, int>
+public abstract class AuditableMapInt : AuditableMap<AuditableEntityInt, int>
 {
     public override void Configure(EntityTypeBuilder<AuditableEntityInt> builder)
     {
@@ -48,7 +48,7 @@ public abstract class AuditableIntMap : AuditableMap<AuditableEntityInt, int>
     }
 }
 
-public abstract class AuditableLongMap : AuditableMap<AuditableEntityLong, long>
+public abstract class AuditableMapLong : AuditableMap<AuditableEntityLong, long>
 {
     public override void Configure(EntityTypeBuilder<AuditableEntityLong> builder)
     {
@@ -66,7 +66,7 @@ public abstract class AuditableLongMap : AuditableMap<AuditableEntityLong, long>
     }
 }
 
-public abstract class AuditableShortMap : AuditableMap<AuditableEntityShort, short>
+public abstract class AuditableMapShort : AuditableMap<AuditableEntityShort, short>
 {
     public override void Configure(EntityTypeBuilder<AuditableEntityShort> builder)
     {

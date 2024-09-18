@@ -22,7 +22,7 @@ public abstract class IdentifiableMap<TIdentifiableEntity, TId> : IIdentifiableM
     }
 }
 
-public abstract class IdentifiableIntMap : IdentifiableMap<IdentifiableEntityInt, int>
+public abstract class IdentifiableMapInt<TIdentifiableEntity> : IdentifiableMap<IdentifiableEntityInt, int>
 {
     public override void Configure(EntityTypeBuilder<IdentifiableEntityInt> builder)
     {
@@ -32,7 +32,7 @@ public abstract class IdentifiableIntMap : IdentifiableMap<IdentifiableEntityInt
     }
 }
 
-public abstract class IdentifiableLongMap : IdentifiableMap<IdentifiableEntityLong, long>
+public abstract class IdentifiableMapLong : IdentifiableMap<IdentifiableEntityLong, long>
 {
     public override void Configure(EntityTypeBuilder<IdentifiableEntityLong> builder)
     {
@@ -42,7 +42,7 @@ public abstract class IdentifiableLongMap : IdentifiableMap<IdentifiableEntityLo
     }
 }
 
-public abstract class IdentifiableShortMap : IdentifiableMap<IdentifiableEntityShort, short>
+public abstract class IdentifiableMapShort : IdentifiableMap<IdentifiableEntityShort, short>
 {
     public override void Configure(EntityTypeBuilder<IdentifiableEntityShort> builder)
     {

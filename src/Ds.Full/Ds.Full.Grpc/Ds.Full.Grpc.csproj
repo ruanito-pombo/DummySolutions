@@ -11,7 +11,39 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.57.0" />
+    <PackageReference Include="Ds.Base.Grpc" Version="0.0.2" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.65.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ds.Full.Domain\Ds.Full.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Protos\Finances\" />
+    <Folder Include="Protos\Inventories\" />
+    <Folder Include="Protos\Medias\" />
+    <Folder Include="Protos\Persons\" />
+    <Folder Include="Protos\Rentals\" />
+    <Folder Include="Protos\Staffs\" />
+    <Folder Include="Requests\Finances\" />
+    <Folder Include="Requests\Inventories\" />
+    <Folder Include="Requests\Medias\" />
+    <Folder Include="Requests\Persons\" />
+    <Folder Include="Requests\Rentals\" />
+    <Folder Include="Requests\Staffs\" />
+    <Folder Include="Results\Finances\" />
+    <Folder Include="Results\Inventories\" />
+    <Folder Include="Results\Medias\" />
+    <Folder Include="Results\Persons\" />
+    <Folder Include="Results\Rentals\" />
+    <Folder Include="Results\Staffs\" />
+    <Folder Include="Services\Finances\" />
+    <Folder Include="Services\Inventories\" />
+    <Folder Include="Services\Medias\" />
+    <Folder Include="Services\Persons\" />
+    <Folder Include="Services\Rentals\" />
+    <Folder Include="Services\Staffs\" />
   </ItemGroup>
 
 </Project>

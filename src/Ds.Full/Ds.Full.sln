@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_assets", "_assets", "{FBB98E66-FA20-442C-B03C-C9D0BF30B98F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{0389D09A-3951-4A31-9928-309C742217A0}"
 EndProject
@@ -17,21 +20,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependency", "Dependency", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{FD6A22A7-03F5-4089-AF6A-FE3602C28ACB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ds.Full.Domain", "Ds.Full.Domain\Ds.Full.Domain.csproj", "{1890D607-C3B4-4595-B5EE-DA0D92F503FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ds.Full.Domain", "Ds.Full.Domain\Ds.Full.Domain.csproj", "{1890D607-C3B4-4595-B5EE-DA0D92F503FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ds.Full.WebApi", "Ds.Full.WebApi\Ds.Full.WebApi.csproj", "{A862166B-E395-48B1-A7A5-259BD4CB4B9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ds.Full.WebApi", "Ds.Full.WebApi\Ds.Full.WebApi.csproj", "{A862166B-E395-48B1-A7A5-259BD4CB4B9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ds.Full.Grpc", "Ds.Full.Grpc\Ds.Full.Grpc.csproj", "{0E5BBA3F-4540-4FBD-B9CC-53BD5F7EDA83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ds.Full.Grpc", "Ds.Full.Grpc\Ds.Full.Grpc.csproj", "{0E5BBA3F-4540-4FBD-B9CC-53BD5F7EDA83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ds.Full.Injection", "Ds.Full.Injection\Ds.Full.Injection.csproj", "{6641A40C-8991-482E-BD1D-AC9BEB44475A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ds.Full.Injection", "Ds.Full.Injection\Ds.Full.Injection.csproj", "{6641A40C-8991-482E-BD1D-AC9BEB44475A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ds.Full.MySql", "Ds.Full.MySql\Ds.Full.MySql.csproj", "{EA84EEF7-222A-48EB-8915-C1A943B1CC8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ds.Full.MySql", "Ds.Full.MySql\Ds.Full.MySql.csproj", "{EA84EEF7-222A-48EB-8915-C1A943B1CC8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ds.Full.Test", "Ds.Full.Test\Ds.Full.Test.csproj", "{D4069B8E-759B-4D10-B8DB-5E693327126D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ds.Full.Test", "Ds.Full.Test\Ds.Full.Test.csproj", "{D4069B8E-759B-4D10-B8DB-5E693327126D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_docs", "_docs", "{81153981-80E4-45B8-9AC2-7DC72AFE4075}"
 	ProjectSection(SolutionItems) = preProject
 		readme.md = readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imgs", "imgs", "{F08D3CB1-DAF8-44F1-BF1D-7BF6688E63E9}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\assets\imgs\ds-full-logo.png = ..\..\assets\imgs\ds-full-logo.png
 	EndProjectSection
 EndProject
 Global
@@ -77,6 +85,7 @@ Global
 		{6641A40C-8991-482E-BD1D-AC9BEB44475A} = {58E72311-FE50-43CD-965D-AC029565BF3C}
 		{EA84EEF7-222A-48EB-8915-C1A943B1CC8E} = {FD6A22A7-03F5-4089-AF6A-FE3602C28ACB}
 		{D4069B8E-759B-4D10-B8DB-5E693327126D} = {6A8C799F-BC27-41F7-BB2B-86076FB287AF}
+		{F08D3CB1-DAF8-44F1-BF1D-7BF6688E63E9} = {FBB98E66-FA20-442C-B03C-C9D0BF30B98F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A34BEB0-6C76-4D86-ABAB-4E7DE66B5C28}

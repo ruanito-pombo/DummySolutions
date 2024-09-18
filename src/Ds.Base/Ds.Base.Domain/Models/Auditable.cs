@@ -17,6 +17,7 @@ public class AuditableInt : IAuditable<int>, IModel
     public DateTimeOffset UpdateDate { get; set; }
     public AuditableInt() { }
     public AuditableInt(int id) { Id = id; }
+    public AuditableInt(int id, DateTimeOffset createDate, DateTimeOffset updateDate) { Id = id; CreateDate = createDate; UpdateDate = updateDate; }
 }
 
 public class AuditableLong : IAuditable<long>, IModel
@@ -26,6 +27,7 @@ public class AuditableLong : IAuditable<long>, IModel
     public DateTimeOffset UpdateDate { get; set; }
     public AuditableLong() { }
     public AuditableLong(long id) { Id = id; }
+    public AuditableLong(long id, DateTimeOffset createDate, DateTimeOffset updateDate) { Id = id; CreateDate = createDate; UpdateDate = updateDate; }
 }
 
 public class AuditableShort : IAuditable<short>, IModel
@@ -35,4 +37,5 @@ public class AuditableShort : IAuditable<short>, IModel
     public DateTimeOffset UpdateDate { get; set; }
     public AuditableShort() { }
     public AuditableShort(short id) { Id = id; }
+    public AuditableShort(short id, DateTimeOffset createDate, DateTimeOffset updateDate) { Id = id; CreateDate = createDate; UpdateDate = updateDate; }
 }

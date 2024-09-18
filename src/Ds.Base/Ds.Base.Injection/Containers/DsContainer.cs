@@ -12,7 +12,7 @@ public class DsContainer : Container
         AsyncScopedLifestyle.BeginScope(this);
     }
 
-    public void Register()
+    public virtual void Register()
     {
         Verify();
     }

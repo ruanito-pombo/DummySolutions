@@ -1,4 +1,3 @@
-using Ds.Full.Grpc;
 using Grpc.Core;
 
 namespace Ds.Full.Grpc.Services;
