@@ -8,6 +8,8 @@ public static class DsSimpleConstant
 
     public const string SolutionName = "Ds.Simple";
 
+    public const int MinimumPageSize = 10;
+
     public static void Cls()
     {
         Console.Clear();

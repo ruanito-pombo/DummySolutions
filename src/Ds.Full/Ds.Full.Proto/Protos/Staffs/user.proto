@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+option csharp_namespace = "Ds.Full.Proto.Protos.Staffs";
+
+import "google/api/annotations.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "default.proto";
+
+package UserPkg;
+
+service UserSrv
+{
+	rpc GetUser (UserIdMsg) returns (UserMsg) {
+      option (google.api.http) = { get: "/v1/UserSrv/{UserId}" }; }
+
+	rpc FilterUser (UserFilterMsg) returns (UserListMsg) {
+      option (google.api.http) = { post: "/v1/UserSrv/filter" }; }
+
+	rpc ListUser (DefaultPkg.EmptyMsg) returns (UserListMsg) {
+      option (google.api.http) = { post: "/v1/UserSrv/list" }; }
+
+	rpc CreateUser (UserMsg) returns (UserMsg) {
+      option (google.api.http) = { post: "/v1/UserSrv/create" }; }
+
+	rpc UpdateUser (UserMsg) returns (UserMsg) {
+      option (google.api.http) = { put: "/v1/UserSrv/{Id}/update" }; }
+
+	rpc DeleteUser (UserIdMsg) returns (UserMsg) {
+      option (google.api.http) = { delete: "/v1/UserSrv/{UserId}" }; }
+}
+
+message UserFilterMsg
+{
+	optional int32  PageSize  = 1;
+	optional int32  PageIndex = 2;
+    optional int32  UserId    = 3;
+	optional string UserName  = 4;
+}
+
+message UserMsg
+{
+	DefaultPkg.Headers             Header       =  1;
+
+	int32                          Id           =  2;
+	google.protobuf.Timestamp      CreateDate   =  3;
+    int32                          CreateOffset =  4;
+	google.protobuf.Timestamp      UpdateDate   =  5;
+    int32                          UpdateOffset =  6;
+	int32                          ProfileId    =  7;
+	int32                          PersonId     =  8;
+	string                         UserName     =  9;
+	google.protobuf.BoolValue      IsActive     = 10;
+
+	optional ProfilePkg.ProfileMsg Profile      = 11;
+
+	DefaultPkg.Returns             Return       = 12;
+}
+
+message UserIdMsg
+{
+	int32 UserId = 1;
+}
+
+message UserListMsg
+{
+	repeated UserMsg List = 1;
+}

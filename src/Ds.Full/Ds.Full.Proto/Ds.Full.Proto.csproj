@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+	<Version>0.0.1</Version>
+	<TargetFramework>net8.0</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<IncludeHttpRuleProtos>True</IncludeHttpRuleProtos>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Google.Protobuf" Version="3.28.2" />
+	<PackageReference Include="Google.Protobuf.Tools" Version="3.28.2" />
+	<PackageReference Include="Grpc.Tools" Version="2.66.0">
+	  <PrivateAssets>all</PrivateAssets>
+	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
+	<PackageReference Include="Ds.Base.Proto" Version="0.0.21" GeneratePathProperty="True" />
+	<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="8.0.8" />
+  </ItemGroup>
+
+  <Target Name="CopyProtosToOutput" AfterTargets="AfterResolveReferences">
+	<ItemGroup>
+	  <ProtoFiles Include="$(PkgDs_Base_Proto)\contentFiles\any\$(TargetFramework)\Protos\*.proto" />
+	</ItemGroup>
+	<Copy SourceFiles="@(ProtoFiles)" DestinationFolder="Protos" />
+	  
+    <ItemGroup>
+      <CopiedProtoFiles Include="Protos\**.proto" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="ReplaceNamespace" AfterTargets="CopyProtosToOutput">
+	<ItemGroup>
+		<ModifiedFiles Include="@(CopiedProtoFiles)" />
+	</ItemGroup>
+	<Exec Command="for %%f in (@(ModifiedFiles)) do powershell -Command &quot;(Get-Content %%f) -replace 'Ds.Base.Proto', 'Ds.Full.Proto' | Set-Content %%f&quot;" />
+
+	<ItemGroup>
+	  <Content Include="Protos\Staffs\profile.proto">
+		<Pack>True</Pack>
+		<PackagePath>contentFiles/any/$(TargetFramework)/Protos</PackagePath>
+		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Protos\Staffs\user.proto">
+		<Pack>True</Pack>
+		<PackagePath>contentFiles/any/$(TargetFramework)/Protos</PackagePath>
+		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Protobuf Include="Protos\default.proto" ProtoRoot="Protos" GrpcServices="Both" CompileOutputs="True" Link="Protos\defaults.proto" />
+	  <Protobuf Include="Protos\auditable.proto" ProtoRoot="Protos" GrpcServices="Both" CompileOutputs="True" Link="Protos\auditable.proto" />
+	  <Protobuf Include="Protos\identifiable.proto" ProtoRoot="Protos" GrpcServices="Both" CompileOutputs="True" Link="Protos\identifiable.proto" />
+	  <Protobuf Include="Protos\Staffs\profile.proto" ProtoRoot="Protos" GrpcServices="Both" CompileOutputs="True" Link="Protos\Staffs\profile.proto" />
+	  <Protobuf Include="Protos\Staffs\user.proto" ProtoRoot="Protos" GrpcServices="Both" CompileOutputs="True" Link="Protos\Staffs\user.proto" />
+	</ItemGroup>
+  </Target>
+	
+</Project>

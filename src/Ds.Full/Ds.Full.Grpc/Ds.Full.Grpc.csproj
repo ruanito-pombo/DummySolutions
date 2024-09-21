@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,43 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
+    <Content Remove="C:\Users\ruani\.nuget\packages\ds.base.grpc\0.0.6\contentFiles\any\net8.0\Protos\auditable.proto" />
+    <Content Remove="C:\Users\ruani\.nuget\packages\ds.base.grpc\0.0.6\contentFiles\any\net8.0\Protos\default.proto" />
+    <Content Remove="C:\Users\ruani\.nuget\packages\ds.base.grpc\0.0.6\contentFiles\any\net8.0\Protos\identifiable.proto" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ds.Base.Grpc" Version="0.0.2" />
+    <PackageReference Include="Ds.Base.Grpc" Version="0.0.21" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.65.0" />
+    <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.66.0" />
+    <PackageReference Include="Microsoft.OpenApi" Version="1.6.21" />
+	<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="8.0.8" />
+	<PackageReference Include="Microsoft.AspNetCore.Grpc.Swagger" Version="0.8.8" />
+	  
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Ds.Full.Domain\Ds.Full.Domain.csproj" />
+    <ProjectReference Include="..\Ds.Full.Injection\Ds.Full.Injection.csproj" />
+    <ProjectReference Include="..\Ds.Full.Proto\Ds.Full.Proto.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Protos\Finances\" />
-    <Folder Include="Protos\Inventories\" />
-    <Folder Include="Protos\Medias\" />
-    <Folder Include="Protos\Persons\" />
-    <Folder Include="Protos\Rentals\" />
-    <Folder Include="Protos\Staffs\" />
-    <Folder Include="Requests\Finances\" />
-    <Folder Include="Requests\Inventories\" />
-    <Folder Include="Requests\Medias\" />
-    <Folder Include="Requests\Persons\" />
-    <Folder Include="Requests\Rentals\" />
-    <Folder Include="Requests\Staffs\" />
-    <Folder Include="Results\Finances\" />
-    <Folder Include="Results\Inventories\" />
-    <Folder Include="Results\Medias\" />
-    <Folder Include="Results\Persons\" />
-    <Folder Include="Results\Rentals\" />
-    <Folder Include="Results\Staffs\" />
-    <Folder Include="Services\Finances\" />
-    <Folder Include="Services\Inventories\" />
-    <Folder Include="Services\Medias\" />
-    <Folder Include="Services\Persons\" />
-    <Folder Include="Services\Rentals\" />
-    <Folder Include="Services\Staffs\" />
+	<Protobuf Include="$(PkgDs_Full_Proto)/*.proto" />
+	<Protobuf Include="$(PkgDs_Full_Proto)/Staffs/*.proto" />
   </ItemGroup>
 
 </Project>

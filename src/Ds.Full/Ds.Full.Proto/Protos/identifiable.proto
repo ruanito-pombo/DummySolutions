@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "Ds.Full.Proto.Protos";
+
+package IdentifiablePkg;
+
+message IdentifiableIntMsg
+{
+	int32 Id = 1;
+}
+
+message IdentifiableLongMsg
+{
+	int64 Id = 1;
+}
+
+message IdentifiableShortMsg
+{
+	int32 Id = 1;
+}

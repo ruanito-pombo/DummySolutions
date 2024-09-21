@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option csharp_namespace = "Ds.Full.Proto.Protos";
+
+package DefaultPkg;
+
+message HeaderMsg
+{
+	string Headers = 1;
+}
+
+message ReturnMsg
+{
+	bool    Status    = 1;
+	string  Message   = 2;
+	int64   ErrorCode = 3;
+}
+
+message EmptyMsg
+{
+
+}

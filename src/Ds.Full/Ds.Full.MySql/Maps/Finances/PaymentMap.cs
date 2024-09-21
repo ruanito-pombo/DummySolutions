@@ -1,21 +1,17 @@
 ﻿using Ds.Base.EntityFramework.Maps;
-using Ds.Base.EntityFramework.Utils;
 using Ds.Full.MySql.Entities.Finances;
 using Ds.Full.MySql.Entities.Rentals;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using static Ds.Full.Domain.Constants.DsFullConstant;
 
 namespace Ds.Full.MySql.Maps.Finances;
 
-public class PaymentMap : AuditableLongMap, IEntityTypeConfiguration<PaymentEntity>
+public class PaymentMap : AuditableMapLong<PaymentEntity>
 {
 
-    public void Configure(EntityTypeBuilder<PaymentEntity> builder)
+    public override void Configure(EntityTypeBuilder<PaymentEntity> builder)
     {
-        var table = GetType().Name.Replace("Map", "");
-
-        builder.ToTable(name: table);
+        base.Configure(builder, GetType().Name.Replace("Map", ""));
 
         builder.Property(p => p.Id)
             .HasColumnOrder(1)
@@ -59,7 +55,7 @@ public class PaymentMap : AuditableLongMap, IEntityTypeConfiguration<PaymentEnti
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("FK_Person_TO_Payment_ON_CustomerId");
 
-        builder.HasData(DbSetUtil.LoadEmbeddedJson<PaymentEntity>(SolutionName, table));
+        //builder.HasData(DbSetUtil.LoadEmbeddedJson<PaymentEntity>(SolutionName, TableName));
     }
 
 }

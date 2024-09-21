@@ -1,11 +1,5 @@
 ﻿using Ds.Base.EntityFramework.Contexts;
 using Ds.Full.Domain.Contexts.Abstractions;
-using Ds.Full.MySql.Entities.Finances;
-using Ds.Full.MySql.Entities.Inventories;
-using Ds.Full.MySql.Entities.Medias;
-using Ds.Full.MySql.Entities.Persons;
-using Ds.Full.MySql.Entities.Rentals;
-using Ds.Full.MySql.Entities.Staffs;
 using Ds.Full.MySql.Maps.Finances;
 using Ds.Full.MySql.Maps.Inventories;
 using Ds.Full.MySql.Maps.Medias;
@@ -29,17 +23,17 @@ public class DsFullDatabaseContext : DatabaseContext, IDsFullDatabaseContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.ApplyConfiguration<CategoryEntity>(new CategoryMap());
-        modelBuilder.ApplyConfiguration<InventoryEntity>(new InventoryMap());
-        modelBuilder.ApplyConfiguration<PaymentEntity>(new PaymentMap());
-        modelBuilder.ApplyConfiguration<PersonEntity>(new PersonMap());
-        modelBuilder.ApplyConfiguration<PersonContactEntity>(new PersonContactMap());
-        modelBuilder.ApplyConfiguration<PersonAddressEntity>(new PersonAddressMap());
-        modelBuilder.ApplyConfiguration<ProfileEntity>(new ProfileMap());
-        modelBuilder.ApplyConfiguration<RentalEntity>(new RentalMap());
-        modelBuilder.ApplyConfiguration<RentalItemEntity>(new RentalItemMap());
-        modelBuilder.ApplyConfiguration<TitleEntity>(new TitleMap());
-        modelBuilder.ApplyConfiguration<UserEntity>(new UserMap());
+        modelBuilder.ApplyConfiguration(new CategoryMap());
+        modelBuilder.ApplyConfiguration(new InventoryMap());
+        modelBuilder.ApplyConfiguration(new PaymentMap());
+        modelBuilder.ApplyConfiguration(new PersonMap());
+        modelBuilder.ApplyConfiguration(new PersonContactMap());
+        modelBuilder.ApplyConfiguration(new PersonAddressMap());
+        modelBuilder.ApplyConfiguration(new ProfileMap());
+        modelBuilder.ApplyConfiguration(new RentalMap());
+        modelBuilder.ApplyConfiguration(new RentalItemMap());
+        modelBuilder.ApplyConfiguration(new TitleMap());
+        modelBuilder.ApplyConfiguration(new UserMap());
     }
 
 }

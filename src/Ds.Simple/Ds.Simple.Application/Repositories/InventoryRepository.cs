@@ -8,6 +8,7 @@ using Ds.Simple.Application.Filters;
 using Ds.Simple.Application.Models;
 using Ds.Simple.Application.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
+using static Ds.Simple.Application.Constants.DsSimpleConstant;
 
 namespace Ds.Simple.Application.Repositories;
 
@@ -42,13 +43,12 @@ public class InventoryRepository(IDsSimpleDatabaseContext databaseContext)
         try
         {
             var totalRecords = GetQueryable<InventoryEntity>().Count();
-            var query = ((filter?.PageSize ?? 0) switch
+            var query = ((filter?.PageSize) switch
             {
-                0 => GetQueryable<InventoryEntity>(),
                 > 0 => GetQueryable<InventoryEntity>()
-                    .Skip((filter?.PageIndex ?? 1) * filter!.PageSize)
-                    .Take(filter!.PageSize),
-                _ => default
+                    .Skip((filter?.PageIndex ?? 1) * (filter?.PageSize ?? MinimumPageSize))
+                    .Take(filter?.PageSize ?? MinimumPageSize),
+                _ => GetQueryable<InventoryEntity>(),
             })?
                 .Include(i => i.Title)
                 .ToList();

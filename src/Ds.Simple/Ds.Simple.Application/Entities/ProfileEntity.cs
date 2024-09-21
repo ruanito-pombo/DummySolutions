@@ -1,5 +1,5 @@
 using Ds.Base.Domain.Entities.Abstractions;
-using Ds.Base.Domain.Maping.Abstractions;
+using Ds.Base.Domain.Mappers.Abstractions;
 using Ds.Simple.Application.Models;
 
 namespace Ds.Simple.Application.Entities;

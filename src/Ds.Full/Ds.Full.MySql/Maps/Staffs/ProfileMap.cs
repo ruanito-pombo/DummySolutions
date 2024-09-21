@@ -1,20 +1,16 @@
 ﻿using Ds.Base.EntityFramework.Maps;
-using Ds.Base.EntityFramework.Utils;
 using Ds.Full.MySql.Entities.Staffs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using static Ds.Full.Domain.Constants.DsFullConstant;
 
 namespace Ds.Full.MySql.Maps.Staffs;
 
-public class ProfileMap : IdentifiableIntMap, IEntityTypeConfiguration<ProfileEntity>
+public class ProfileMap : IdentifiableMapInt<ProfileEntity>
 {
 
-    public void Configure(EntityTypeBuilder<ProfileEntity> builder)
+    public override void Configure(EntityTypeBuilder<ProfileEntity> builder)
     {
-        var table = GetType().Name.Replace("Map", "");
-
-        builder.ToTable(name: table);
+        base.Configure(builder, GetType().Name.Replace("Map", ""));
 
         builder.Property(p => p.Id)
             .HasColumnOrder(1)
@@ -31,7 +27,7 @@ public class ProfileMap : IdentifiableIntMap, IEntityTypeConfiguration<ProfileEn
         builder.Property(p => p.Description)
             .HasColumnType("VARCHAR(128)");
 
-        builder.HasData(DbSetUtil.LoadEmbeddedJson<ProfileEntity>(SolutionName, table));
+        //builder.HasData(DbSetUtil.LoadEmbeddedJson<ProfileEntity>(SolutionName, TableName));
     }
 
 }

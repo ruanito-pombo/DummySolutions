@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option csharp_namespace = "Ds.Full.Grpc.Protos.Medias";
+
+import "google/protobuf/timestamp.proto";
+import "auditable.proto";
+
+package TitlePackage;
+

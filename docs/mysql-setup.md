@@ -24,4 +24,19 @@ docker exec -it mysql-server mysql -uroot -p
 CREATE DATABASE `DbFull`;
 EXIT;
 ```
+
+## DbFull User Configurations:
+* Connect to your MySql Server
+```powershell
+docker exec -it mysql-server mysql -uroot -p
+```
+
+* Execute these commands in order
+```
+CREATE USER `dsfull`@`%` IDENTIFIED BY '!dsfull1234';
+GRANT ALL PRIVILEGES ON DbFull.* TO `dsfull`@`%` WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+EXIT;
+```
+
 ---

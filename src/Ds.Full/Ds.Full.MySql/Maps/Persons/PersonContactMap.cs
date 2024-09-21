@@ -1,20 +1,16 @@
 ﻿using Ds.Base.EntityFramework.Maps;
-using Ds.Base.EntityFramework.Utils;
 using Ds.Full.MySql.Entities.Persons;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using static Ds.Full.Domain.Constants.DsFullConstant;
 
 namespace Ds.Full.MySql.Maps.Persons;
 
-public class PersonContactMap : IdentifiableIntMap, IEntityTypeConfiguration<PersonContactEntity>
+public class PersonContactMap : IdentifiableMapLong<PersonContactEntity>
 {
 
-    public void Configure(EntityTypeBuilder<PersonContactEntity> builder)
+    public override void Configure(EntityTypeBuilder<PersonContactEntity> builder)
     {
-        var table = GetType().Name.Replace("Map", "");
-
-        builder.ToTable(name: table);
+        base.Configure(builder, GetType().Name.Replace("Map", ""));
 
         builder.Property(p => p.Id)
             .HasColumnOrder(1)
@@ -40,7 +36,7 @@ public class PersonContactMap : IdentifiableIntMap, IEntityTypeConfiguration<Per
             .OnDelete(DeleteBehavior.Cascade)
             .HasConstraintName("FK_Person_TO_PersonContact_ON_PersonId");
 
-        builder.HasData(DbSetUtil.LoadEmbeddedJson<PersonContactEntity>(SolutionName, table));
+        //builder.HasData(DbSetUtil.LoadEmbeddedJson<PersonContactEntity>(SolutionName, TableName));
     }
 
 }

@@ -8,6 +8,8 @@ public static class DsFullConstant
 
     public const string SolutionName = "Ds.Full";
 
+    public const int MinimumPageSize = 10;
+
     public static void Cls()
     {
         Console.Clear();

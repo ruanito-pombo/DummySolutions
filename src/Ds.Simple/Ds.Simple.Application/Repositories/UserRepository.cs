@@ -8,6 +8,7 @@ using Ds.Simple.Application.Filters;
 using Ds.Simple.Application.Models;
 using Ds.Simple.Application.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
+using static Ds.Simple.Application.Constants.DsSimpleConstant;
 
 namespace Ds.Simple.Application.Repositories;
 
@@ -39,13 +40,12 @@ public class UserRepository(IDsSimpleDatabaseContext databaseContext)
         try
         {
             var totalRecords = GetQueryable<UserEntity>().Count();
-            var query = ((filter?.PageSize ?? 0) switch
+            var query = ((filter?.PageSize) switch
             {
-                0 => GetQueryable<UserEntity>(),
                 > 0 => GetQueryable<UserEntity>()
-                    .Skip((filter?.PageIndex ?? 1) * filter!.PageSize)
-                    .Take(filter!.PageSize),
-                _ => default
+                    .Skip((filter?.PageIndex ?? 1) * (filter?.PageSize ?? MinimumPageSize))
+                    .Take(filter?.PageSize ?? MinimumPageSize),
+                _ => GetQueryable<UserEntity>(),
             })?
                 .Include(i => i.Profile)
                 .Include(i => i.Person)

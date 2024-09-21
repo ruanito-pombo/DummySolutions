@@ -7,35 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ds.Base.Domain" Version="0.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Businesses\Abstractions\Finances\" />
-    <Folder Include="Businesses\Abstractions\Inventories\" />
-    <Folder Include="Businesses\Abstractions\Medias\" />
-    <Folder Include="Businesses\Abstractions\Persons\" />
-    <Folder Include="Businesses\Abstractions\Rentals\" />
-    <Folder Include="Businesses\Abstractions\Staffs\" />
-    <Folder Include="Businesses\Finances\" />
-    <Folder Include="Businesses\Inventories\" />
-    <Folder Include="Businesses\Medias\" />
-    <Folder Include="Businesses\Persons\" />
-    <Folder Include="Businesses\Rentals\" />
-    <Folder Include="Businesses\Staffs\" />
-    <Folder Include="Filters\Finances\" />
-    <Folder Include="Filters\Inventories\" />
-    <Folder Include="Filters\Medias\" />
-    <Folder Include="Filters\Persons\" />
-    <Folder Include="Filters\Rentals\" />
-    <Folder Include="Filters\Staffs\" />
-    <Folder Include="Repositories\Abstractions\Finances\" />
-    <Folder Include="Repositories\Abstractions\Inventories\" />
-    <Folder Include="Repositories\Abstractions\Medias\" />
-    <Folder Include="Repositories\Abstractions\Persons\" />
-    <Folder Include="Repositories\Abstractions\Rentals\" />
-    <Folder Include="Repositories\Abstractions\Staffs\" />
-    <Folder Include="Repositories\Abstractions\" />
+    <PackageReference Include="Ds.Base.Domain" Version="0.0.21" />
   </ItemGroup>
 
 </Project>

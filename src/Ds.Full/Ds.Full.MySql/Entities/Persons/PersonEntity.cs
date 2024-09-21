@@ -1,5 +1,5 @@
 ﻿using Ds.Base.Domain.Entities.Abstractions;
-using Ds.Base.Domain.Maping.Abstractions;
+using Ds.Base.Domain.Mappers.Abstractions;
 using Ds.Base.EntityFramework.Entities;
 using Ds.Full.Domain.Enums.Persons;
 using Ds.Full.Domain.Models.Persons;

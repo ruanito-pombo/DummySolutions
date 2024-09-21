@@ -1,20 +1,16 @@
 ﻿using Ds.Base.EntityFramework.Maps;
-using Ds.Base.EntityFramework.Utils;
 using Ds.Full.MySql.Entities.Medias;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using static Ds.Full.Domain.Constants.DsFullConstant;
 
 namespace Ds.Full.MySql.Maps.Medias;
 
-public class TitleMap : AuditableLongMap, IEntityTypeConfiguration<TitleEntity>
+public class TitleMap : AuditableMapLong<TitleEntity>
 {
 
-    public void Configure(EntityTypeBuilder<TitleEntity> builder)
+    public override void Configure(EntityTypeBuilder<TitleEntity> builder)
     {
-        var table = GetType().Name.Replace("Map", "");
-
-        builder.ToTable(name: table);
+        base.Configure(builder, GetType().Name.Replace("Map", ""));
 
         builder.Property(p => p.Id)
             .HasColumnOrder(1)
@@ -67,7 +63,7 @@ public class TitleMap : AuditableLongMap, IEntityTypeConfiguration<TitleEntity>
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("FK_Category_TO_Title_ON_CategoryId");
 
-        builder.HasData(DbSetUtil.LoadEmbeddedJson<TitleEntity>(SolutionName, table));
+        //builder.HasData(DbSetUtil.LoadEmbeddedJson<TitleEntity>(SolutionName, TableName));
     }
 
 }

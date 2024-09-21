@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ds.Base.EntityFramework" Version="0.0.2" />
+    <PackageReference Include="Ds.Base.EntityFramework" Version="0.0.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.8" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
@@ -15,15 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ds.Full.Domain\Ds.Full.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Repositories\Finances\" />
-    <Folder Include="Repositories\Inventories\" />
-    <Folder Include="Repositories\Medias\" />
-    <Folder Include="Repositories\Persons\" />
-    <Folder Include="Repositories\Rentals\" />
-    <Folder Include="Repositories\Staffs\" />
   </ItemGroup>
 
 </Project>

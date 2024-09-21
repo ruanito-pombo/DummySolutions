@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option csharp_namespace = "Ds.Full.Proto.Protos";
+
+import "google/protobuf/timestamp.proto";
+
+package AuditablePkg;
+
+message AuditableIntMsg
+{
+	int32                     Id           = 1;
+	google.protobuf.Timestamp CreateDate   = 2;
+    int32                     CreateOffset = 3;
+	google.protobuf.Timestamp UpdateDate   = 4;
+    int32                     UpdateOffset = 5;
+}
+
+message AuditableLongMsg
+{
+	int64                     Id           = 1;
+	google.protobuf.Timestamp CreateDate   = 2;
+    int32                     CreateOffset = 3;
+	google.protobuf.Timestamp UpdateDate   = 4;
+    int32                     UpdateOffset = 5;
+}
+
+message AuditableShortMsg
+{
+	int32                     Id           = 1;
+	google.protobuf.Timestamp CreateDate   = 2;
+    int32                     CreateOffset = 3;
+	google.protobuf.Timestamp UpdateDate   = 4;
+    int32                     UpdateOffset = 5;
+}

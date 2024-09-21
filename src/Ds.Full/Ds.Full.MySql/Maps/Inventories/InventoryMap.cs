@@ -1,20 +1,16 @@
 ﻿using Ds.Base.EntityFramework.Maps;
-using Ds.Base.EntityFramework.Utils;
 using Ds.Full.MySql.Entities.Inventories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using static Ds.Full.Domain.Constants.DsFullConstant;
 
 namespace Ds.Full.MySql.Maps.Inventories;
 
-public class InventoryMap : AuditableLongMap, IEntityTypeConfiguration<InventoryEntity>
+public class InventoryMap : AuditableMapLong<InventoryEntity>
 {
 
-    public void Configure(EntityTypeBuilder<InventoryEntity> builder)
+    public override void Configure(EntityTypeBuilder<InventoryEntity> builder)
     {
-        var table = GetType().Name.Replace("Map", "");
-
-        builder.ToTable(name: table);
+        base.Configure(builder, GetType().Name.Replace("Map", ""));
 
         builder.Property(p => p.Id)
             .HasColumnOrder(1)
@@ -58,7 +54,7 @@ public class InventoryMap : AuditableLongMap, IEntityTypeConfiguration<Inventory
             .OnDelete(DeleteBehavior.Cascade)
             .HasConstraintName("FK_Person_TO_Inventory_ON_SupplierId");
 
-        builder.HasData(DbSetUtil.LoadEmbeddedJson<InventoryEntity>(SolutionName, table));
+        //builder.HasData(DbSetUtil.LoadEmbeddedJson<InventoryEntity>(SolutionName, TableName));
     }
 
 }

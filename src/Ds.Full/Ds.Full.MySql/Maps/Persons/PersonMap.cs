@@ -1,21 +1,17 @@
 ﻿using Ds.Base.EntityFramework.Maps;
-using Ds.Base.EntityFramework.Utils;
 using Ds.Full.MySql.Entities.Persons;
 using Ds.Full.MySql.Entities.Staffs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using static Ds.Full.Domain.Constants.DsFullConstant;
 
 namespace Ds.Full.MySql.Maps.Persons;
 
-public class PersonMap : AuditableLongMap, IEntityTypeConfiguration<PersonEntity>
+public class PersonMap : AuditableMapLong<PersonEntity>
 {
 
-    public void Configure(EntityTypeBuilder<PersonEntity> builder)
+    public override void Configure(EntityTypeBuilder<PersonEntity> builder)
     {
-        var table = GetType().Name.Replace("Map", "");
-
-        builder.ToTable(name: table);
+        base.Configure(builder, GetType().Name.Replace("Map", ""));
 
         builder.Property(p => p.Id)
             .HasColumnOrder(1)
@@ -44,7 +40,7 @@ public class PersonMap : AuditableLongMap, IEntityTypeConfiguration<PersonEntity
             .OnDelete(DeleteBehavior.Cascade)
             .HasConstraintName("FK_User_TO_Person_ON_PersonId");
 
-        builder.HasData(DbSetUtil.LoadEmbeddedJson<PersonEntity>(SolutionName, table));
+        //builder.HasData(DbSetUtil.LoadEmbeddedJson<PersonEntity>(SolutionName, TableName));
     }
 
 }

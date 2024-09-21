@@ -8,6 +8,7 @@ using Ds.Simple.Application.Filters;
 using Ds.Simple.Application.Models;
 using Ds.Simple.Application.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
+using static Ds.Simple.Application.Constants.DsSimpleConstant;
 
 namespace Ds.Simple.Application.Repositories;
 
@@ -41,13 +42,12 @@ public class PaymentRepository(IDsSimpleDatabaseContext databaseContext)
         try
         {
             var totalRecords = GetQueryable<PaymentEntity>().Count();
-            var query = ((filter?.PageSize ?? 0) switch
+            var query = ((filter?.PageSize) switch
             {
-                0 => GetQueryable<PaymentEntity>(),
                 > 0 => GetQueryable<PaymentEntity>()
-                    .Skip((filter?.PageIndex ?? 1) * filter!.PageSize)
-                    .Take(filter!.PageSize),
-                _ => default
+                    .Skip((filter?.PageIndex ?? 1) * (filter?.PageSize ?? MinimumPageSize))
+                    .Take(filter?.PageSize ?? MinimumPageSize),
+                _ => GetQueryable<PaymentEntity>(),
             })?
                 .Include(i => i.Rental)
                 .ToList();

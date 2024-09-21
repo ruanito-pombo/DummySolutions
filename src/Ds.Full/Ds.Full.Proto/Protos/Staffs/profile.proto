@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option csharp_namespace = "Ds.Full.Proto.Protos.Staffs";
+
+import "identifiable.proto";
+//import "Staffs/user.proto";
+
+package ProfilePkg;
+
+
+message GetProfileMsg
+{
+	int32 ProfileId = 1;
+}
+
+message FilterProfileMsg
+{
+	string Code        = 1;
+	string Description = 2;
+}
+
+message ProfileMsg
+{
+	IdentifiablePkg.IdentifiableIntMsg Identifiable = 1;
+	string                             Code         = 2;
+	string                             Description  = 3;
+//	UserPkg.UserListMsg                UserList     = 4;
+}
+
+message ProfileListMsg
+{
+	repeated ProfileMsg ProfileList = 1;
+}
+
+message DeleteProfileMsg
+{
+	int32 ProfileId = 1;
+}

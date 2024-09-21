@@ -1,20 +1,16 @@
 ﻿using Ds.Base.EntityFramework.Maps;
-using Ds.Base.EntityFramework.Utils;
 using Ds.Full.MySql.Entities.Rentals;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using static Ds.Full.Domain.Constants.DsFullConstant;
 
 namespace Ds.Full.MySql.Maps.Rentals;
 
-public class RentalItemMap : IdentifiableIntMap, IEntityTypeConfiguration<RentalItemEntity>
+public class RentalItemMap : IdentifiableMapLong<RentalItemEntity>
 {
 
-    public void Configure(EntityTypeBuilder<RentalItemEntity> builder)
+    public override void Configure(EntityTypeBuilder<RentalItemEntity> builder)
     {
-        var table = GetType().Name.Replace("Map", "");
-
-        builder.ToTable(name: table);
+        base.Configure(builder, GetType().Name.Replace("Map", ""));
 
         builder.Property(p => p.Id)
             .HasColumnOrder(1)
@@ -43,7 +39,7 @@ public class RentalItemMap : IdentifiableIntMap, IEntityTypeConfiguration<Rental
             .OnDelete(DeleteBehavior.Cascade)
             .HasConstraintName("DK_Inventory_TO_RentalItem_ON_InventoryId");
 
-        builder.HasData(DbSetUtil.LoadEmbeddedJson<RentalItemEntity>(SolutionName, table));
+        //builder.HasData(DbSetUtil.LoadEmbeddedJson<RentalItemEntity>(SolutionName, TableName));
     }
 
 }

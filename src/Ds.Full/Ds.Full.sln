@@ -42,6 +42,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imgs", "imgs", "{F08D3CB1-D
 		..\..\assets\imgs\ds-full-logo.png = ..\..\assets\imgs\ds-full-logo.png
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ds.Full.Proto", "Ds.Full.Proto\Ds.Full.Proto.csproj", "{237AB960-811E-4572-A6DE-9CC8A359AF5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{D4069B8E-759B-4D10-B8DB-5E693327126D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4069B8E-759B-4D10-B8DB-5E693327126D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4069B8E-759B-4D10-B8DB-5E693327126D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{237AB960-811E-4572-A6DE-9CC8A359AF5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{237AB960-811E-4572-A6DE-9CC8A359AF5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{237AB960-811E-4572-A6DE-9CC8A359AF5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{237AB960-811E-4572-A6DE-9CC8A359AF5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{EA84EEF7-222A-48EB-8915-C1A943B1CC8E} = {FD6A22A7-03F5-4089-AF6A-FE3602C28ACB}
 		{D4069B8E-759B-4D10-B8DB-5E693327126D} = {6A8C799F-BC27-41F7-BB2B-86076FB287AF}
 		{F08D3CB1-DAF8-44F1-BF1D-7BF6688E63E9} = {FBB98E66-FA20-442C-B03C-C9D0BF30B98F}
+		{237AB960-811E-4572-A6DE-9CC8A359AF5C} = {D7DC43B3-A7D6-4E79-A84D-F0D09A922602}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A34BEB0-6C76-4D86-ABAB-4E7DE66B5C28}
