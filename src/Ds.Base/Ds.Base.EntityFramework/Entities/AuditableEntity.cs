@@ -1,9 +1,8 @@
-﻿using System;
-using Ds.Base.Domain.Entities.Abstractions;
+﻿using Ds.Base.Domain.Entities.Abstractions;
 
 namespace Ds.Base.EntityFramework.Entities;
 
-public class AuditableEntity<TId> : IAuditableEntity<TId>, IEntity
+public class AuditableEntity<TId> : Entity, IEntity, IAuditableEntity<TId>
     where TId : struct
 {
     public TId Id { get; set; } = default;
@@ -11,7 +10,7 @@ public class AuditableEntity<TId> : IAuditableEntity<TId>, IEntity
     public DateTimeOffset UpdateDate { get; set; } = DateTimeOffset.MinValue;
 }
 
-public class AuditableEntityInt : IAuditableEntity<int>, IEntity
+public class AuditableEntityInt : Entity, IEntity, IAuditableEntity<int>
 {
     public int Id { get; set; } = 0;
     public DateTimeOffset CreateDate { get; set; } = DateTimeOffset.MinValue;
@@ -20,7 +19,7 @@ public class AuditableEntityInt : IAuditableEntity<int>, IEntity
     public AuditableEntityInt(int id) { Id = id; }
 }
 
-public class AuditableEntityLong : IAuditableEntity<long>, IEntity
+public class AuditableEntityLong : Entity, IEntity, IAuditableEntity<long>
 {
     public long Id { get; set; } = 0;
     public DateTimeOffset CreateDate { get; set; } = DateTimeOffset.MinValue;
@@ -29,7 +28,7 @@ public class AuditableEntityLong : IAuditableEntity<long>, IEntity
     public AuditableEntityLong(long id) { Id = id; }
 }
 
-public class AuditableEntityShort : IAuditableEntity<short>, IEntity
+public class AuditableEntityShort : Entity, IEntity, IAuditableEntity<short>
 {
     public short Id { get; set; } = 0;
     public DateTimeOffset CreateDate { get; set; } = DateTimeOffset.MinValue;

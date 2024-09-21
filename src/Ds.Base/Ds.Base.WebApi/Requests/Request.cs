@@ -1,5 +1,5 @@
 ﻿using Ds.Base.Domain.Models.Abstractions;
-using Ds.Base.Domain.WebApis.Requests.Abstractions;
+using Ds.Base.Domain.Requests.Abstractions;
 
 namespace Ds.Base.WebApi.Requests;
 

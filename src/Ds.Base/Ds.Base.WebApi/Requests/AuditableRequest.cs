@@ -1,8 +1,8 @@
-﻿using Ds.Base.Domain.WebApis.Requests.Abstractions;
+﻿using Ds.Base.Domain.Requests.Abstractions;
 
 namespace Ds.Base.WebApi.Requests;
 
-public class AuditableRequest<TId> : IAuditableRequest<TId>, IRequest
+public class AuditableRequest<TId> : Request, IRequest, IAuditableRequest<TId>
     where TId : struct
 {
     public TId Id { get; set; } = default;
@@ -10,7 +10,7 @@ public class AuditableRequest<TId> : IAuditableRequest<TId>, IRequest
     public DateTimeOffset UpdateDate { get; set; }
 }
 
-public class AuditableRequestInt : IAuditableRequest<int>, IRequest
+public class AuditableRequestInt : Request, IRequest, IAuditableRequest<int>
 {
     public int Id { get; set; } = 0;
     public DateTimeOffset CreateDate { get; set; }
@@ -19,7 +19,7 @@ public class AuditableRequestInt : IAuditableRequest<int>, IRequest
     public AuditableRequestInt(int id) { Id = id; }
 }
 
-public class AuditableRequestLong : IAuditableRequest<long>, IRequest
+public class AuditableRequestLong : Request, IRequest, IAuditableRequest<long>
 {
     public long Id { get; set; } = 0;
     public DateTimeOffset CreateDate { get; set; }
@@ -28,7 +28,7 @@ public class AuditableRequestLong : IAuditableRequest<long>, IRequest
     public AuditableRequestLong(long id) { Id = id; }
 }
 
-public class AuditableRequestShort : IAuditableRequest<short>, IRequest
+public class AuditableRequestShort : Request, IRequest, IAuditableRequest<short>
 {
     public short Id { get; set; } = 0;
     public DateTimeOffset CreateDate { get; set; }

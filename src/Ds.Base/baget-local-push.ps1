@@ -4,7 +4,7 @@ param(
 )
 
 $apiKey = "X7BhV45nYz8TjQZ0WL9PgCsKFd2iHxJR57bd2dsa"
-$source = "http://localhost:5555/v3/index.json"
+$source = "https://localhost:5556/v3/index.json"
 $build = "Release"
 
 if ($buildType.ToUpper().Trim() -eq "DEBUG") { 
@@ -23,6 +23,19 @@ if (Test-Path -Path "$domainNuget")
 } 
 else 
 { Write-Host "No $domainNuget found" -ForegroundColor red }
+
+# ProtoNuget
+$proto = "Ds.Base.Proto"
+$protoPath = ".\Ds.Base.Proto\bin\$build"
+$protoNuget = "$protoPath\$proto.$version.nupkg"
+Write-Host "Checking $proto..."
+if (Test-Path -Path "$protoNuget")
+{
+	dotnet nuget push -s $source -k $apiKey  "$protoNuget" --skip-duplicate
+	Write-Host "$protoNuget was successfully pushed" -ForegroundColor green
+} 
+else 
+{ Write-Host "No $protoNuget found" -ForegroundColor red }
 
 # InjectionNuget
 $injection = "Ds.Base.Injection"

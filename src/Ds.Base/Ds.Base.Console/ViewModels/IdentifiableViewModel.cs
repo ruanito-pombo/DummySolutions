@@ -1,9 +1,8 @@
-﻿using Ds.Base.Domain.Models.Abstractions;
-using Ds.Base.Domain.Consoles.ViewModels.Abstractions;
+﻿using Ds.Base.Domain.ViewModels.Abstractions;
 
 namespace Ds.Base.Console.ViewModels;
 
-public class IdentifiableViewModel<TId> : IIdentifiableViewModel<TId>, IModel
+public class IdentifiableViewModel<TId> : ViewModel, IViewModel, IIdentifiableViewModel<TId>
     where TId : struct
 {
     public TId Id { get; set; } = default;
@@ -11,7 +10,7 @@ public class IdentifiableViewModel<TId> : IIdentifiableViewModel<TId>, IModel
     public DateTimeOffset UpdateDate { get; set; }
 }
 
-public class IdentifiableViewModelInt : IIdentifiableViewModel<int>, IModel
+public class IdentifiableViewModelInt : ViewModel, IViewModel, IIdentifiableViewModel<int>
 {
     public int Id { get; set; } = 0;
     public DateTimeOffset CreateDate { get; set; }
@@ -20,7 +19,7 @@ public class IdentifiableViewModelInt : IIdentifiableViewModel<int>, IModel
     public IdentifiableViewModelInt(int id) { Id = id; }
 }
 
-public class IdentifiableViewModelLong : IIdentifiableViewModel<long>, IModel
+public class IdentifiableViewModelLong : ViewModel, IViewModel, IIdentifiableViewModel<long>
 {
     public long Id { get; set; } = 0;
     public DateTimeOffset CreateDate { get; set; }
@@ -29,7 +28,7 @@ public class IdentifiableViewModelLong : IIdentifiableViewModel<long>, IModel
     public IdentifiableViewModelLong(long id) { Id = id; }
 }
 
-public class IdentifiableViewModelShort : IIdentifiableViewModel<short>, IModel
+public class IdentifiableViewModelShort : ViewModel, IViewModel, IIdentifiableViewModel<short>
 {
     public short Id { get; set; } = 0;
     public DateTimeOffset CreateDate { get; set; }

@@ -10,15 +10,19 @@ public abstract class AuditableMap<TAuditableEntity, TId> : IAuditableMap<TAudit
     where TAuditableEntity : class, IAuditableEntity<TId> where TId : struct
 {
     protected virtual string TableName { get; set; } = string.Empty;
+}
 
-    public virtual void Configure(EntityTypeBuilder<TAuditableEntity> builder)
+public abstract class AuditableMapInt<TAuditableEntityInt> : AuditableMap<AuditableEntityInt, int>,
+    IEntityTypeConfiguration<TAuditableEntityInt> where TAuditableEntityInt : class, IAuditableEntity<int>
+{
+    public virtual void Configure(EntityTypeBuilder<TAuditableEntityInt> builder, string tableName, string? comments = "")
     {
+        TableName = tableName;
+        builder.ToTable(name: TableName, action => action.HasComment(comments));
+
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
-            .HasColumnOrder(1)
-            .HasColumnType("BIGINT")
-            .ValueGeneratedOnAdd()
-            .IsRequired();
+            .HasColumnOrder(1);
 
         builder.Property(e => e.CreateDate)
             .HasColumnOrder(2)
@@ -28,11 +32,8 @@ public abstract class AuditableMap<TAuditableEntity, TId> : IAuditableMap<TAudit
             .HasColumnOrder(3)
             .IsRequired();
     }
-}
 
-public abstract class AuditableMapInt : AuditableMap<AuditableEntityInt, int>
-{
-    public override void Configure(EntityTypeBuilder<AuditableEntityInt> builder)
+    public virtual void Configure(EntityTypeBuilder<TAuditableEntityInt> builder)
     {
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
@@ -48,9 +49,28 @@ public abstract class AuditableMapInt : AuditableMap<AuditableEntityInt, int>
     }
 }
 
-public abstract class AuditableMapLong : AuditableMap<AuditableEntityLong, long>
+public abstract class AuditableMapLong<TAuditableEntityLong> : AuditableMap<AuditableEntityLong, long>,
+    IEntityTypeConfiguration<TAuditableEntityLong> where TAuditableEntityLong : class, IAuditableEntity<long>
 {
-    public override void Configure(EntityTypeBuilder<AuditableEntityLong> builder)
+    public virtual void Configure(EntityTypeBuilder<TAuditableEntityLong> builder, string tableName, string? comments = "")
+    {
+        TableName = tableName;
+        builder.ToTable(name: TableName, action => action.HasComment(comments));
+
+        builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id)
+            .HasColumnOrder(1);
+
+        builder.Property(e => e.CreateDate)
+            .HasColumnOrder(2)
+            .IsRequired();
+
+        builder.Property(e => e.UpdateDate)
+            .HasColumnOrder(3)
+            .IsRequired();
+    }
+
+    public virtual void Configure(EntityTypeBuilder<TAuditableEntityLong> builder)
     {
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
@@ -66,9 +86,28 @@ public abstract class AuditableMapLong : AuditableMap<AuditableEntityLong, long>
     }
 }
 
-public abstract class AuditableMapShort : AuditableMap<AuditableEntityShort, short>
+public abstract class AuditableMapShort<TAuditableEntityShort> : AuditableMap<AuditableEntityShort, short>,
+    IEntityTypeConfiguration<TAuditableEntityShort> where TAuditableEntityShort : class, IAuditableEntity<short>
 {
-    public override void Configure(EntityTypeBuilder<AuditableEntityShort> builder)
+    public virtual void Configure(EntityTypeBuilder<TAuditableEntityShort> builder, string tableName, string? comments = "")
+    {
+        TableName = tableName;
+        builder.ToTable(name: TableName, action => action.HasComment(comments));
+
+        builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id)
+            .HasColumnOrder(1);
+
+        builder.Property(e => e.CreateDate)
+            .HasColumnOrder(2)
+            .IsRequired();
+
+        builder.Property(e => e.UpdateDate)
+            .HasColumnOrder(3)
+            .IsRequired();
+    }
+
+    public virtual void Configure(EntityTypeBuilder<TAuditableEntityShort> builder)
     {
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)

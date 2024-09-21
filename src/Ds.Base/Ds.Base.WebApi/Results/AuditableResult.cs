@@ -1,8 +1,8 @@
-﻿using Ds.Base.Domain.WebApis.Results.Abstractions;
+﻿using Ds.Base.Domain.Results.Abstractions;
 
 namespace Ds.Base.WebApi.Results;
 
-public class AuditableResult<TId> : IAuditableResult<TId>, IResult
+public class AuditableResult<TId> : Result, IResult, IAuditableResult<TId>
     where TId : struct
 {
     public TId Id { get; set; } = default;
@@ -10,7 +10,7 @@ public class AuditableResult<TId> : IAuditableResult<TId>, IResult
     public DateTimeOffset UpdateDate { get; set; }
 }
 
-public class AuditableResultInt : IAuditableResult<int>, IResult
+public class AuditableResultInt : Result, IResult, IAuditableResult<int>
 {
     public int Id { get; set; } = 0;
     public DateTimeOffset CreateDate { get; set; }
@@ -19,7 +19,7 @@ public class AuditableResultInt : IAuditableResult<int>, IResult
     public AuditableResultInt(int id) { Id = id; }
 }
 
-public class AuditableResultLong : IAuditableResult<long>, IResult
+public class AuditableResultLong : Result, IResult, IAuditableResult<long>
 {
     public long Id { get; set; } = 0;
     public DateTimeOffset CreateDate { get; set; }
@@ -28,7 +28,7 @@ public class AuditableResultLong : IAuditableResult<long>, IResult
     public AuditableResultLong(long id) { Id = id; }
 }
 
-public class AuditableResultShort : IAuditableResult<short>, IResult
+public class AuditableResultShort : Result, IResult, IAuditableResult<short>
 {
     public short Id { get; set; } = 0;
     public DateTimeOffset CreateDate { get; set; }

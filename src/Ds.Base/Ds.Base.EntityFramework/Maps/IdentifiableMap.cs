@@ -10,21 +10,22 @@ public abstract class IdentifiableMap<TIdentifiableEntity, TId> : IIdentifiableM
     where TIdentifiableEntity : class, IIdentifiableEntity<TId> where TId : struct
 {
     protected virtual string TableName { get; set; } = string.Empty;
-
-    public virtual void Configure(EntityTypeBuilder<TIdentifiableEntity> builder)
-    {
-        builder.HasKey(e => e.Id);
-        builder.Property(e => e.Id)
-            .HasColumnOrder(1)
-            .HasColumnType("BIGINT")
-            .ValueGeneratedOnAdd()
-            .IsRequired();
-    }
 }
 
-public abstract class IdentifiableMapInt<TIdentifiableEntity> : IdentifiableMap<IdentifiableEntityInt, int>
+public abstract class IdentifiableMapInt<TIdentifiableEntityInt> : IdentifiableMap<IdentifiableEntityInt, int>,
+    IEntityTypeConfiguration<TIdentifiableEntityInt> where TIdentifiableEntityInt : class, IIdentifiableEntity<int>
 {
-    public override void Configure(EntityTypeBuilder<IdentifiableEntityInt> builder)
+    public virtual void Configure(EntityTypeBuilder<TIdentifiableEntityInt> builder, string tableName, string? comments = "")
+    {
+        TableName = tableName;
+        builder.ToTable(name: TableName, action => action.HasComment(comments));
+
+        builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id)
+            .HasColumnOrder(1);
+    }
+
+    public virtual void Configure(EntityTypeBuilder<TIdentifiableEntityInt> builder)
     {
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
@@ -32,9 +33,20 @@ public abstract class IdentifiableMapInt<TIdentifiableEntity> : IdentifiableMap<
     }
 }
 
-public abstract class IdentifiableMapLong : IdentifiableMap<IdentifiableEntityLong, long>
+public abstract class IdentifiableMapLong<TIdentifiableEntityLong> : IdentifiableMap<IdentifiableEntityLong, long>,
+    IEntityTypeConfiguration<TIdentifiableEntityLong> where TIdentifiableEntityLong : class, IIdentifiableEntity<long>
 {
-    public override void Configure(EntityTypeBuilder<IdentifiableEntityLong> builder)
+    public virtual void Configure(EntityTypeBuilder<TIdentifiableEntityLong> builder, string tableName, string? comments = "")
+    {
+        TableName = tableName;
+        builder.ToTable(name: TableName, action => action.HasComment(comments));
+
+        builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id)
+            .HasColumnOrder(1);
+    }
+
+    public virtual void Configure(EntityTypeBuilder<TIdentifiableEntityLong> builder)
     {
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
@@ -42,9 +54,20 @@ public abstract class IdentifiableMapLong : IdentifiableMap<IdentifiableEntityLo
     }
 }
 
-public abstract class IdentifiableMapShort : IdentifiableMap<IdentifiableEntityShort, short>
+public abstract class IdentifiableMapShort<TIdentifiableEntityShort> : IdentifiableMap<IdentifiableEntityShort, short>,
+    IEntityTypeConfiguration<TIdentifiableEntityShort> where TIdentifiableEntityShort : class, IIdentifiableEntity<short>
 {
-    public override void Configure(EntityTypeBuilder<IdentifiableEntityShort> builder)
+    public virtual void Configure(EntityTypeBuilder<TIdentifiableEntityShort> builder, string tableName, string? comments = "")
+    {
+        TableName = tableName;
+        builder.ToTable(name: TableName, action => action.HasComment(comments));
+
+        builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id)
+            .HasColumnOrder(1);
+    }
+
+    public virtual void Configure(EntityTypeBuilder<TIdentifiableEntityShort> builder)
     {
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)

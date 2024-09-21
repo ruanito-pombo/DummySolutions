@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<Version>0.0.22</Version>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<PackageReadmeFile>readme.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<None Update="readme.md">
+	  <PackagePath>\</PackagePath>
+	  <Pack>True</Pack>
+	</None>
+  </ItemGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Google.Protobuf" Version="3.28.2" />
+	<PackageReference Include="Google.Protobuf.Tools" Version="3.28.2" />
+	<PackageReference Include="Grpc.Tools" Version="2.66.0">
+	  <PrivateAssets>all</PrivateAssets>
+	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
+  </ItemGroup>
+	
+  <ItemGroup>
+    <Content Include="Protos\common.proto">
+	  <Pack>True</Pack>
+	  <PackagePath>contentFiles/any/$(TargetFramework)/Protos</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+	<Protobuf Include="Protos\common.proto" ProtoRoot="Protos" GrpcServices="Both" CompileOutputs="True" Link="Protos\common.proto" LinkBase="Protos\default.proto" />
+  </ItemGroup>
+
+</Project>

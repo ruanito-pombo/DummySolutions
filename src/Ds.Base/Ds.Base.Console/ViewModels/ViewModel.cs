@@ -1,5 +1,5 @@
-﻿using Ds.Base.Domain.Consoles.ViewModels.Abstractions;
-using Ds.Base.Domain.Models.Abstractions;
+﻿using Ds.Base.Domain.Models.Abstractions;
+using Ds.Base.Domain.ViewModels.Abstractions;
 
 namespace Ds.Base.Console.ViewModels;
 

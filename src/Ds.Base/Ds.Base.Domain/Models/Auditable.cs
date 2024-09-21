@@ -2,7 +2,7 @@
 
 namespace Ds.Base.Domain.Models;
 
-public class Auditable<TId> : IAuditable<TId>, IModel
+public class Auditable<TId> : Model, IModel, IAuditable<TId>
     where TId : struct
 {
     public TId Id { get; set; } = default;
@@ -10,7 +10,7 @@ public class Auditable<TId> : IAuditable<TId>, IModel
     public DateTimeOffset UpdateDate { get; set; }
 }
 
-public class AuditableInt : IAuditable<int>, IModel
+public class AuditableInt : Model, IModel, IAuditable<int>
 {
     public int Id { get; set; } = 0;
     public DateTimeOffset CreateDate { get; set; }
@@ -20,7 +20,7 @@ public class AuditableInt : IAuditable<int>, IModel
     public AuditableInt(int id, DateTimeOffset createDate, DateTimeOffset updateDate) { Id = id; CreateDate = createDate; UpdateDate = updateDate; }
 }
 
-public class AuditableLong : IAuditable<long>, IModel
+public class AuditableLong : Model, IModel, IAuditable<long>
 {
     public long Id { get; set; } = 0;
     public DateTimeOffset CreateDate { get; set; }
@@ -30,7 +30,7 @@ public class AuditableLong : IAuditable<long>, IModel
     public AuditableLong(long id, DateTimeOffset createDate, DateTimeOffset updateDate) { Id = id; CreateDate = createDate; UpdateDate = updateDate; }
 }
 
-public class AuditableShort : IAuditable<short>, IModel
+public class AuditableShort : Model, IModel, IAuditable<short>
 {
     public short Id { get; set; } = 0;
     public DateTimeOffset CreateDate { get; set; }

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<Version>0.0.3</Version>
+	<Version>0.0.22</Version>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -11,12 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Protos\auditable.proto" />
-    <None Remove="Protos\default.proto" />
-    <None Remove="Protos\identifiable.proto" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="readme.md">
       <PackagePath>\</PackagePath>
       <Pack>True</Pack>
@@ -24,30 +18,18 @@
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="Google.Protobuf" Version="3.19.1" />
-	<PackageReference Include="Google.Protobuf.Tools" Version="3.19.1" />
-	<PackageReference Include="Grpc.Net.Client" Version="2.40.0" />
-	<PackageReference Include="Grpc.Tools" Version="2.41.1" />
+	<PackageReference Include="Google.Protobuf" Version="3.28.2" />
+	<PackageReference Include="Google.Protobuf.Tools" Version="3.28.2" />
+	<PackageReference Include="Grpc.Net.Client" Version="2.65.0" />
+	<PackageReference Include="Grpc.Tools" Version="2.66.0">
+	  <PrivateAssets>all</PrivateAssets>
+	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
   </ItemGroup>
 	
   <ItemGroup>
     <ProjectReference Include="..\Ds.Base.Domain\Ds.Base.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Protos\auditable.proto">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-	<Content Include="Protos\default.proto">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-	<Content Include="Protos\identifiable.proto">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-	<Protobuf Include="Protos\*.proto" GrpcServices="Both" CompileOutputs="true" ProtoRoot="Protos" />
+    <ProjectReference Include="..\Ds.Base.Proto\Ds.Base.Proto.csproj" />
   </ItemGroup>
 
 </Project>
