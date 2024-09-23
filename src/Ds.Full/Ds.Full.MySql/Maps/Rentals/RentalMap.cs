@@ -12,17 +12,8 @@ public class RentalMap : AuditableMapLong<RentalEntity>
     {
         base.Configure(builder, GetType().Name.Replace("Map", ""));
 
-        builder.Property(p => p.Id)
-            .HasColumnOrder(1)
-            .HasColumnType("BIGINT")
-            .ValueGeneratedOnAdd()
-            .IsRequired();
-
-        builder.HasKey(pk => pk.Id)
-            .HasName("PK_Rental_Id");
-
         builder.Property(p => p.UserId)
-            .HasColumnType("BIGINT");
+            .HasColumnType("INT");
 
         builder.Property(p => p.CustomerId)
             .HasColumnType("BIGINT");

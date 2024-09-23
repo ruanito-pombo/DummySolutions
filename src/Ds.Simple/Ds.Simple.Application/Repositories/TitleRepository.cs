@@ -17,11 +17,6 @@ public class TitleRepository(IDsSimpleDatabaseContext databaseContext)
 {
 
     public override string TableName { get; } = "Title";
-    private readonly Func<TitleEntity, TitleFilter, bool> FilterTitle = (x, filter) =>
-        (!filter.AuthorName.HasValue() || (x.Author != null && x.Author.FullName.Contains(filter.AuthorName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
-        && (!filter.ProducerName.HasValue() || (x.Producer != null && x.Producer.FullName.Contains(filter.ProducerName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
-        && (!filter.FullName.HasValue() || x.FullName.Contains(filter.FullName!.Trim(), StringComparison.CurrentCultureIgnoreCase))
-        ;
 
     public Title? Get(long id)
     {
@@ -73,7 +68,9 @@ public class TitleRepository(IDsSimpleDatabaseContext databaseContext)
         try
         {
             var query = GetQueryable<TitleEntity>()
-                .Where(x => FilterTitle(x, filter))
+                .Where(x => (!filter.AuthorName.HasValue() || (x.Author != null && x.Author.FullName.Contains(filter.AuthorName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
+                    && (!filter.ProducerName.HasValue() || (x.Producer != null && x.Producer.FullName.Contains(filter.ProducerName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
+                    && (!filter.FullName.HasValue() || x.FullName.Contains(filter.FullName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
                 .Include(i => i.Author)
                 .ToList();
 

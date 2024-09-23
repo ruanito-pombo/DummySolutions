@@ -4,7 +4,7 @@ using Ds.Base.WebApi.Requests;
 using Ds.Full.Domain.Models.Staffs;
 
 namespace Ds.Full.WebApi.Requests.Staffs;
-public class ProfileRequest : IdentifiableRequestInt, IRequest, IMapTo<Profile>
+public class ProfileRequest : AuditableRequestInt, IRequest, IMapTo<Profile>
 {
 
     public string Code { get; set; } = string.Empty;

@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ds.Base.Console" Version="0.0.21" />
-    <PackageReference Include="Ds.Base.Grpc" Version="0.0.21" />
-    <PackageReference Include="Ds.Base.Injection" Version="0.0.21" />
-    <PackageReference Include="Ds.Base.WebApi" Version="0.0.21" />
+    <PackageReference Include="Ds.Base.Console" Version="0.0.47" />
+    <PackageReference Include="Ds.Base.Grpc" Version="0.0.47" />
+    <PackageReference Include="Ds.Base.Injection" Version="0.0.47" />
+    <PackageReference Include="Ds.Base.WebApi" Version="0.0.47" />
     <PackageReference Include="SimpleInjector" Version="5.5.0" />
   </ItemGroup>
 

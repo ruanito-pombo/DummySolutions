@@ -5,7 +5,7 @@ using Ds.Full.Domain.Models.Persons;
 
 namespace Ds.Full.Domain.Businesses.Abstractions.Persons;
 
-public interface IPersonBusiness : IIdentifiableBusiness
+public interface IPersonBusiness : IAuditableBusiness
 {
 
     Person? Get(long id);

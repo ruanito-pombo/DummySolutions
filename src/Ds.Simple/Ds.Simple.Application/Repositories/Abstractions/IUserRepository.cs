@@ -1,11 +1,10 @@
 ﻿using Ds.Base.Domain.Paginateds;
-using Ds.Base.Domain.Repositories.Abstractions;
 using Ds.Simple.Application.Filters;
 using Ds.Simple.Application.Models;
 
 namespace Ds.Simple.Application.Repositories.Abstractions;
 
-public interface IUserRepository : IIdentifiableRepository
+public interface IUserRepository
 {
 
     User? Get(int id);

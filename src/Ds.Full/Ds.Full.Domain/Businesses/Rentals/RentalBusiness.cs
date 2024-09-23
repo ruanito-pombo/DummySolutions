@@ -9,7 +9,7 @@ using Ds.Full.Domain.Repositories.Abstractions.Rentals;
 namespace Ds.Full.Domain.Businesses.Rentals;
 
 public class RentalBusiness(IRentalRepository rentalRepository)
-    : IdentifiableBusiness<IdentifiableLong, long>(rentalRepository), IRentalBusiness
+    : AuditableBusiness<AuditableLong, long>(rentalRepository), IRentalBusiness
 {
 
     private readonly IRentalRepository _rentalRepository = rentalRepository;

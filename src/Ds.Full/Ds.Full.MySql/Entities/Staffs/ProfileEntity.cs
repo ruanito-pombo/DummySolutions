@@ -5,7 +5,7 @@ using Ds.Full.Domain.Models.Staffs;
 
 namespace Ds.Full.MySql.Entities.Staffs;
 
-public class ProfileEntity : IdentifiableEntityInt, IEntity, IMap<ProfileEntity, Profile>
+public class ProfileEntity : AuditableEntityInt, IEntity, IMap<ProfileEntity, Profile>
 {
 
     public string Code { get; set; } = string.Empty;

@@ -20,16 +20,24 @@ public abstract class IdentifiableMapInt<TIdentifiableEntityInt> : IdentifiableM
         TableName = tableName;
         builder.ToTable(name: TableName, action => action.HasComment(comments));
 
-        builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
-            .HasColumnOrder(1);
+            .HasColumnOrder(1)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+
+        builder.HasKey(e => e.Id)
+            .HasName($"Pk{TableName}Id");
     }
 
     public virtual void Configure(EntityTypeBuilder<TIdentifiableEntityInt> builder)
     {
-        builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
-            .HasColumnOrder(1);
+            .HasColumnOrder(1)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+
+        builder.HasKey(e => e.Id)
+            .HasName($"Pk{TableName}Id");
     }
 }
 
@@ -41,16 +49,24 @@ public abstract class IdentifiableMapLong<TIdentifiableEntityLong> : Identifiabl
         TableName = tableName;
         builder.ToTable(name: TableName, action => action.HasComment(comments));
 
-        builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
-            .HasColumnOrder(1);
+            .HasColumnOrder(1)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+
+        builder.HasKey(e => e.Id)
+            .HasName($"Pk{TableName}Id");
     }
 
     public virtual void Configure(EntityTypeBuilder<TIdentifiableEntityLong> builder)
     {
-        builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
-            .HasColumnOrder(1);
+            .HasColumnOrder(1)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+
+        builder.HasKey(e => e.Id)
+            .HasName($"Pk{TableName}Id");
     }
 }
 
@@ -62,15 +78,23 @@ public abstract class IdentifiableMapShort<TIdentifiableEntityShort> : Identifia
         TableName = tableName;
         builder.ToTable(name: TableName, action => action.HasComment(comments));
 
-        builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
-            .HasColumnOrder(1);
+            .HasColumnOrder(1)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+
+        builder.HasKey(e => e.Id)
+            .HasName($"Pk{TableName}Id");
     }
 
     public virtual void Configure(EntityTypeBuilder<TIdentifiableEntityShort> builder)
     {
-        builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
-            .HasColumnOrder(1);
+            .HasColumnOrder(1)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+
+        builder.HasKey(e => e.Id)
+            .HasName($"Pk{TableName}Id");
     }
 }

@@ -2,7 +2,7 @@
 using Ds.Base.Domain.Models.Abstractions;
 
 namespace Ds.Full.Domain.Models.Staffs;
-public class Profile : IdentifiableInt, IModel
+public class Profile : AuditableInt, IModel
 {
 
     public string Code { get; set; } = string.Empty;

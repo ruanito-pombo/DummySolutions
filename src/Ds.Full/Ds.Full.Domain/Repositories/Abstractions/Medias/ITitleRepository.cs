@@ -5,7 +5,7 @@ using Ds.Full.Domain.Models.Medias;
 
 namespace Ds.Full.Domain.Repositories.Abstractions.Medias;
 
-public interface ITitleRepository : IIdentifiableRepository
+public interface ITitleRepository : IAuditableRepository
 {
 
     Title? Get(long id);

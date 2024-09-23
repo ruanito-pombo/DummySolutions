@@ -5,7 +5,7 @@ using Ds.Full.Domain.Models.Staffs;
 
 namespace Ds.Full.Domain.Businesses.Abstractions.Staffs;
 
-public interface IUserBusiness : IIdentifiableBusiness
+public interface IUserBusiness : IAuditableBusiness
 {
 
     User? Get(int id);

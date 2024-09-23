@@ -1,11 +1,10 @@
 ﻿using Ds.Base.Domain.Paginateds;
-using Ds.Base.Domain.Repositories.Abstractions;
 using Ds.Simple.Application.Filters;
 using Ds.Simple.Application.Models;
 
 namespace Ds.Simple.Application.Repositories.Abstractions;
 
-public interface IPaymentRepository : IIdentifiableRepository
+public interface IPaymentRepository
 {
 
     Payment? Get(long id);

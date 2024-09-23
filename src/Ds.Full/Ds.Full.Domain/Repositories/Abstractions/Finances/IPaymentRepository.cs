@@ -5,7 +5,7 @@ using Ds.Full.Domain.Models.Finances;
 
 namespace Ds.Full.Domain.Repositories.Abstractions.Finances;
 
-public interface IPaymentRepository : IIdentifiableRepository
+public interface IPaymentRepository : IAuditableRepository
 {
 
     Payment? Get(long id);

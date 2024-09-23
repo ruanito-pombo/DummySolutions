@@ -17,9 +17,6 @@ public class PersonRepository(IDsSimpleDatabaseContext databaseContext)
 {
 
     public override string TableName { get; } = "Person";
-    private readonly Func<PersonEntity, PersonFilter, bool> FilterPerson = (x, filter) =>
-        (!filter.FullName.HasValue() || x.FullName.Contains(filter.FullName!.Trim(), StringComparison.CurrentCultureIgnoreCase))
-        && (!filter.BirthDate.HasValue || x.BirthDate == filter.BirthDate);
 
     public Person? Get(long id)
     {
@@ -76,7 +73,8 @@ public class PersonRepository(IDsSimpleDatabaseContext databaseContext)
         try
         {
             var query = GetQueryable<PersonEntity>()
-                .Where(x => FilterPerson(x, filter))
+                .Where(x => (!filter.FullName.HasValue() || x.FullName.Contains(filter.FullName!.Trim(), StringComparison.CurrentCultureIgnoreCase))
+                    && (!filter.BirthDate.HasValue || x.BirthDate == filter.BirthDate))
                 .Include(i => i.PersonAddressList)
                 .Include(i => i.PersonContactList)
                 .Include(i => i.User)

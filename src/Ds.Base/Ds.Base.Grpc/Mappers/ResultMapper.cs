@@ -1,16 +1,18 @@
-﻿using Ds.Base.Domain.Extensions;
-using Google.Protobuf.WellKnownTypes;
-using static Ds.Base.Domain.Constants.DsBaseConstant;
+﻿using Google.Protobuf.Collections;
+using static Ds.Base.Proto.Utils.ProtoUtil;
 
-namespace Ds.Base.Grpc.Results;
+namespace Ds.Base.Grpc.Mappers;
 
 public static class ResultMapper
 {
 
-    public static ProtoTimestamp Cast(DateTimeOffset dto) => dto.Cast();
-    public static DateTimeOffset Cast(ProtoTimestamp timestamp) => timestamp.Cast();
-    public static DateTimeOffset Cast(Timestamp date, int offset) => date.Cast(offset);
-    public static TRepeatedMsg ToRepeatedField<TRepeatedMsg, TMsg>(TRepeatedMsg msg, IEnumerable<TMsg> msgList)
-        where TRepeatedMsg : class => msg.ToRepeatedField(msgList);
+    public static decimal ToDecimal(dynamic decimalMsg) => CastToDecimal(decimalMsg);
+    public static dynamic ToDecimalMsg<TMsg>(decimal decimalValue) => CastToDecimalMsg(decimalValue);
+    public static DateTimeOffset ToDateTimeOffset(dynamic dateTimeOffsetMsg) => CastToDateTimeOffset(dateTimeOffsetMsg);
+    public static dynamic ToDateTimeOffsetMsg(DateTimeOffset dateTimeOffsetValue) => CastToDateTimeOffsetMsg(dateTimeOffsetValue);
+    public static IEnumerable<TMsg> ToEnumerable<TMsg>(RepeatedField<TMsg> repeatedField)
+        where TMsg : class => CastToEnumerable(repeatedField);
+    public static RepeatedField<TModel> ToRepeatedFieldMsg<TModel>(IEnumerable<TModel> modelList)
+        where TModel : class => CastToRepeatedFieldMsg(modelList);
 
 }

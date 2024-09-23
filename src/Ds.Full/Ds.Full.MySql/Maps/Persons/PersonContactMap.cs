@@ -12,15 +12,6 @@ public class PersonContactMap : IdentifiableMapLong<PersonContactEntity>
     {
         base.Configure(builder, GetType().Name.Replace("Map", ""));
 
-        builder.Property(p => p.Id)
-            .HasColumnOrder(1)
-            .HasColumnType("BIGINT")
-            .ValueGeneratedOnAdd()
-            .IsRequired();
-
-        builder.HasKey(pk => pk.Id)
-            .HasName("PK_PersonContact_Id");
-
         builder.Property(p => p.PersonId)
             .HasColumnType("BIGINT");
 

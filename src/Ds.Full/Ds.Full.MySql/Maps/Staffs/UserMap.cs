@@ -13,15 +13,6 @@ public class UserMap : AuditableMapInt<UserEntity>
     {
         base.Configure(builder, GetType().Name.Replace("Map", ""));
 
-        builder.Property(p => p.Id)
-            .HasColumnOrder(1)
-            .HasColumnType("INT")
-            .ValueGeneratedOnAdd()
-            .IsRequired();
-
-        builder.HasKey(pk => pk.Id)
-            .HasName("PK_User_Id");
-
         builder.Property(p => p.ProfileId)
             .HasColumnType("INT");
 

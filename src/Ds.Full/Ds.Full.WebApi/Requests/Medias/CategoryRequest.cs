@@ -6,7 +6,7 @@ using Ds.Full.Domain.Models.Medias;
 
 namespace Ds.Full.WebApi.Requests.Medias;
 
-public class CategoryRequest : IdentifiableRequestInt, IRequest, IMapTo<Category>
+public class CategoryRequest : AuditableRequestInt, IRequest, IMapTo<Category>
 {
 
     public string Description { get; set; } = string.Empty;

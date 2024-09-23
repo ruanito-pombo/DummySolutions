@@ -17,9 +17,6 @@ public class PaymentRepository(IDsSimpleDatabaseContext databaseContext)
 {
 
     public override string TableName { get; } = "Payment";
-    private readonly Func<PaymentEntity, PaymentFilter, bool> FilterPayment = (x, filter) =>
-        (!filter.CustomerName.HasValue() || (x.Customer != null && x.Customer.FullName.Contains(filter.CustomerName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
-        ;
 
     public Payment? Get(long id)
     {
@@ -71,7 +68,7 @@ public class PaymentRepository(IDsSimpleDatabaseContext databaseContext)
         try
         {
             var query = GetQueryable<PaymentEntity>()
-                .Where(x => FilterPayment(x, filter))
+                .Where(x => (!filter.CustomerName.HasValue() || (x.Customer != null && x.Customer.FullName.Contains(filter.CustomerName!.Trim(), StringComparison.CurrentCultureIgnoreCase))))
                 .Include(i => i.Rental)
                 .ToList();
 

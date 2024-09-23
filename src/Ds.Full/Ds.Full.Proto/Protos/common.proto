@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+option csharp_namespace = "Ds.Full.Proto.Protos";
+
+import "google/protobuf/timestamp.proto";
+
+package CommonPkg;
+
+message AuditableIntMsg {
+	          int32                                             Id                                                = 1  ;
+	          DateTimeOffsetMsg                                 CreateDate                                        = 2  ;
+	          DateTimeOffsetMsg                                 UpdateDate                                        = 3  ;
+}
+
+message AuditableLongMsg {
+	          int64                                             Id                                                = 1  ;
+	          DateTimeOffsetMsg                                 CreateDate                                        = 2  ;
+	          DateTimeOffsetMsg                                 UpdateDate                                        = 3  ;
+}
+
+message AuditableShortMsg {
+	          int32                                             Id                                                = 1  ;
+	          DateTimeOffsetMsg                                 CreateDate                                        = 2  ;
+	          DateTimeOffsetMsg                                 UpdateDate                                        = 3  ;
+}
+
+message DateTimeOffsetMsg {
+	          google.protobuf.Timestamp                         Date                                              = 1  ;
+              int32                                             Offset                                            = 2  ;
+}
+
+message DecimalMsg {
+              int64                                             Units                                             = 1  ;
+              sfixed32                                          Nanos                                             = 2  ;
+}
+
+message EmptyMsg {
+}
+
+message HeaderMsg {
+	optional  string                                            Headers                                           = 1  ;
+}
+
+message IdentifiableIntMsg {
+	          int32                                             Id                                                = 1  ;
+}
+
+message IdentifiableLongMsg {
+	          int64                                             Id                                                = 1  ;
+}
+
+message IdentifiableShortMsg {
+	          int32                                             Id                                                = 1  ;
+}
+
+message PaginatedMsg {
+    optional  int32                                             PageSize                                          = 1  ;
+	optional  int32                                             PageIndex                                         = 2  ;
+}
+
+message ReturnMsg {
+	optional  bool                                              Status                                            = 1  ;
+	optional  string                                            Message                                           = 2  ;
+	optional  int64                                             ErrorCode                                         = 3  ;
+}

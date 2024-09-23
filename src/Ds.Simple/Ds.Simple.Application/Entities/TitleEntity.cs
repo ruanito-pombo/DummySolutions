@@ -10,8 +10,8 @@ public class TitleEntity : IEntity, IMap<TitleEntity, Title>
 
     public long Id { get; set; } = 0;
     public int CategoryId { get; set; } = 0;
-    public long AuthorId { get; set; } = 0;
-    public long? ProducerId { get; set; } = 0;
+    public long? AuthorId { get; set; }
+    public long? ProducerId { get; set; }
     public string FullName { get; set; } = string.Empty;
     public DateTime ReleaseDate { get; set; } = DateTime.MinValue;
     public MediaType MediaType { get; set; } = MediaType.Unknown;

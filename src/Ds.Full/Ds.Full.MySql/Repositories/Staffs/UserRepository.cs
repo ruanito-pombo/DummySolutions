@@ -13,7 +13,7 @@ using static Ds.Full.Domain.Constants.DsFullConstant;
 namespace Ds.Full.MySql.Repositories.Staffs;
 
 public class UserRepository(IDsFullDatabaseContext databaseContext)
-    : IdentifiableRepository<IdentifiableEntityInt, int>(databaseContext), IUserRepository
+    : AuditableRepository<AuditableEntityInt, int>(databaseContext), IUserRepository
 {
 
     public override string TableName { get; } = "User";
@@ -70,9 +70,7 @@ public class UserRepository(IDsFullDatabaseContext databaseContext)
         try
         {
             var query = GetQueryable<UserEntity>()
-                .Where(x => !filter.UserName.HasValue() || x.UserName.Contains(filter.UserName!.Trim(), StringComparison.CurrentCultureIgnoreCase)
-                    && (!filter.IsActive.HasValue || x.IsActive == filter.IsActive)
-                    && (!filter.ProfileCode.HasValue() || (x.Profile != null && x.Profile.Code.Contains(filter.ProfileCode!.Trim(), StringComparison.CurrentCultureIgnoreCase))))
+                .Where(x => !filter.UserName.HasValue() || x.UserName.Contains(filter.UserName!.Trim(), StringComparison.CurrentCultureIgnoreCase))
                 .Include(i => i.Person)
                 .Include(i => i.Profile)
                 .ToList();

@@ -13,13 +13,10 @@ using static Ds.Full.Domain.Constants.DsFullConstant;
 namespace Ds.Full.MySql.Repositories.Persons;
 
 public class PersonRepository(IDsFullDatabaseContext databaseContext)
-    : IdentifiableRepository<IdentifiableEntityLong, long>(databaseContext), IPersonRepository
+    : AuditableRepository<AuditableEntityLong, long>(databaseContext), IPersonRepository
 {
 
     public override string TableName { get; } = "Person";
-    private readonly Func<PersonEntity, PersonFilter, bool> FilterPerson = (x, filter) =>
-        (!filter.FullName.HasValue() || x.FullName.Contains(filter.FullName!.Trim(), StringComparison.CurrentCultureIgnoreCase))
-        && (!filter.BirthDate.HasValue || x.BirthDate == filter.BirthDate);
 
     public Person? Get(long id)
     {
@@ -76,7 +73,8 @@ public class PersonRepository(IDsFullDatabaseContext databaseContext)
         try
         {
             var query = GetQueryable<PersonEntity>()
-                .Where(x => FilterPerson(x, filter))
+                .Where(x => (!filter.FullName.HasValue() || x.FullName.Contains(filter.FullName!.Trim(), StringComparison.CurrentCultureIgnoreCase))
+                    && (!filter.BirthDate.HasValue || x.BirthDate == filter.BirthDate))
                 .Include(i => i.PersonAddressList)
                 .Include(i => i.PersonContactList)
                 .Include(i => i.User)

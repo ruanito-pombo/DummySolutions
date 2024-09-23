@@ -13,15 +13,10 @@ using static Ds.Full.Domain.Constants.DsFullConstant;
 namespace Ds.Full.MySql.Repositories.Medias;
 
 public class TitleRepository(IDsFullDatabaseContext databaseContext)
-    : IdentifiableRepository<IdentifiableEntityLong, long>(databaseContext), ITitleRepository
+    : AuditableRepository<AuditableEntityLong, long>(databaseContext), ITitleRepository
 {
 
     public override string TableName { get; } = "Title";
-    private readonly Func<TitleEntity, TitleFilter, bool> FilterTitle = (x, filter) =>
-        (!filter.AuthorName.HasValue() || (x.Author != null && x.Author.FullName.Contains(filter.AuthorName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
-        && (!filter.ProducerName.HasValue() || (x.Producer != null && x.Producer.FullName.Contains(filter.ProducerName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
-        && (!filter.FullName.HasValue() || x.FullName.Contains(filter.FullName!.Trim(), StringComparison.CurrentCultureIgnoreCase))
-        ;
 
     public Title? Get(long id)
     {
@@ -73,7 +68,9 @@ public class TitleRepository(IDsFullDatabaseContext databaseContext)
         try
         {
             var query = GetQueryable<TitleEntity>()
-                .Where(x => FilterTitle(x, filter))
+                .Where(x => (!filter.AuthorName.HasValue() || (x.Author != null && x.Author.FullName.Contains(filter.AuthorName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
+                    && (!filter.ProducerName.HasValue() || (x.Producer != null && x.Producer.FullName.Contains(filter.ProducerName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
+                    && (!filter.FullName.HasValue() || x.FullName.Contains(filter.FullName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
                 .Include(i => i.Author)
                 .ToList();
 

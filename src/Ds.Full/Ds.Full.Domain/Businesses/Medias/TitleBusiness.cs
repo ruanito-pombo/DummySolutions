@@ -9,7 +9,7 @@ using Ds.Full.Domain.Repositories.Abstractions.Medias;
 namespace Ds.Full.Domain.Businesses.Medias;
 
 public class TitleBusiness(ITitleRepository titleRepository)
-    : IdentifiableBusiness<IdentifiableLong, long>(titleRepository), ITitleBusiness
+    : AuditableBusiness<AuditableLong, long>(titleRepository), ITitleBusiness
 {
 
     private readonly ITitleRepository _titleRepository = titleRepository;

@@ -5,7 +5,7 @@ using Ds.Full.Domain.Models.Persons;
 
 namespace Ds.Full.Domain.Repositories.Abstractions.Persons;
 
-public interface IPersonRepository : IIdentifiableRepository
+public interface IPersonRepository : IAuditableRepository
 {
 
     Person? Get(long id);

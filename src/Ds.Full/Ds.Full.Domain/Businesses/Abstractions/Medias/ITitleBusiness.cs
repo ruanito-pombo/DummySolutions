@@ -5,7 +5,7 @@ using Ds.Full.Domain.Models.Medias;
 
 namespace Ds.Full.Domain.Businesses.Abstractions.Medias;
 
-public interface ITitleBusiness : IIdentifiableBusiness
+public interface ITitleBusiness : IAuditableBusiness
 {
 
     Title? Get(long id);

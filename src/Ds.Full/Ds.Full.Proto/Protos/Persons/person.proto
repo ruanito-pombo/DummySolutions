@@ -2,8 +2,25 @@ syntax = "proto3";
 
 option csharp_namespace = "Ds.Full.Grpc.Protos.Persons";
 
+import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
-import "auditable.proto";
+import "common.proto";
 
-package PersonPackage;
+package PersonPkg;
+
+
+message PersonFilterMsg
+{
+	optional  int32                                             PageSize                                          = 1  ;
+	optional  int32                                             PageIndex                                         = 2  ;
+	optional  string                                            FullName                                          = 3  ;
+    optional  google.protobuf.Timestamp                         BirthDate                                         = 4  ;
+	optional  int32                                             BirthOffset                                       = 5  ;
+	optional  int32                                             PersonType                                        = 6  ;
+    optional  int32                                             CreateOffset                                      = 7  ;
+    optional  int32                                             ContactType                                       = 8  ;
+    optional  string                                            Contact                                           = 9  ;
+    optional  int32                                             AddressType                                       = 10 ;
+    optional  string                                            Address                                           = 11 ;
+}
 

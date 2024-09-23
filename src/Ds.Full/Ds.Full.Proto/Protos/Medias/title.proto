@@ -2,8 +2,20 @@ syntax = "proto3";
 
 option csharp_namespace = "Ds.Full.Grpc.Protos.Medias";
 
+import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
-import "auditable.proto";
+import "common.proto";
 
-package TitlePackage;
+package TitlePkg;
 
+
+
+
+message TitleFilterMsg
+{
+	optional  int32                                             PageSize                                          = 1  ;
+	optional  int32                                             PageIndex                                         = 2  ;
+	optional  string                                            AuthorName                                        = 3  ;
+	optional  string                                            ProducerName                                      = 3  ;
+	optional  string                                            FullName                                          = 3  ;
+}

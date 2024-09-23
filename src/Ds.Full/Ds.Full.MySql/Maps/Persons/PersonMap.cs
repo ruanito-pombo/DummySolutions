@@ -13,15 +13,6 @@ public class PersonMap : AuditableMapLong<PersonEntity>
     {
         base.Configure(builder, GetType().Name.Replace("Map", ""));
 
-        builder.Property(p => p.Id)
-            .HasColumnOrder(1)
-            .HasColumnType("BIGINT")
-            .ValueGeneratedOnAdd()
-            .IsRequired();
-
-        builder.HasKey(pk => pk.Id)
-            .HasName("PK_Person_Id");
-
         builder.Property(p => p.UserId)
             .HasColumnType("INT");
 
@@ -39,6 +30,18 @@ public class PersonMap : AuditableMapLong<PersonEntity>
             .HasForeignKey<UserEntity>(s => s.PersonId)
             .OnDelete(DeleteBehavior.Cascade)
             .HasConstraintName("FK_User_TO_Person_ON_PersonId");
+
+        builder.HasMany(p => p.TitleAuthorList)
+            .WithOne(t => t.Author)
+            .HasForeignKey(t => t.AuthorId)
+            .OnDelete(DeleteBehavior.Restrict)
+            .HasConstraintName("FK_Person_TO_Title_ON_AuthorId");
+
+        builder.HasMany(p => p.TitleProducerList)
+            .WithOne(t => t.Producer)
+            .HasForeignKey(t => t.ProducerId)
+            .OnDelete(DeleteBehavior.Restrict)
+            .HasConstraintName("FK_Person_TO_Title_ON_ProducerId");
 
         //builder.HasData(DbSetUtil.LoadEmbeddedJson<PersonEntity>(SolutionName, TableName));
     }

@@ -4,7 +4,7 @@ using Ds.Full.Domain.Models.Staffs;
 using IResult = Ds.Base.Domain.Results.Abstractions.IResult;
 
 namespace Ds.Full.WebApi.Results.Staffs;
-public class ProfileResult : IdentifiableInt, IResult, IMapFrom<ProfileResult, Profile>
+public class ProfileResult : AuditableInt, IResult, IMapFrom<ProfileResult, Profile>
 {
 
     public string Code { get; set; } = string.Empty;

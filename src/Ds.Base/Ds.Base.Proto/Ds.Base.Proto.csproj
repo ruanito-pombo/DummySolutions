@@ -1,12 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<Version>0.0.22</Version>
+	<Version>0.0.47</Version>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<PackageReadmeFile>readme.md</PackageReadmeFile>
+	<NoWarn>$(NoWarn);CS8981;NU1701</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-	<Protobuf Include="Protos\common.proto" ProtoRoot="Protos" GrpcServices="Both" CompileOutputs="True" Link="Protos\common.proto" LinkBase="Protos\default.proto" />
+	<Protobuf Include="Protos\common.proto" ProtoRoot="Protos" GrpcServices="Both" CompileOutputs="True" Link="Protos\common.proto" LinkBase="Protos\common.proto" />
   </ItemGroup>
 
 </Project>

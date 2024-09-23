@@ -1,4 +1,5 @@
-﻿using Ds.Base.Domain.Enums;
+﻿using Ds.Base.Domain.Containers.Abstractions;
+using Ds.Base.Domain.Enums;
 using Ds.Base.Domain.Infos;
 using Ds.Base.Domain.Infos.Abstractions;
 using Ds.Base.Domain.Settings;
@@ -32,51 +33,58 @@ using Ds.Full.MySql.Repositories.Medias;
 using Ds.Full.MySql.Repositories.Persons;
 using Ds.Full.MySql.Repositories.Rentals;
 using Ds.Full.MySql.Repositories.Staffs;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
+using Microsoft.Extensions.DependencyInjection;
 using SimpleInjector;
+using static Ds.Base.Domain.Utils.ConfigurationsUtil;
 
 namespace Ds.Full.Injection.Containers;
 
-public class DsFullContainer : DsContainer
+public class DsFullContainer : DsContainer, IContainer
 {
 
     private static DsFullContainer? _instance; public static DsFullContainer Instance { get => _instance ??= new(); }
+    private readonly string _connectionString = string.Empty;
+    private readonly DbContextOptions<DsFullDatabaseContext> _dbContextOptionsBuilder = new();
 
     public DsFullContainer() : base() { _instance ??= this; }
-    public DsFullContainer(IAppInfo? appInfo, IAppSetting? appSetting) : base(appInfo ?? new AppInfo(), appSetting ?? new AppSetting()) { _instance ??= this; }
-
-    public void Initialize()
+    public DsFullContainer(IAppInfo? appInfo, IAppSetting? appSetting, string[]? args = null) : base(appInfo ?? new AppInfo(), appSetting ?? new AppSetting(), args)
     {
-        Register();
+        _connectionString = AppSetting.Type switch
+        {
+            ApplicationType.Grpc => ((IGrpcSetting)AppSetting).DatabaseSetting.ConnectionString,
+            ApplicationType.WebApi => ((IWebApiSetting)AppSetting).DatabaseSetting.ConnectionString,
+            _ => ((dynamic)AppSetting).Database.ConnectionString.ToString()
+        };
+
+        _dbContextOptionsBuilder = new DbContextOptionsBuilder<DsFullDatabaseContext>().UseMySql(_connectionString,
+                ServerVersion.AutoDetect(_connectionString), configs => { configs.EnableStringComparisonTranslations(); }).Options;
+
+        _instance ??= this;
     }
 
-    public override void Register()
+    public override bool Register()
     {
+        if (DotNetEfCliDebugArgs) { return true; }
+
         try
         {
-            Action registerDatabase = AppSetting.Type switch
-            {
-                ApplicationType.Grpc => () => Register<IDsFullDatabaseContext>(() => new DsFullDatabaseContext(
-                    ((IGrpcAppSetting)AppSetting).DatabaseSetting.ConnectionString), Lifestyle.Singleton),
-                ApplicationType.WebApi => () => Register<IDsFullDatabaseContext>(() => new DsFullDatabaseContext(
-                    ((IWebApiAppSetting)AppSetting).DatabaseSetting.ConnectionString), Lifestyle.Singleton),
-                _ => throw new Exception("NOCONNECTIONSTRING")
-            }; registerDatabase();
+            Register<IDsFullDatabaseContext>(() => new DsFullDatabaseContext(_dbContextOptionsBuilder), Lifestyle.Scoped);
+            Register<IInventoryBusiness, InventoryBusiness>(Lifestyle.Scoped);
+            Register<IInventoryRepository, InventoryRepository>(Lifestyle.Scoped);
+            Register<IPaymentBusiness, PaymentBusiness>(Lifestyle.Scoped);
+            Register<IPaymentRepository, PaymentRepository>(Lifestyle.Scoped);
+            Register<IPersonBusiness, PersonBusiness>(Lifestyle.Scoped);
+            Register<IPersonRepository, PersonRepository>(Lifestyle.Scoped);
+            Register<IRentalBusiness, RentalBusiness>(Lifestyle.Scoped);
+            Register<IRentalRepository, RentalRepository>(Lifestyle.Scoped);
+            Register<ITitleBusiness, TitleBusiness>(Lifestyle.Scoped);
+            Register<ITitleRepository, TitleRepository>(Lifestyle.Scoped);
+            Register<IUserBusiness, UserBusiness>(Lifestyle.Scoped);
+            Register<IUserRepository, UserRepository>(Lifestyle.Scoped);
 
-            Register<IInventoryBusiness, InventoryBusiness>(Lifestyle.Singleton);
-            Register<IInventoryRepository, InventoryRepository>(Lifestyle.Singleton);
-            Register<IPaymentBusiness, PaymentBusiness>(Lifestyle.Singleton);
-            Register<IPaymentRepository, PaymentRepository>(Lifestyle.Singleton);
-            Register<IPersonBusiness, PersonBusiness>(Lifestyle.Singleton);
-            Register<IPersonRepository, PersonRepository>(Lifestyle.Singleton);
-            Register<IRentalBusiness, RentalBusiness>(Lifestyle.Singleton);
-            Register<IRentalRepository, RentalRepository>(Lifestyle.Singleton);
-            Register<ITitleBusiness, TitleBusiness>(Lifestyle.Singleton);
-            Register<ITitleRepository, TitleRepository>(Lifestyle.Singleton);
-            Register<IUserBusiness, UserBusiness>(Lifestyle.Singleton);
-            Register<IUserRepository, UserRepository>(Lifestyle.Singleton);
-
-            Verify();
-
+            return true;
         }
         catch (Exception ex) { throw new Exception(ex.Message); }
     }

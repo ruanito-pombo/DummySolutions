@@ -5,7 +5,7 @@ using Ds.Full.Domain.Models.Inventories;
 
 namespace Ds.Full.Domain.Repositories.Abstractions.Inventories;
 
-public interface IInventoryRepository : IIdentifiableRepository
+public interface IInventoryRepository : IAuditableRepository
 {
 
     Inventory? Get(long id);

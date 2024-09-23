@@ -4,63 +4,62 @@ option csharp_namespace = "Ds.Base.Proto.Protos";
 
 import "google/protobuf/timestamp.proto";
 
-package DefaultPkg;
+package CommonPkg;
 
-message AuditableIntMsg
-{
-	int32                     Id           = 1;
-	google.protobuf.Timestamp CreateDate   = 2;
-    int32                     CreateOffset = 3;
-	google.protobuf.Timestamp UpdateDate   = 4;
-    int32                     UpdateOffset = 5;
+message AuditableIntMsg {
+	          int32                                             Id                                                = 1  ;
+	          DateTimeOffsetMsg                                 CreateDate                                        = 2  ;
+	          DateTimeOffsetMsg                                 UpdateDate                                        = 3  ;
 }
 
-message AuditableLongMsg
-{
-	int64                     Id           = 1;
-	google.protobuf.Timestamp CreateDate   = 2;
-    int32                     CreateOffset = 3;
-	google.protobuf.Timestamp UpdateDate   = 4;
-    int32                     UpdateOffset = 5;
+message AuditableLongMsg {
+	          int64                                             Id                                                = 1  ;
+	          DateTimeOffsetMsg                                 CreateDate                                        = 2  ;
+	          DateTimeOffsetMsg                                 UpdateDate                                        = 3  ;
 }
 
-message AuditableShortMsg
-{
-	int32                     Id           = 1;
-	google.protobuf.Timestamp CreateDate   = 2;
-    int32                     CreateOffset = 3;
-	google.protobuf.Timestamp UpdateDate   = 4;
-    int32                     UpdateOffset = 5;
+message AuditableShortMsg {
+	          int32                                             Id                                                = 1  ;
+	          DateTimeOffsetMsg                                 CreateDate                                        = 2  ;
+	          DateTimeOffsetMsg                                 UpdateDate                                        = 3  ;
 }
 
-message EmptyMsg
-{
-
+message DateTimeOffsetMsg {
+	          google.protobuf.Timestamp                         Date                                              = 1  ;
+              int32                                             Offset                                            = 2  ;
 }
 
-message HeaderMsg
-{
-	string Headers = 1;
+message DecimalMsg {
+              int64                                             Units                                             = 1  ;
+              sfixed32                                          Nanos                                             = 2  ;
 }
 
-message IdentifiableIntMsg
-{
-	int32 Id = 1;
+message EmptyMsg {
 }
 
-message IdentifiableLongMsg
-{
-	int64 Id = 1;
+message HeaderMsg {
+	optional  string                                            Headers                                           = 1  ;
 }
 
-message IdentifiableShortMsg
-{
-	int32 Id = 1;
+message IdentifiableIntMsg {
+	          int32                                             Id                                                = 1  ;
 }
 
-message ReturnMsg
-{
-	bool    Status    = 1;
-	string  Message   = 2;
-	int64   ErrorCode = 3;
+message IdentifiableLongMsg {
+	          int64                                             Id                                                = 1  ;
+}
+
+message IdentifiableShortMsg {
+	          int32                                             Id                                                = 1  ;
+}
+
+message PaginatedMsg {
+    optional  int32                                             PageSize                                          = 1  ;
+	optional  int32                                             PageIndex                                         = 2  ;
+}
+
+message ReturnMsg {
+	optional  bool                                              Status                                            = 1  ;
+	optional  string                                            Message                                           = 2  ;
+	optional  int64                                             ErrorCode                                         = 3  ;
 }

@@ -9,7 +9,7 @@ using Ds.Full.Domain.Repositories.Abstractions.Persons;
 namespace Ds.Full.Domain.Businesses.Persons;
 
 public class PersonBusiness(IPersonRepository personRepository)
-    : IdentifiableBusiness<IdentifiableLong, long>(personRepository), IPersonBusiness
+    : AuditableBusiness<AuditableLong, long>(personRepository), IPersonBusiness
 {
 
     private readonly IPersonRepository _personRepository = personRepository;

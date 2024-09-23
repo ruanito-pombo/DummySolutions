@@ -1,20 +1,22 @@
 param(
-	[string]$version = $( throw "Version is required" ),
-	[string]$buildType
+    [Parameter(Mandatory=$true, Position=0)]
+	[string]$Version = $( throw "Version parameter is required" ),
+	[Parameter(Mandatory=$false)]
+	[switch]$DebugMode
 )
 
 $apiKey = "X7BhV45nYz8TjQZ0WL9PgCsKFd2iHxJR57bd2dsa"
 $source = "https://localhost:5556/v3/index.json"
-$build = "Release"
+$vsConfiguration = "Release"
 
-if ($buildType.ToUpper().Trim() -eq "DEBUG") { 
-	$build = "Debug"
+if ($DebugMode) { 
+	$vsConfiguration = "Debug"
 }
 
 # DomainNuget
 $domain = "Ds.Base.Domain"
-$domainPath = ".\Ds.Base.Domain\bin\$build"
-$domainNuget = "$domainPath\$domain.$version.nupkg"
+$domainPath = ".\"+$domain+"\bin\$vsConfiguration"
+$domainNuget = "$domainPath\$domain.$Version.nupkg"
 Write-Host "Checking $domain..."
 if (Test-Path -Path "$domainNuget")
 {
@@ -26,8 +28,8 @@ else
 
 # ProtoNuget
 $proto = "Ds.Base.Proto"
-$protoPath = ".\Ds.Base.Proto\bin\$build"
-$protoNuget = "$protoPath\$proto.$version.nupkg"
+$protoPath = ".\"+$proto+"\bin\$vsConfiguration"
+$protoNuget = "$protoPath\$proto.$Version.nupkg"
 Write-Host "Checking $proto..."
 if (Test-Path -Path "$protoNuget")
 {
@@ -39,8 +41,8 @@ else
 
 # InjectionNuget
 $injection = "Ds.Base.Injection"
-$injectionPath = ".\Ds.Base.Injection\bin\$build"
-$injectionNuget = "$injectionPath\$injection.$version.nupkg"
+$injectionPath = ".\"+$injection+"\bin\$vsConfiguration"
+$injectionNuget = "$injectionPath\$injection.$Version.nupkg"
 Write-Host "Checking $injection..."
 if (Test-Path -Path "$injectionNuget")
 {
@@ -52,8 +54,8 @@ else
 
 # EntityFrameworkNuget
 $entityFramework = "Ds.Base.EntityFramework"
-$entityFrameworkPath = ".\Ds.Base.EntityFramework\bin\$build"
-$entityFrameworkNuget = "$entityFrameworkPath\$entityFramework.$version.nupkg"
+$entityFrameworkPath = ".\"+$entityFramework+"\bin\$vsConfiguration"
+$entityFrameworkNuget = "$entityFrameworkPath\$entityFramework.$Version.nupkg"
 Write-Host "Checking $entityFramework..."
 if (Test-Path -Path "$entityFrameworkNuget")
 {
@@ -65,8 +67,8 @@ else
 
 # ConsoleNuget
 $console = "Ds.Base.Console"
-$consolePath = ".\Ds.Base.Console\bin\$build"
-$consoleNuget = "$consolePath\$console.$version.nupkg"
+$consolePath = ".\"+$console+"\bin\$vsConfiguration"
+$consoleNuget = "$consolePath\$console.$Version.nupkg"
 Write-Host "Checking $console..."
 if (Test-Path -Path "$consoleNuget")
 {
@@ -78,8 +80,8 @@ else
 
 # GrpcNuget
 $grpc = "Ds.Base.Grpc"
-$grpcPath = ".\Ds.Base.Grpc\bin\$build"
-$grpcNuget = "$grpcPath\$grpc.$version.nupkg"
+$grpcPath = ".\"+$grpc+"\bin\$vsConfiguration"
+$grpcNuget = "$grpcPath\$grpc.$Version.nupkg"
 Write-Host "Checking $grpc..."
 if (Test-Path -Path "$grpcNuget")
 {
@@ -91,8 +93,8 @@ else
 
 # webApiNuget
 $webApi = "Ds.Base.webApi"
-$webApiPath = ".\Ds.Base.webApi\bin\$build"
-$webApiNuget = "$webApiPath\$webApi.$version.nupkg"
+$webApiPath = ".\"+$webApi+"\bin\$vsConfiguration"
+$webApiNuget = "$webApiPath\$webApi.$Version.nupkg"
 Write-Host "Checking $webApi..."
 if (Test-Path -Path "$webApiNuget")
 {

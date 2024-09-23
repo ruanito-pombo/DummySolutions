@@ -5,7 +5,7 @@ using Ds.Full.Domain.Models.Inventories;
 
 namespace Ds.Full.Domain.Businesses.Abstractions.Inventories;
 
-public interface IInventoryBusiness : IIdentifiableBusiness
+public interface IInventoryBusiness : IAuditableBusiness
 {
 
     Inventory? Get(long id);

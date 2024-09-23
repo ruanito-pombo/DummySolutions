@@ -5,7 +5,7 @@ using Ds.Full.Domain.Models.Staffs;
 
 namespace Ds.Full.Domain.Repositories.Abstractions.Staffs;
 
-public interface IUserRepository : IIdentifiableRepository
+public interface IUserRepository : IAuditableRepository
 {
 
     User? Get(int id);

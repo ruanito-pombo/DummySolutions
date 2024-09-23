@@ -9,7 +9,7 @@ using Ds.Full.Domain.Repositories.Abstractions.Finances;
 namespace Ds.Full.Domain.Businesses.Finances;
 
 public class PaymentBusiness(IPaymentRepository paymentRepository)
-    : IdentifiableBusiness<IdentifiableLong, long>(paymentRepository), IPaymentBusiness
+    : AuditableBusiness<AuditableLong, long>(paymentRepository), IPaymentBusiness
 {
 
     private readonly IPaymentRepository _paymentRepository = paymentRepository;

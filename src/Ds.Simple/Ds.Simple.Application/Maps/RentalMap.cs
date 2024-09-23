@@ -25,7 +25,7 @@ public class RentalMap : IEntityTypeConfiguration<RentalEntity>
             .HasName("PK_Rental_Id");
 
         builder.Property(p => p.UserId)
-            .HasColumnType("BIGINT");
+            .HasColumnType("INT");
 
         builder.Property(p => p.CustomerId)
             .HasColumnType("BIGINT");

@@ -9,7 +9,7 @@ using Ds.Full.Domain.Repositories.Abstractions.Inventories;
 namespace Ds.Full.Domain.Businesses.Inventories;
 
 public class InventoryBusiness(IInventoryRepository inventoryRepository)
-    : IdentifiableBusiness<IdentifiableLong, long>(inventoryRepository), IInventoryBusiness
+    : AuditableBusiness<AuditableLong, long>(inventoryRepository), IInventoryBusiness
 {
 
     private readonly IInventoryRepository _inventoryRepository = inventoryRepository;

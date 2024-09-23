@@ -4,7 +4,7 @@ using Ds.Full.Domain.Enums.Medias;
 
 namespace Ds.Full.Domain.Models.Medias;
 
-public class Category : IdentifiableInt, IModel
+public class Category : AuditableInt, IModel
 {
 
     public string Description { get; set; } = string.Empty;

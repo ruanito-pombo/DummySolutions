@@ -1,13 +1,10 @@
-﻿using Google.Protobuf.WellKnownTypes;
-
-namespace Ds.Base.Domain.Constants;
+﻿namespace Ds.Base.Domain.Constants;
 
 public static class DsBaseConstant
 {
 
-    public readonly struct ProtoTimestamp(Timestamp date, int offset)
-    {
-        public readonly Timestamp Date { get; } = date;
-        public readonly int Offset { get; } = offset;
-    }
+    public static readonly List<string> AcceptableEnvironments = [ "Localhost", "Development", "Staging", "Production" ];
+
+    public const decimal DecimalNanoFactor = 1_000_000_000;
+    
 }

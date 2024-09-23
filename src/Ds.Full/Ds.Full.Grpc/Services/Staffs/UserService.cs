@@ -11,7 +11,7 @@ public class UserService(/*IUserBusiness userBusiness*/) : UserSrv.UserSrvBase, 
 
     /*private readonly IUserBusiness _userBusiness = userBusiness;*/
 
-    public override Task<UserMsg> GetUser(UserIdMsg request, ServerCallContext context)
+    public override Task<UserMsg> GetUser(AuditableIntMsg request, ServerCallContext context)
     {
         //return base.GetUser(request, context);
 
@@ -42,7 +42,7 @@ public class UserService(/*IUserBusiness userBusiness*/) : UserSrv.UserSrvBase, 
         return base.UpdateUser(request, context);
     }
 
-    public override Task<UserMsg> DeleteUser(UserIdMsg request, ServerCallContext context)
+    public override Task<UserMsg> DeleteUser(AuditableIntMsg request, ServerCallContext context)
     {
         return base.DeleteUser(request, context);
     }

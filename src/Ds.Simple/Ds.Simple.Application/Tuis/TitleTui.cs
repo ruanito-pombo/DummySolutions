@@ -122,9 +122,9 @@ public class TitleTui(ITitleBusiness titleBusiness) : Tui, ITui
 
         Cls();
         Console.WriteLine($"\n\nMain > {args[0]} > Title > Filter");
-        Console.WriteLine("Type the AuthorId you wish to filter");
-        var authorId = Console.ReadLine();
-        var results = _titleBusiness.Filter(new() { AuthorId = long.Parse(authorId!) });
+        Console.WriteLine("Type the AuthorName you wish to filter");
+        var authorName = Console.ReadLine();
+        var results = _titleBusiness.Filter(new() { AuthorName = authorName });
         Console.WriteLine("Fetching Title List >>>");
         if (results != null && results.Count > 0)
         {

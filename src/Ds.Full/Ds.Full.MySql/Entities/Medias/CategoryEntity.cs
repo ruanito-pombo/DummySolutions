@@ -6,7 +6,7 @@ using Ds.Full.Domain.Models.Medias;
 
 namespace Ds.Full.MySql.Entities.Medias;
 
-public class CategoryEntity : IdentifiableEntityInt, IEntity, IMap<CategoryEntity, Category>
+public class CategoryEntity : AuditableEntityInt, IEntity, IMap<CategoryEntity, Category>
 {
 
     public string Description { get; set; } = string.Empty;

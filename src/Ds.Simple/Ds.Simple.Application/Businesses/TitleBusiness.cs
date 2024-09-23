@@ -1,6 +1,4 @@
-﻿using Ds.Base.Domain.Businesses;
-using Ds.Base.Domain.Models;
-using Ds.Base.Domain.Paginateds;
+﻿using Ds.Base.Domain.Paginateds;
 using Ds.Simple.Application.Businesses.Abstractions;
 using Ds.Simple.Application.Filters;
 using Ds.Simple.Application.Models;
@@ -8,8 +6,7 @@ using Ds.Simple.Application.Repositories.Abstractions;
 
 namespace Ds.Simple.Application.Businesses;
 
-public class TitleBusiness(ITitleRepository titleRepository)
-    : IdentifiableBusiness<IdentifiableLong, long>(titleRepository), ITitleBusiness
+public class TitleBusiness(ITitleRepository titleRepository) : ITitleBusiness
 {
 
     private readonly ITitleRepository _titleRepository = titleRepository;

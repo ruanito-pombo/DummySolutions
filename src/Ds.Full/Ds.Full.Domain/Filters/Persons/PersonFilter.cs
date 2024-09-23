@@ -10,6 +10,7 @@ public class PersonFilter : Filter, IFilter
     public long? Id { get; set; }
     public string? FullName { get; set; }
     public DateTime? BirthDate { get; set; }
+    public PersonType? PersonType { get; set; }
     public ContactType? ContactType { get; set; }
     public string? Contact { get; set; }
     public AddressType? AddressType { get; set; }

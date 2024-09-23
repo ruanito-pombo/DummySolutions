@@ -2,37 +2,61 @@ syntax = "proto3";
 
 option csharp_namespace = "Ds.Full.Proto.Protos.Staffs";
 
-import "identifiable.proto";
-//import "Staffs/user.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "common.proto";
 
 package ProfilePkg;
 
+service ProfileSrv {
 
-message GetProfileMsg
-{
-	int32 ProfileId = 1;
+	rpc GetProfile (CommonPkg.AuditableIntMsg) returns (ProfileMsg) {
+      option (google.api.http) = { get: "/v1/ProfileSrv/{Id}" }; 
+	}
+
+	rpc FilterProfile (ProfileFilterMsg) returns (ProfileListMsg) {
+      option (google.api.http) = { post: "/v1/ProfileSrv/filter" }; 
+	}
+
+	rpc ListProfile (CommonPkg.EmptyMsg) returns (ProfileListMsg) {
+      option (google.api.http) = { post: "/v1/ProfileSrv/list" }; 
+	}
+
+	rpc CreateProfile (ProfileMsg) returns (ProfileMsg) {
+      option (google.api.http) = { post: "/v1/ProfileSrv/create" }; 
+	}
+
+	rpc UpdateProfile (ProfileMsg) returns (ProfileMsg) {
+      option (google.api.http) = { put: "/v1/ProfileSrv/{Auditable.Id}/update" }; 
+	}
+
+	rpc DeleteProfile (CommonPkg.AuditableIntMsg) returns (ProfileMsg) {
+      option (google.api.http) = { delete: "/v1/ProfileSrv/{Id}" }; 
+	}
 }
 
-message FilterProfileMsg
-{
-	string Code        = 1;
-	string Description = 2;
+message ProfileFilterMsg {
+	optional int32                                              PageSize                                          = 1  ;
+	optional int32                                              PageIndex                                         = 2  ;
+	optional string                                             Code                                              = 3  ;
+	optional string                                             Description                                       = 4  ;
 }
 
-message ProfileMsg
-{
-	IdentifiablePkg.IdentifiableIntMsg Identifiable = 1;
-	string                             Code         = 2;
-	string                             Description  = 3;
-//	UserPkg.UserListMsg                UserList     = 4;
+message ProfileMsg {
+	optional CommonPkg.HeaderMsg                                Headers                                           = 1  ;
+	         CommonPkg.AuditableIntMsg                          Auditable                                         = 2  ;
+	         string                                             Code                                              = 3  ;
+	         string                                             Description                                       = 4  ;
+	repeated ProfileUserListMsg                                 UserList                                          = 5  ;
+	optional CommonPkg.ReturnMsg                                Returns                                           = 6  ;
 }
 
-message ProfileListMsg
-{
-	repeated ProfileMsg ProfileList = 1;
+message ProfileListMsg {
+	repeated ProfileMsg                                         ProfileList                                       = 1  ;
 }
 
-message DeleteProfileMsg
-{
-	int32 ProfileId = 1;
+message ProfileUserListMsg {
+	         CommonPkg.AuditableIntMsg                          Auditable                                         = 1  ;
+	optional string                                             UserName                                          = 2  ;
+	optional bool                                               IsActive                                          = 3  ;
 }

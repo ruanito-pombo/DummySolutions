@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_assets", "_assets", "{FBB98E66-FA20-442C-B03C-C9D0BF30B98F}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		migrate.ps1 = migrate.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{0389D09A-3951-4A31-9928-309C742217A0}"
@@ -42,7 +43,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imgs", "imgs", "{F08D3CB1-D
 		..\..\assets\imgs\ds-full-logo.png = ..\..\assets\imgs\ds-full-logo.png
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ds.Full.Proto", "Ds.Full.Proto\Ds.Full.Proto.csproj", "{237AB960-811E-4572-A6DE-9CC8A359AF5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ds.Full.Proto", "Ds.Full.Proto\Ds.Full.Proto.csproj", "{237AB960-811E-4572-A6DE-9CC8A359AF5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

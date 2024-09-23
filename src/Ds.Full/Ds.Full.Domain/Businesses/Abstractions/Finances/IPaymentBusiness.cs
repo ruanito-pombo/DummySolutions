@@ -5,7 +5,7 @@ using Ds.Full.Domain.Models.Finances;
 
 namespace Ds.Full.Domain.Businesses.Abstractions.Finances;
 
-public interface IPaymentBusiness : IIdentifiableBusiness
+public interface IPaymentBusiness : IAuditableBusiness
 {
 
     Payment? Get(long id);

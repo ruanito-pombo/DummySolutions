@@ -15,7 +15,7 @@
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
-	<PackageReference Include="Ds.Base.Proto" Version="0.0.21" GeneratePathProperty="True" />
+	<PackageReference Include="Ds.Base.Proto" Version="0.0.47" GeneratePathProperty="True" />
 	<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="8.0.8" />
   </ItemGroup>
 
@@ -50,9 +50,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Protobuf Include="Protos\default.proto" ProtoRoot="Protos" GrpcServices="Both" CompileOutputs="True" Link="Protos\defaults.proto" />
-	  <Protobuf Include="Protos\auditable.proto" ProtoRoot="Protos" GrpcServices="Both" CompileOutputs="True" Link="Protos\auditable.proto" />
-	  <Protobuf Include="Protos\identifiable.proto" ProtoRoot="Protos" GrpcServices="Both" CompileOutputs="True" Link="Protos\identifiable.proto" />
+	  <Protobuf Include="Protos\common.proto" ProtoRoot="Protos" GrpcServices="Both" CompileOutputs="True" Link="Protos\common.proto" />
 	  <Protobuf Include="Protos\Staffs\profile.proto" ProtoRoot="Protos" GrpcServices="Both" CompileOutputs="True" Link="Protos\Staffs\profile.proto" />
 	  <Protobuf Include="Protos\Staffs\user.proto" ProtoRoot="Protos" GrpcServices="Both" CompileOutputs="True" Link="Protos\Staffs\user.proto" />
 	</ItemGroup>

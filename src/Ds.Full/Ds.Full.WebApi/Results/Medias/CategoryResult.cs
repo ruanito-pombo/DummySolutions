@@ -6,7 +6,7 @@ using IResult = Ds.Base.Domain.Results.Abstractions.IResult;
 
 namespace Ds.Full.WebApi.Results.Medias;
 
-public class CategoryResult : IdentifiableInt, IResult, IMapFrom<CategoryResult, Category>
+public class CategoryResult : AuditableInt, IResult, IMapFrom<CategoryResult, Category>
 {
 
     public string Description { get; set; } = string.Empty;

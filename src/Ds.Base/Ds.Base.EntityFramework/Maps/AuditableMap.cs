@@ -20,9 +20,13 @@ public abstract class AuditableMapInt<TAuditableEntityInt> : AuditableMap<Audita
         TableName = tableName;
         builder.ToTable(name: TableName, action => action.HasComment(comments));
 
-        builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
-            .HasColumnOrder(1);
+            .HasColumnOrder(1)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+
+        builder.HasKey(e => e.Id)
+            .HasName($"Pk{TableName}Id");
 
         builder.Property(e => e.CreateDate)
             .HasColumnOrder(2)
@@ -35,9 +39,13 @@ public abstract class AuditableMapInt<TAuditableEntityInt> : AuditableMap<Audita
 
     public virtual void Configure(EntityTypeBuilder<TAuditableEntityInt> builder)
     {
-        builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
-            .HasColumnOrder(1);
+            .HasColumnOrder(1)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+
+        builder.HasKey(e => e.Id)
+            .HasName($"Pk{TableName}Id");
 
         builder.Property(e => e.CreateDate)
             .HasColumnOrder(2)
@@ -57,9 +65,13 @@ public abstract class AuditableMapLong<TAuditableEntityLong> : AuditableMap<Audi
         TableName = tableName;
         builder.ToTable(name: TableName, action => action.HasComment(comments));
 
-        builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
-            .HasColumnOrder(1);
+            .HasColumnOrder(1)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+
+        builder.HasKey(e => e.Id)
+            .HasName($"Pk{TableName}Id");
 
         builder.Property(e => e.CreateDate)
             .HasColumnOrder(2)
@@ -72,9 +84,13 @@ public abstract class AuditableMapLong<TAuditableEntityLong> : AuditableMap<Audi
 
     public virtual void Configure(EntityTypeBuilder<TAuditableEntityLong> builder)
     {
-        builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
-            .HasColumnOrder(1);
+            .HasColumnOrder(1)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+
+        builder.HasKey(e => e.Id)
+            .HasName($"Pk{TableName}Id");
 
         builder.Property(e => e.CreateDate)
             .HasColumnOrder(2)
@@ -94,9 +110,13 @@ public abstract class AuditableMapShort<TAuditableEntityShort> : AuditableMap<Au
         TableName = tableName;
         builder.ToTable(name: TableName, action => action.HasComment(comments));
 
-        builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
-            .HasColumnOrder(1);
+            .HasColumnOrder(1)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+
+        builder.HasKey(e => e.Id)
+            .HasName($"Pk{TableName}Id");
 
         builder.Property(e => e.CreateDate)
             .HasColumnOrder(2)
@@ -109,9 +129,13 @@ public abstract class AuditableMapShort<TAuditableEntityShort> : AuditableMap<Au
 
     public virtual void Configure(EntityTypeBuilder<TAuditableEntityShort> builder)
     {
-        builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
-            .HasColumnOrder(1);
+            .HasColumnOrder(1)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+
+        builder.HasKey(e => e.Id)
+            .HasName($"Pk{TableName}Id");
 
         builder.Property(e => e.CreateDate)
             .HasColumnOrder(2)

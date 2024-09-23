@@ -5,7 +5,7 @@ using Ds.Full.Domain.Models.Rentals;
 
 namespace Ds.Full.Domain.Repositories.Abstractions.Rentals;
 
-public interface IRentalRepository : IIdentifiableRepository
+public interface IRentalRepository : IAuditableRepository
 {
 
     Rental? Get(long id);

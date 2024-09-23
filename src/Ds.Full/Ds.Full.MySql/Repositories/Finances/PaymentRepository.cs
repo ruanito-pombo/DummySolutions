@@ -13,13 +13,10 @@ using static Ds.Full.Domain.Constants.DsFullConstant;
 namespace Ds.Full.MySql.Repositories.Finances;
 
 public class PaymentRepository(IDsFullDatabaseContext databaseContext)
-    : IdentifiableRepository<IdentifiableEntityLong, long>(databaseContext), IPaymentRepository
+    : AuditableRepository<AuditableEntityLong, long>(databaseContext), IPaymentRepository
 {
 
     public override string TableName { get; } = "Payment";
-    private readonly Func<PaymentEntity, PaymentFilter, bool> FilterPayment = (x, filter) =>
-        (!filter.CustomerName.HasValue() || (x.Customer != null && x.Customer.FullName.Contains(filter.CustomerName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
-        ;
 
     public Payment? Get(long id)
     {
@@ -71,7 +68,7 @@ public class PaymentRepository(IDsFullDatabaseContext databaseContext)
         try
         {
             var query = GetQueryable<PaymentEntity>()
-                .Where(x => FilterPayment(x, filter))
+                .Where(x => (!filter.CustomerName.HasValue() || (x.Customer != null && x.Customer.FullName.Contains(filter.CustomerName!.Trim(), StringComparison.CurrentCultureIgnoreCase))))
                 .Include(i => i.Rental)
                 .ToList();
 

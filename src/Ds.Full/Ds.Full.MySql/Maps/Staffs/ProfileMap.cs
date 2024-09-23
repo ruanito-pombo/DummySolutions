@@ -5,21 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Ds.Full.MySql.Maps.Staffs;
 
-public class ProfileMap : IdentifiableMapInt<ProfileEntity>
+public class ProfileMap : AuditableMapInt<ProfileEntity>
 {
 
     public override void Configure(EntityTypeBuilder<ProfileEntity> builder)
     {
         base.Configure(builder, GetType().Name.Replace("Map", ""));
-
-        builder.Property(p => p.Id)
-            .HasColumnOrder(1)
-            .HasColumnType("INT")
-            .ValueGeneratedOnAdd()
-            .IsRequired();
-
-        builder.HasKey(pk => pk.Id)
-            .HasName("PK_Profile_Id");
 
         builder.Property(p => p.Code)
             .HasColumnType("VARCHAR(64)");

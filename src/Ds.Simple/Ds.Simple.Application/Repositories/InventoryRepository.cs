@@ -17,10 +17,6 @@ public class InventoryRepository(IDsSimpleDatabaseContext databaseContext)
 {
 
     public override string TableName { get; } = "Inventory";
-    private readonly Func<InventoryEntity, InventoryFilter, bool> FilterInventory = (x, filter) =>
-        (!filter.TitleName.HasValue() || x.Title!.FullName.Contains(filter.TitleName!.Trim(), StringComparison.CurrentCultureIgnoreCase))
-        && (!filter.SupplierName.HasValue() || (x.Supplier != null && x.Supplier.FullName.Contains(filter.SupplierName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
-        && (!filter.AcquisitionDate.HasValue || x.AcquisitionDate.Equals(filter.AcquisitionDate));
 
     public Inventory? Get(long id)
     {
@@ -72,7 +68,9 @@ public class InventoryRepository(IDsSimpleDatabaseContext databaseContext)
         try
         {
             var query = GetQueryable<InventoryEntity>()
-                .Where(x => FilterInventory(x, filter))
+                .Where(x => (!filter.TitleName.HasValue() || x.Title!.FullName.Contains(filter.TitleName!.Trim(), StringComparison.CurrentCultureIgnoreCase))
+                    && (!filter.SupplierName.HasValue() || (x.Supplier != null && x.Supplier.FullName.Contains(filter.SupplierName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
+                    && (!filter.AcquisitionDate.HasValue || x.AcquisitionDate.Equals(filter.AcquisitionDate)))
                 .Include(i => i.Title)
                 .ToList();
 

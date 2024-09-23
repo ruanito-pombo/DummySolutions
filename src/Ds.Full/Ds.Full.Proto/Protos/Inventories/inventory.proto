@@ -2,8 +2,18 @@ syntax = "proto3";
 
 option csharp_namespace = "Ds.Full.Grpc.Protos.Inventories";
 
+import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
-import "auditable.proto";
+import "common.proto";
 
-package InventoryPackage;
+package InventoryPkg;
 
+message InventoryFilterMsg
+{
+	optional  int32                                             PageSize                                          = 1  ;
+	optional  int32                                             PageIndex                                         = 2  ;
+	optional  string                                            SupplierName                                      = 3  ;
+	optional  string                                            TitleName                                         = 4  ;
+    optional  google.protobuf.Timestamp                         AcquisitionDate                                   = 5  ;
+	optional  int32                                             AcquisitionOffset                                 = 6  ;
+}

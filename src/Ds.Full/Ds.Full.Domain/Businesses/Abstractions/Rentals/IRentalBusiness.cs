@@ -5,7 +5,7 @@ using Ds.Full.Domain.Models.Rentals;
 
 namespace Ds.Full.Domain.Businesses.Abstractions.Rentals;
 
-public interface IRentalBusiness : IIdentifiableBusiness
+public interface IRentalBusiness : IAuditableBusiness
 {
 
     Rental? Get(long id);

@@ -9,7 +9,7 @@ using Ds.Full.Domain.Repositories.Abstractions.Staffs;
 namespace Ds.Full.Domain.Businesses.Staffs;
 
 public class UserBusiness(IUserRepository userRepository)
-    : IdentifiableBusiness<IdentifiableInt, int>(userRepository), IUserBusiness
+    : AuditableBusiness<AuditableInt, int>(userRepository), IUserBusiness
 {
 
     private readonly IUserRepository _userRepository = userRepository;
