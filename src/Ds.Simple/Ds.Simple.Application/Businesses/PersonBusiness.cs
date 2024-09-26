@@ -26,6 +26,4 @@ public class PersonBusiness(IPersonRepository personRepository) : IPersonBusines
     public Person Delete(long id) =>
         _personRepository.Delete(id);
 
-    public async Task Remove(long id) => await Task.Delay(200);
-
 }

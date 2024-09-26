@@ -14,7 +14,7 @@ public interface IContainer
 
     bool InitializeApplication(IApplicationBuilder applicationBuilder, bool? register = false, bool? verify = false);
     bool InitializeContainer(IAppInfo? appInfo = null, IAppSetting? appSetting = null);
-    bool InitializeServices(IServiceCollection services);
+    bool InitializeServices(IServiceCollection services, bool? register = false);
     bool Register();
 
 }

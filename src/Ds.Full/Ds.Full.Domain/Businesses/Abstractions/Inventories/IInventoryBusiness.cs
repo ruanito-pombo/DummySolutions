@@ -8,10 +8,10 @@ namespace Ds.Full.Domain.Businesses.Abstractions.Inventories;
 public interface IInventoryBusiness : IAuditableBusiness
 {
 
-    Inventory? Get(long id);
-    PaginatedList<Inventory>? List(InventoryFilter filter);
-    List<Inventory>? Filter(InventoryFilter filter);
-    Inventory Save(Inventory model);
-    Inventory Delete(long id);
+    Task<Inventory?> Get(long id);
+    Task<List<Inventory>?> Filter(InventoryFilter filter);
+    Task<PaginatedList<Inventory>?> List(InventoryFilter filter);
+    Task<Inventory> Delete(long id);
+    Task<Inventory> Save(Inventory model);
 
 }

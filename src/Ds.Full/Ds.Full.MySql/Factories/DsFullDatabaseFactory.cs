@@ -9,7 +9,7 @@ namespace Ds.Full.MySql.Factories;
 
 public class DsFullDatabaseFactory : IDesignTimeDbContextFactory<DsFullDatabaseContext>
 {
-    
+
     private static DsFullDatabaseFactory? _instance; public static DsFullDatabaseFactory Instance { get => _instance ??= new(); }
     private static bool _dotNetEfCliDebugArgs = false; public static bool DotNetEfCliDebugArgs { get => _dotNetEfCliDebugArgs; }
 

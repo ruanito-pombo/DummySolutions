@@ -8,10 +8,10 @@ namespace Ds.Full.Domain.Repositories.Abstractions.Rentals;
 public interface IRentalRepository : IAuditableRepository
 {
 
-    Rental? Get(long id);
-    PaginatedList<Rental>? List(RentalFilter filter);
-    List<Rental>? Filter(RentalFilter filter);
-    Rental Save(Rental model);
-    Rental Delete(long id);
+    Task<Rental?> Get(long id);
+    Task<List<Rental>?> Filter(RentalFilter filter);
+    Task<PaginatedList<Rental>?> List(RentalFilter filter);
+    Task<Rental> Delete(long id);
+    Task<Rental> Save(Rental model);
 
 }

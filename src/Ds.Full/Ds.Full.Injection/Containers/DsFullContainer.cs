@@ -34,10 +34,7 @@ using Ds.Full.MySql.Repositories.Persons;
 using Ds.Full.MySql.Repositories.Rentals;
 using Ds.Full.MySql.Repositories.Staffs;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
-using Microsoft.Extensions.DependencyInjection;
 using SimpleInjector;
-using static Ds.Base.Domain.Utils.ConfigurationsUtil;
 
 namespace Ds.Full.Injection.Containers;
 

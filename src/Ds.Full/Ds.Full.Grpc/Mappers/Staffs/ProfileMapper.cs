@@ -3,10 +3,10 @@ using Ds.Full.Proto.Protos.Staffs;
 
 namespace Ds.Full.Grpc.Mappers.Staffs;
 
-public static class ProfileFilterMapper
+public static class ProfileMapper
 {
 
-    public static ProfileFilter MapToModel(this ProfileFilterMsg userFilter) => new()
+    public static ProfileFilter MapTo(this ProfileFilterMsg userFilter) => new()
     {
         PageSize = userFilter.HasPageSize ? userFilter.PageSize : null,
         PageIndex = userFilter.HasPageIndex ? userFilter.PageIndex : null,
@@ -14,7 +14,7 @@ public static class ProfileFilterMapper
         Description = userFilter.HasDescription ? userFilter.Description : null,
     };
 
-    public static ProfileFilterMsg MapToMessage(this ProfileFilter userFilter) => new()
+    public static ProfileFilterMsg MapTo(this ProfileFilter userFilter) => new()
     {
         PageSize = userFilter.PageSize ?? 0,
         PageIndex = userFilter.PageIndex ?? 0,

@@ -1,5 +1,4 @@
 ﻿using Ds.Base.Domain.Businesses;
-using Ds.Base.Domain.Models;
 using Ds.Base.Domain.Paginateds;
 using Ds.Full.Domain.Businesses.Abstractions.Rentals;
 using Ds.Full.Domain.Filters.Rentals;
@@ -8,25 +7,24 @@ using Ds.Full.Domain.Repositories.Abstractions.Rentals;
 
 namespace Ds.Full.Domain.Businesses.Rentals;
 
-public class RentalBusiness(IRentalRepository rentalRepository)
-    : AuditableBusiness<AuditableLong, long>(rentalRepository), IRentalBusiness
+public class RentalBusiness(IRentalRepository rentalRepository) : AuditableBusiness(rentalRepository), IRentalBusiness
 {
 
     private readonly IRentalRepository _rentalRepository = rentalRepository;
 
-    public Rental? Get(long id) =>
-        _rentalRepository.Get(id);
+    public async Task<Rental?> Get(long id) =>
+        await _rentalRepository.Get(id);
 
-    public PaginatedList<Rental>? List(RentalFilter filter) =>
-        _rentalRepository.List(filter);
+    public async Task<List<Rental>?> Filter(RentalFilter filter) =>
+        await _rentalRepository.Filter(filter);
 
-    public List<Rental>? Filter(RentalFilter filter) =>
-        _rentalRepository.Filter(filter);
+    public async Task<PaginatedList<Rental>?> List(RentalFilter filter) =>
+        await _rentalRepository.List(filter);
 
-    public Rental Save(Rental model) =>
-        _rentalRepository.Save(model);
+    public async Task<Rental> Delete(long id) =>
+        await _rentalRepository.Delete(id);
 
-    public Rental Delete(long id) =>
-        _rentalRepository.Delete(id);
+    public async Task<Rental> Save(Rental model) =>
+        await _rentalRepository.Save(model);
 
 }

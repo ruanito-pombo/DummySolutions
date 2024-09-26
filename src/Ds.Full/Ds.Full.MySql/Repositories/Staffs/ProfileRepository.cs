@@ -5,37 +5,39 @@ using Ds.Full.Domain.Contexts.Abstractions;
 using Ds.Full.Domain.Filters.Staffs;
 using Ds.Full.Domain.Models.Staffs;
 using Ds.Full.Domain.Repositories.Abstractions.Staffs;
+using Ds.Full.MySql.Contexts;
 using Ds.Full.MySql.Entities.Staffs;
+using Microsoft.EntityFrameworkCore;
 using static Ds.Full.Domain.Constants.DsFullConstant;
 
-namespace Ds.Full.MySql.Repositories.Medias;
+namespace Ds.Full.MySql.Repositories.Staffs;
 
 public class ProfileRepository(IDsFullDatabaseContext databaseContext)
-    : AuditableRepository<AuditableEntityInt, int>(databaseContext), IProfileRepository
+    : AuditableRepository<DsFullDatabaseContext, AuditableEntityInt, int>((DsFullDatabaseContext)databaseContext), IProfileRepository
 {
 
     public override string TableName { get; } = "Profile";
 
-    public Profile? Get(int id)
+    public async Task<Profile?> Get(int id)
     {
         string[] except = [TableName, "ProfileList"];
         try
         {
-            var query = GetQueryable<ProfileEntity>()
+            var query = await GetQueryable<ProfileEntity>()
                 .Where(x => x.Id == id)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             return query?.MapTo(except);
         }
         catch { throw new Exception(); }
     }
 
-    public PaginatedList<Profile>? List(ProfileFilter filter)
+    public async Task<PaginatedList<Profile>?> List(ProfileFilter filter)
     {
         string[] except = [TableName, "ProfileList"];
         try
         {
-            var totalRecords = GetQueryable<ProfileEntity>().Count();
+            var totalRecords = await GetQueryable<ProfileEntity>().CountAsync();
             var query = ((filter?.PageSize) switch
             {
                 > 0 => GetQueryable<ProfileEntity>()
@@ -58,28 +60,28 @@ public class ProfileRepository(IDsFullDatabaseContext databaseContext)
         catch { throw new Exception(); }
     }
 
-    public List<Profile>? Filter(ProfileFilter filter)
+    public async Task<List<Profile>?> Filter(ProfileFilter filter)
     {
         string[] except = [TableName, "ProfileList"];
         try
         {
-            var query = GetQueryable<ProfileEntity>()
+            var query = await GetQueryable<ProfileEntity>()
                 .Where(x => (string.IsNullOrEmpty(filter.Description) || (x.Description != null && x.Description.Contains(filter.Description!.Trim(), StringComparison.CurrentCultureIgnoreCase))))
-                .ToList();
+                .ToListAsync();
 
             return query?.Select(s => s.MapTo(except))?.ToList();
         }
         catch { throw new Exception(); }
     }
 
-    public Profile Save(Profile model)
+    public async Task<Profile> Save(Profile model)
     {
         try
         {
             var entity = ProfileEntity.MapFrom(model);
 
             CreateOrUpdate(entity);
-            SaveChanges();
+            await CommitAsync();
             ClearChangeTracker();
 
             return entity?.MapTo() ?? new();
@@ -87,14 +89,14 @@ public class ProfileRepository(IDsFullDatabaseContext databaseContext)
         catch { throw new Exception(); }
     }
 
-    public Profile Delete(int id)
+    public async Task<Profile> Delete(int id)
     {
         try
         {
-            var entity = ProfileEntity.MapFrom(Get(id));
+            var entity = ProfileEntity.MapFrom(await Get(id));
             var query = GetWritable<ProfileEntity>()
                 .Remove(entity);
-            SaveChanges();
+            await CommitAsync();
             ClearChangeTracker();
 
             return entity.MapTo();

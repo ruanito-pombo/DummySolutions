@@ -6,6 +6,7 @@ using Ds.Full.Domain.Contexts.Abstractions;
 using Ds.Full.Domain.Filters.Medias;
 using Ds.Full.Domain.Models.Medias;
 using Ds.Full.Domain.Repositories.Abstractions.Medias;
+using Ds.Full.MySql.Contexts;
 using Ds.Full.MySql.Entities.Medias;
 using Microsoft.EntityFrameworkCore;
 using static Ds.Full.Domain.Constants.DsFullConstant;
@@ -13,32 +14,49 @@ using static Ds.Full.Domain.Constants.DsFullConstant;
 namespace Ds.Full.MySql.Repositories.Medias;
 
 public class TitleRepository(IDsFullDatabaseContext databaseContext)
-    : AuditableRepository<AuditableEntityLong, long>(databaseContext), ITitleRepository
+    : AuditableRepository<DsFullDatabaseContext, AuditableEntityLong, long>((DsFullDatabaseContext)databaseContext), ITitleRepository
 {
 
     public override string TableName { get; } = "Title";
 
-    public Title? Get(long id)
+    public async Task<Title?> Get(long id)
     {
         string[] except = [TableName, "TitleAuthorList", "TitleProducerList"];
         try
         {
-            var query = GetQueryable<TitleEntity>()
+            var query = await GetQueryable<TitleEntity>()
                 .Where(x => x.Id == id)
                 .Include(i => i.Author)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             return query?.MapTo(except);
         }
         catch { throw new Exception(); }
     }
 
-    public PaginatedList<Title>? List(TitleFilter filter)
+    public async Task<List<Title>?> Filter(TitleFilter filter)
     {
         string[] except = [TableName, "TitleAuthorList", "TitleProducerList"];
         try
         {
-            var totalRecords = GetQueryable<TitleEntity>().Count();
+            var query = await GetQueryable<TitleEntity>()
+                .Where(x => (!filter.AuthorName.HasValue() || (x.Author != null && x.Author.FullName.Contains(filter.AuthorName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
+                    && (!filter.ProducerName.HasValue() || (x.Producer != null && x.Producer.FullName.Contains(filter.ProducerName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
+                    && (!filter.FullName.HasValue() || x.FullName.Contains(filter.FullName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
+                .Include(i => i.Author)
+                .ToListAsync();
+
+            return query?.Select(s => s.MapTo(except))?.ToList();
+        }
+        catch { throw new Exception(); }
+    }
+
+    public async Task<PaginatedList<Title>?> List(TitleFilter filter)
+    {
+        string[] except = [TableName, "TitleAuthorList", "TitleProducerList"];
+        try
+        {
+            var totalRecords = await GetQueryable<TitleEntity>().CountAsync();
             var query = ((filter?.PageSize) switch
             {
                 > 0 => GetQueryable<TitleEntity>()
@@ -62,49 +80,32 @@ public class TitleRepository(IDsFullDatabaseContext databaseContext)
         catch { throw new Exception(); }
     }
 
-    public List<Title>? Filter(TitleFilter filter)
+    public async Task<Title> Delete(long id)
     {
-        string[] except = [TableName, "TitleAuthorList", "TitleProducerList"];
         try
         {
-            var query = GetQueryable<TitleEntity>()
-                .Where(x => (!filter.AuthorName.HasValue() || (x.Author != null && x.Author.FullName.Contains(filter.AuthorName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
-                    && (!filter.ProducerName.HasValue() || (x.Producer != null && x.Producer.FullName.Contains(filter.ProducerName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
-                    && (!filter.FullName.HasValue() || x.FullName.Contains(filter.FullName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
-                .Include(i => i.Author)
-                .ToList();
+            var entity = TitleEntity.MapFrom(await Get(id));
+            var query = GetWritable<TitleEntity>()
+                .Remove(entity);
+            await CommitAsync();
+            ClearChangeTracker();
 
-            return query?.Select(s => s.MapTo(except))?.ToList();
+            return entity.MapTo();
         }
         catch { throw new Exception(); }
     }
 
-    public Title Save(Title model)
+    public async Task<Title> Save(Title model)
     {
         try
         {
             var entity = TitleEntity.MapFrom(model);
 
             CreateOrUpdate(entity);
-            SaveChanges();
+            await CommitAsync();
             ClearChangeTracker();
 
             return entity?.MapTo() ?? new();
-        }
-        catch { throw new Exception(); }
-    }
-
-    public Title Delete(long id)
-    {
-        try
-        {
-            var entity = TitleEntity.MapFrom(Get(id));
-            var query = GetWritable<TitleEntity>()
-                .Remove(entity);
-            SaveChanges();
-            ClearChangeTracker();
-
-            return entity.MapTo();
         }
         catch { throw new Exception(); }
     }

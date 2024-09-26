@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<Version>0.0.47</Version>
+	<Version>0.0.59</Version>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -34,6 +34,8 @@
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
+	<PackageReference Include="SimpleInjector" Version="5.5.0" />
+	<PackageReference Include="SimpleInjector.Integration.AspNetCore.Mvc" Version="5.5.0" />
   </ItemGroup>
 	
   <ItemGroup>

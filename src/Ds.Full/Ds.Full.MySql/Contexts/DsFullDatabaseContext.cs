@@ -1,11 +1,8 @@
 ﻿using Ds.Base.EntityFramework.Contexts;
 using Ds.Full.Domain.Contexts.Abstractions;
 using Ds.Full.MySql.Configurations;
-using Ds.Full.MySql.Factories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using Microsoft.Extensions.Options;
 using static Ds.Base.Domain.Utils.ConfigurationsUtil;
 using static Ds.Full.MySql.Factories.DsFullDatabaseFactory;
 
@@ -29,12 +26,12 @@ public class DsFullDatabaseContext : DatabaseContext, IDsFullDatabaseContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        if (HasDotNetEfCliDebugArgs && _firstInternalCustomizeCall) 
+        if (HasDotNetEfCliDebugArgs && _firstInternalCustomizeCall)
         { _firstInternalCustomizeCall = false; return; }
 
         if (HasDotNetEfCliDebugArgs)
         { WriteOutputLog("Applying Maps"); }
-        
+
         DsFullDatabaseContextConfiguration.OnModelCreating(modelBuilder);
     }
 

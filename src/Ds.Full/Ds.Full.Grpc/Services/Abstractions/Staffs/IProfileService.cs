@@ -1,6 +1,8 @@
-﻿namespace Ds.Full.Grpc.Services.Abstractions.Staffs;
+﻿using Ds.Base.Grpc.Services.Abstractions;
 
-public interface IProfileService
+namespace Ds.Full.Grpc.Services.Abstractions.Staffs;
+
+public interface IProfileService : IGrpcService
 {
 
 

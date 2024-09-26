@@ -20,7 +20,7 @@ public class ProfileService(/*IProfileBusiness userBusiness*/) : ProfileSrv.Prof
 
     public override Task<ProfileListMsg> FilterProfile(ProfileFilterMsg request, ServerCallContext context)
     {
-        var a = request.MapToModel();
+        //var a = request.MapToModel();
 
         return Task.Run(() => new ProfileListMsg());
     }

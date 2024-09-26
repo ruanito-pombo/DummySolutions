@@ -2,40 +2,57 @@
 using Ds.Base.EntityFramework.Entities;
 using Ds.Base.EntityFramework.Repositories;
 using Ds.Full.Domain.Contexts.Abstractions;
+using Ds.Full.Domain.Filters.Finances;
 using Ds.Full.Domain.Filters.Medias;
 using Ds.Full.Domain.Models.Medias;
 using Ds.Full.Domain.Repositories.Abstractions.Medias;
+using Ds.Full.MySql.Contexts;
 using Ds.Full.MySql.Entities.Medias;
+using Microsoft.EntityFrameworkCore;
 using static Ds.Full.Domain.Constants.DsFullConstant;
 
 namespace Ds.Full.MySql.Repositories.Medias;
 
 public class CategoryRepository(IDsFullDatabaseContext databaseContext)
-    : AuditableRepository<AuditableEntityInt, int>(databaseContext), ICategoryRepository
+    : AuditableRepository<DsFullDatabaseContext, AuditableEntityInt, int>((DsFullDatabaseContext)databaseContext), ICategoryRepository
 {
 
     public override string TableName { get; } = "Category";
 
-    public Category? Get(int id)
+    public async Task<Category?> Get(int id)
     {
         string[] except = [TableName, "CategoryList"];
         try
         {
-            var query = GetQueryable<CategoryEntity>()
+            var query = await GetQueryable<CategoryEntity>()
                 .Where(x => x.Id == id)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             return query?.MapTo(except);
         }
         catch { throw new Exception(); }
     }
 
-    public PaginatedList<Category>? List(CategoryFilter filter)
+    public async Task<List<Category>?> Filter(CategoryFilter filter)
     {
         string[] except = [TableName, "CategoryList"];
         try
         {
-            var totalRecords = GetQueryable<CategoryEntity>().Count();
+            var query = await GetQueryable<CategoryEntity>()
+                .Where(x => (string.IsNullOrEmpty(filter.Description) || (x.Description != null && x.Description.Contains(filter.Description!.Trim(), StringComparison.CurrentCultureIgnoreCase))))
+                .ToListAsync();
+
+            return query?.Select(s => s.MapTo(except))?.ToList();
+        }
+        catch { throw new Exception(); }
+    }
+
+    public async Task<PaginatedList<Category>?> List(CategoryFilter filter)
+    {
+        string[] except = [TableName, "CategoryList"];
+        try
+        {
+            var totalRecords = await GetQueryable<CategoryEntity>().CountAsync();
             var query = ((filter?.PageSize) switch
             {
                 > 0 => GetQueryable<CategoryEntity>()
@@ -58,46 +75,32 @@ public class CategoryRepository(IDsFullDatabaseContext databaseContext)
         catch { throw new Exception(); }
     }
 
-    public List<Category>? Filter(CategoryFilter filter)
+    public async Task<Category> Delete(int id)
     {
-        string[] except = [TableName, "CategoryList"];
         try
         {
-            var query = GetQueryable<CategoryEntity>()
-                .Where(x => (string.IsNullOrEmpty(filter.Description) || (x.Description != null && x.Description.Contains(filter.Description!.Trim(), StringComparison.CurrentCultureIgnoreCase))))
-                .ToList();
+            var entity = CategoryEntity.MapFrom(await Get(id));
+            var query = GetWritable<CategoryEntity>()
+                .Remove(entity);
+            await CommitAsync();
+            ClearChangeTracker();
 
-            return query?.Select(s => s.MapTo(except))?.ToList();
+            return entity.MapTo();
         }
         catch { throw new Exception(); }
     }
 
-    public Category Save(Category model)
+    public async Task<Category> Save(Category model)
     {
         try
         {
             var entity = CategoryEntity.MapFrom(model);
 
             CreateOrUpdate(entity);
-            SaveChanges();
+            await CommitAsync();
             ClearChangeTracker();
 
             return entity?.MapTo() ?? new();
-        }
-        catch { throw new Exception(); }
-    }
-
-    public Category Delete(int id)
-    {
-        try
-        {
-            var entity = CategoryEntity.MapFrom(Get(id));
-            var query = GetWritable<CategoryEntity>()
-                .Remove(entity);
-            SaveChanges();
-            ClearChangeTracker();
-
-            return entity.MapTo();
         }
         catch { throw new Exception(); }
     }

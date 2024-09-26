@@ -8,10 +8,10 @@ namespace Ds.Full.Domain.Businesses.Abstractions.Finances;
 public interface IPaymentBusiness : IAuditableBusiness
 {
 
-    Payment? Get(long id);
-    PaginatedList<Payment>? List(PaymentFilter filter);
-    List<Payment>? Filter(PaymentFilter filter);
-    Payment Save(Payment model);
-    Payment Delete(long id);
+    Task<Payment?> Get(long id);
+    Task<List<Payment>?> Filter(PaymentFilter filter);
+    Task<PaginatedList<Payment>?> List(PaymentFilter filter);
+    Task<Payment> Delete(long id);
+    Task<Payment> Save(Payment model);
 
 }

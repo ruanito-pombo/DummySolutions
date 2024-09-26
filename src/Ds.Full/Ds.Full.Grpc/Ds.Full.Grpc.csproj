@@ -7,8 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ds.Base.Grpc" Version="0.0.47" />
+    <PackageReference Include="Ds.Base.Grpc" Version="0.0.59" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.65.0" />
+    <PackageReference Include="Grpc.AspNetCore.Server" Version="2.66.0" />
     <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.66.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
       <PrivateAssets>all</PrivateAssets>
@@ -17,6 +18,8 @@
     <PackageReference Include="Microsoft.OpenApi" Version="1.6.21" />
 	<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="8.0.8" />
 	<PackageReference Include="Microsoft.AspNetCore.Grpc.Swagger" Version="0.8.8" />
+	<PackageReference Include="SimpleInjector.Integration.AspNetCore.Mvc" Version="5.5.0" />
+	<PackageReference Include="SimpleInjector.Integration.AspNetCore.Mvc.Core" Version="5.5.0" />
   </ItemGroup>
 
   <ItemGroup>

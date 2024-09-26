@@ -1,6 +1,8 @@
-﻿namespace Ds.Base.Domain.Services.Abstractions;
+﻿using Ds.Base.Domain.Invokers.Abstractions;
 
-public interface IService
+namespace Ds.Base.Domain.Services.Abstractions;
+
+public interface IService : IInvoker
 {
 
 

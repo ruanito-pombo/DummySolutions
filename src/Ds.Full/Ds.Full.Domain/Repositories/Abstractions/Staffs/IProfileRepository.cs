@@ -8,10 +8,10 @@ namespace Ds.Full.Domain.Repositories.Abstractions.Staffs;
 public interface IProfileRepository : IAuditableRepository
 {
 
-    Profile? Get(int id);
-    PaginatedList<Profile>? List(ProfileFilter filter);
-    List<Profile>? Filter(ProfileFilter filter);
-    Profile Save(Profile model);
-    Profile Delete(int id);
+    Task<Profile?> Get(int id);
+    Task<List<Profile>?> Filter(ProfileFilter filter);
+    Task<PaginatedList<Profile>?> List(ProfileFilter filter);
+    Task<Profile> Delete(int id);
+    Task<Profile> Save(Profile model);
 
 }

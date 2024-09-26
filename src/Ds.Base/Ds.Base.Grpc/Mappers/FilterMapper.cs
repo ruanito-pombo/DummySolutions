@@ -1,4 +1,5 @@
-﻿using Google.Protobuf.Collections;
+﻿using Google.Protobuf;
+using Google.Protobuf.Collections;
 using static Ds.Base.Proto.Utils.ProtoUtil;
 
 namespace Ds.Base.Grpc.Mappers;
@@ -6,13 +7,17 @@ namespace Ds.Base.Grpc.Mappers;
 public static class FilterMapper
 {
 
-    public static decimal ToDecimal(dynamic decimalMsg) => CastToDecimal(decimalMsg);
-    public static dynamic ToDecimalMsg<TMsg>(decimal decimalValue) => CastToDecimalMsg(decimalValue);
-    public static DateTimeOffset ToDateTimeOffset(dynamic dateTimeOffsetMsg) => CastToDateTimeOffset(dateTimeOffsetMsg);
-    public static dynamic ToDateTimeOffsetMsg(DateTimeOffset dateTimeOffsetValue) => CastToDateTimeOffsetMsg(dateTimeOffsetValue);
-    public static IEnumerable<TMsg> ToEnumerable<TMsg>(RepeatedField<TMsg> repeatedField)
-        where TMsg : class => CastToEnumerable(repeatedField);
-    public static RepeatedField<TModel> ToRepeatedFieldMsg<TModel>(IEnumerable<TModel> modelList)
-        where TModel : class => CastToRepeatedFieldMsg(modelList);
+    public static decimal ToDecimal<TMessage>(TMessage? decimalMsg) => 
+        CastToDecimal(decimalMsg);
+    public static TMessage ToDecimalMsg<TMessage>(decimal? decimalValue) where TMessage : class => 
+        CastToDecimalMsg<TMessage>(decimalValue);
+    public static DateTimeOffset ToDateTimeOffset<TMessage>(TMessage? dateTimeOffsetMsg) where TMessage : class => 
+        CastToDateTimeOffset(dateTimeOffsetMsg);
+    public static TMessage ToDateTimeOffsetMsg<TMessage>(DateTimeOffset? dateTimeOffsetValue) where TMessage : class => 
+        CastToDateTimeOffsetMsg<TMessage>(dateTimeOffsetValue);
+    public static IEnumerable<TMessage> ToEnumerable<TMessage>(RepeatedField<TMessage>? repeatedField) where TMessage : class => 
+        CastToEnumerable(repeatedField);
+    public static RepeatedField<TModel> ToRepeatedFieldMsg<TModel>(IEnumerable<TModel>? modelList) where TModel : class => 
+        CastToRepeatedFieldMsg(modelList);
 
 }

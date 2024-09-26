@@ -6,6 +6,7 @@ using Ds.Full.Domain.Contexts.Abstractions;
 using Ds.Full.Domain.Filters.Finances;
 using Ds.Full.Domain.Models.Finances;
 using Ds.Full.Domain.Repositories.Abstractions.Finances;
+using Ds.Full.MySql.Contexts;
 using Ds.Full.MySql.Entities.Finances;
 using Microsoft.EntityFrameworkCore;
 using static Ds.Full.Domain.Constants.DsFullConstant;
@@ -13,32 +14,47 @@ using static Ds.Full.Domain.Constants.DsFullConstant;
 namespace Ds.Full.MySql.Repositories.Finances;
 
 public class PaymentRepository(IDsFullDatabaseContext databaseContext)
-    : AuditableRepository<AuditableEntityLong, long>(databaseContext), IPaymentRepository
+    : AuditableRepository<DsFullDatabaseContext, AuditableEntityLong, long>((DsFullDatabaseContext)databaseContext), IPaymentRepository
 {
 
     public override string TableName { get; } = "Payment";
 
-    public Payment? Get(long id)
+    public async Task<Payment?> Get(long id)
     {
         string[] except = [TableName];
         try
         {
-            var query = GetQueryable<PaymentEntity>()
+            var query = await GetQueryable<PaymentEntity>()
                 .Where(x => x.Id == id)
                 .Include(i => i.Rental)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             return query?.MapTo(except);
         }
         catch { throw new Exception(); }
     }
 
-    public PaginatedList<Payment>? List(PaymentFilter filter)
+    public async Task<List<Payment>?> Filter(PaymentFilter filter)
     {
         string[] except = [TableName];
         try
         {
-            var totalRecords = GetQueryable<PaymentEntity>().Count();
+            var query = await GetQueryable<PaymentEntity>()
+                .Where(x => (!filter.CustomerName.HasValue() || (x.Customer != null && x.Customer.FullName.Contains(filter.CustomerName!.Trim(), StringComparison.CurrentCultureIgnoreCase))))
+                .Include(i => i.Rental)
+                .ToListAsync();
+
+            return query?.Select(s => s.MapTo(except))?.ToList();
+        }
+        catch { throw new Exception(); }
+    }
+
+    public async Task<PaginatedList<Payment>?> List(PaymentFilter filter)
+    {
+        string[] except = [TableName];
+        try
+        {
+            var totalRecords = await GetQueryable<PaymentEntity>().CountAsync();
             var query = ((filter?.PageSize) switch
             {
                 > 0 => GetQueryable<PaymentEntity>()
@@ -62,47 +78,32 @@ public class PaymentRepository(IDsFullDatabaseContext databaseContext)
         catch { throw new Exception(); }
     }
 
-    public List<Payment>? Filter(PaymentFilter filter)
+    public async Task<Payment> Delete(long id)
     {
-        string[] except = [TableName];
         try
         {
-            var query = GetQueryable<PaymentEntity>()
-                .Where(x => (!filter.CustomerName.HasValue() || (x.Customer != null && x.Customer.FullName.Contains(filter.CustomerName!.Trim(), StringComparison.CurrentCultureIgnoreCase))))
-                .Include(i => i.Rental)
-                .ToList();
+            var entity = PaymentEntity.MapFrom(await Get(id));
+            var query = GetWritable<PaymentEntity>()
+                .Remove(entity);
+            await CommitAsync();
+            ClearChangeTracker();
 
-            return query?.Select(s => s.MapTo(except))?.ToList();
+            return entity.MapTo();
         }
         catch { throw new Exception(); }
     }
 
-    public Payment Save(Payment model)
+    public async Task<Payment> Save(Payment model)
     {
         try
         {
             var entity = PaymentEntity.MapFrom(model);
 
             CreateOrUpdate(entity);
-            SaveChanges();
+            await CommitAsync();
             ClearChangeTracker();
 
             return entity?.MapTo() ?? new();
-        }
-        catch { throw new Exception(); }
-    }
-
-    public Payment Delete(long id)
-    {
-        try
-        {
-            var entity = PaymentEntity.MapFrom(Get(id));
-            var query = GetWritable<PaymentEntity>()
-                .Remove(entity);
-            SaveChanges();
-            ClearChangeTracker();
-
-            return entity.MapTo();
         }
         catch { throw new Exception(); }
     }

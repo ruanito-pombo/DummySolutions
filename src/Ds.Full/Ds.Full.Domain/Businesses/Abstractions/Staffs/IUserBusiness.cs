@@ -8,10 +8,10 @@ namespace Ds.Full.Domain.Businesses.Abstractions.Staffs;
 public interface IUserBusiness : IAuditableBusiness
 {
 
-    User? Get(int id);
-    PaginatedList<User>? List(UserFilter filter);
-    List<User>? Filter(UserFilter filter);
-    User Save(User model);
-    User Delete(int id);
+    Task<User?> Get(int id);
+    Task<List<User>?> Filter(UserFilter filter);
+    Task<PaginatedList<User>?> List(UserFilter filter);
+    Task<User> Delete(int id);
+    Task<User> Save(User model);
 
 }

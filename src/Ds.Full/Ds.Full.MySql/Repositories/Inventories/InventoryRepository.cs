@@ -6,6 +6,7 @@ using Ds.Full.Domain.Contexts.Abstractions;
 using Ds.Full.Domain.Filters.Inventories;
 using Ds.Full.Domain.Models.Inventories;
 using Ds.Full.Domain.Repositories.Abstractions.Inventories;
+using Ds.Full.MySql.Contexts;
 using Ds.Full.MySql.Entities.Inventories;
 using Microsoft.EntityFrameworkCore;
 using static Ds.Full.Domain.Constants.DsFullConstant;
@@ -13,32 +14,49 @@ using static Ds.Full.Domain.Constants.DsFullConstant;
 namespace Ds.Full.MySql.Repositories.Inventories;
 
 public class InventoryRepository(IDsFullDatabaseContext databaseContext)
-    : AuditableRepository<AuditableEntityLong, long>(databaseContext), IInventoryRepository
+    : AuditableRepository<DsFullDatabaseContext, AuditableEntityLong, long>((DsFullDatabaseContext)databaseContext), IInventoryRepository
 {
 
     public override string TableName { get; } = "Inventory";
 
-    public Inventory? Get(long id)
+    public async Task<Inventory?> Get(long id)
     {
         string[] except = [TableName, "InventoryList"];
         try
         {
-            var query = GetQueryable<InventoryEntity>()
+            var query = await GetQueryable<InventoryEntity>()
                 .Where(x => x.Id == id)
                 .Include(i => i.Title)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             return query?.MapTo(except);
         }
         catch { throw new Exception(); }
     }
 
-    public PaginatedList<Inventory>? List(InventoryFilter filter)
+    public async Task<List<Inventory>?> Filter(InventoryFilter filter)
     {
         string[] except = [TableName, "InventoryList"];
         try
         {
-            var totalRecords = GetQueryable<InventoryEntity>().Count();
+            var query = await GetQueryable<InventoryEntity>()
+                .Where(x => (!filter.TitleName.HasValue() || x.Title!.FullName.Contains(filter.TitleName!.Trim(), StringComparison.CurrentCultureIgnoreCase))
+                    && (!filter.SupplierName.HasValue() || (x.Supplier != null && x.Supplier.FullName.Contains(filter.SupplierName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
+                    && (!filter.AcquisitionDate.HasValue || x.AcquisitionDate.Equals(filter.AcquisitionDate)))
+                .Include(i => i.Title)
+                .ToListAsync();
+
+            return query?.Select(s => s.MapTo(except))?.ToList();
+        }
+        catch { throw new Exception(); }
+    }
+
+    public async Task<PaginatedList<Inventory>?> List(InventoryFilter filter)
+    {
+        string[] except = [TableName, "InventoryList"];
+        try
+        {
+            var totalRecords = await GetQueryable<InventoryEntity>().CountAsync();
             var query = ((filter?.PageSize) switch
             {
                 > 0 => GetQueryable<InventoryEntity>()
@@ -62,49 +80,32 @@ public class InventoryRepository(IDsFullDatabaseContext databaseContext)
         catch { throw new Exception(); }
     }
 
-    public List<Inventory>? Filter(InventoryFilter filter)
+    public async Task<Inventory> Delete(long id)
     {
-        string[] except = [TableName, "InventoryList"];
         try
         {
-            var query = GetQueryable<InventoryEntity>()
-                .Where(x => (!filter.TitleName.HasValue() || x.Title!.FullName.Contains(filter.TitleName!.Trim(), StringComparison.CurrentCultureIgnoreCase))
-                    && (!filter.SupplierName.HasValue() || (x.Supplier != null && x.Supplier.FullName.Contains(filter.SupplierName!.Trim(), StringComparison.CurrentCultureIgnoreCase)))
-                    && (!filter.AcquisitionDate.HasValue || x.AcquisitionDate.Equals(filter.AcquisitionDate)))
-                .Include(i => i.Title)
-                .ToList();
+            var entity = InventoryEntity.MapFrom(await Get(id));
+            var query = GetWritable<InventoryEntity>()
+                .Remove(entity);
+            await CommitAsync();
+            ClearChangeTracker();
 
-            return query?.Select(s => s.MapTo(except))?.ToList();
+            return entity.MapTo();
         }
         catch { throw new Exception(); }
     }
 
-    public Inventory Save(Inventory model)
+    public async Task<Inventory> Save(Inventory model)
     {
         try
         {
             var entity = InventoryEntity.MapFrom(model);
 
             CreateOrUpdate(entity);
-            SaveChanges();
+            await CommitAsync();
             ClearChangeTracker();
 
             return entity?.MapTo() ?? new();
-        }
-        catch { throw new Exception(); }
-    }
-
-    public Inventory Delete(long id)
-    {
-        try
-        {
-            var entity = InventoryEntity.MapFrom(Get(id));
-            var query = GetWritable<InventoryEntity>()
-                .Remove(entity);
-            SaveChanges();
-            ClearChangeTracker();
-
-            return entity.MapTo();
         }
         catch { throw new Exception(); }
     }

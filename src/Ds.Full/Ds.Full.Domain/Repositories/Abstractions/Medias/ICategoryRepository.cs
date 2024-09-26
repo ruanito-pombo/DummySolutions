@@ -8,10 +8,10 @@ namespace Ds.Full.Domain.Repositories.Abstractions.Medias;
 public interface ICategoryRepository : IAuditableRepository
 {
 
-    Category? Get(int id);
-    PaginatedList<Category>? List(CategoryFilter filter);
-    List<Category>? Filter(CategoryFilter filter);
-    Category Save(Category model);
-    Category Delete(int id);
+    Task<Category?> Get(int id);
+    Task<List<Category>?> Filter(CategoryFilter filter);
+    Task<PaginatedList<Category>?> List(CategoryFilter filter);
+    Task<Category> Delete(int id);
+    Task<Category> Save(Category model);
 
 }

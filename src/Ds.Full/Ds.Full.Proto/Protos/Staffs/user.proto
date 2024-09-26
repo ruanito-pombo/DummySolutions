@@ -18,7 +18,7 @@ service UserSrv {
       option (google.api.http) = { post: "/v1/UserSrv/filter" }; 
 	}
 
-	rpc ListUser (CommonPkg.EmptyMsg) returns (UserListMsg) {
+	rpc ListUser (UserFilterMsg) returns (UserListMsg) {
       option (google.api.http) = { post: "/v1/UserSrv/list" }; 
 	}
 

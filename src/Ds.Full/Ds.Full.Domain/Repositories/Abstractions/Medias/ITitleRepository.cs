@@ -8,10 +8,10 @@ namespace Ds.Full.Domain.Repositories.Abstractions.Medias;
 public interface ITitleRepository : IAuditableRepository
 {
 
-    Title? Get(long id);
-    PaginatedList<Title>? List(TitleFilter filter);
-    List<Title>? Filter(TitleFilter filter);
-    Title Save(Title model);
-    Title Delete(long id);
+    Task<Title?> Get(long id);
+    Task<List<Title>?> Filter(TitleFilter filter);
+    Task<PaginatedList<Title>?> List(TitleFilter filter);
+    Task<Title> Delete(long id);
+    Task<Title> Save(Title model);
 
 }

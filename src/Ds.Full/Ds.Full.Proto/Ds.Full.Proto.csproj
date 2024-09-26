@@ -15,7 +15,7 @@
 	  <PrivateAssets>all</PrivateAssets>
 	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	</PackageReference>
-	<PackageReference Include="Ds.Base.Proto" Version="0.0.47" GeneratePathProperty="True" />
+	<PackageReference Include="Ds.Base.Proto" Version="0.0.59" GeneratePathProperty="True" />
 	<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="8.0.8" />
   </ItemGroup>
 
